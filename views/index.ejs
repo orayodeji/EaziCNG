@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.css">
+    <title>EaziCart</title>
+</head>
+<body>
+    
+        <div class="header">
+            <div class="head1">
+                <div class="sub-header1">
+                    <a href="/"><img src="./img/EaziCart logo-White.svg" alt="logo" class="logo"></a> 
+                </div>
+                <div class="sub-header2">
+                     <ul id="top">
+                        <% if (currentUser) { %>
+                            <li id="li" class="drip-down"><i class="fas fa-user"> <%= currentUser.name() %></i><i class="fas fa-angle-down"></i>
+                                <div class="dropdown">
+                                    <ul>
+                                        <li id="drop-txt dud"><a href="/logout" id="login-txt"><i class="fas dud"></i>Sign Out</a></li>
+                          <li id="drop-txt"><a href="/profile"><i class="fas fa-user dud"></i> My Account</a></li>
+                          <li id="drop-txt"><a href="/contact-us"><i class="fas fa-comment-alt dud"></i> Contact Preference</li>
+                        </ul>
+                    </div>
+                            </li></a>
+                            
+
+                            <% } else { %>
+                                <a href="/login">
+                                    <li id="li" class="drip-down"><i class="fas fa-user"></i>Login/Sign up
+                                    </li></a>
+                                
+                                <% } %>
+                                
+                         
+                            <% if(session.cart) {%>
+                                <a href="/carts"><li id="li"><i class="fas fa-heart"></i>Saved Items
+                                       </li></a>
+                                
+                            <% } else { %>
+                                <li id="li"><i class="fas fa-heart"></i>Saved Items
+                                   </li>
+                                <% } %>
+                        
+                      
+                         <li id="li"><i class="fas fa-bell"></i>Alerts</li>
+                         <li id="li"><i class="far fa-question-circle"></i>Help</li>
+                     </ul>
+                </div>
+            </div>          
+        </div>
+
+        <div class="main-container">
+            <div class="first-part">
+                <div id="background">
+                    <div class="head2">
+                
+                        <ul id="below">
+                            <li>All Categories<i class="fas fa-bars"></i></li>
+                             <a href="/phones"><li><i class="fas fa-mobile"></i>Phones</li></a> 
+                             <li><i class="fas fa-tshirt"></i>Fashion</li>
+                            <li><i class="fas fa-laptop"></i>Computer & Accessories</li>
+                            <li><i class="fas fa-tv"></i>Eletronics</li>
+                            
+                            <li><i class="fas fa-home"></i>Home & Kitchen</li>
+                            <li><i class="far fa-building"></i>Office</li>
+                        </ul>
+                         
+                     </div>
+
+                     <div id="sub-part">
+                        <p class="intro">Find Deals, Discounts and Compare Prices from Multiple Stores</p>
+                            <form id="search-form">
+                                <div id="dropdown">
+                                    <select id="abtype" name="abtype">
+                                        <option selected>Categories</option>
+                                        <option value="Phones">Phones</option>
+                                        <option value="Fashion">Fashion</option>
+                                        <option value="Office">Office</option>
+                                        <option value="HomeKitchen">Homes & Kitchen</option>
+                                        <option value="Eletronics">Eletronics</option>
+                                        <option value="Computers">Computers</option>
+                                    </select>
+                                </div>
+                                <input type="text" id="search-input" placeholder="What Do You Want To Find?"><button type="submit" id="search-btn"><i class="fas fa-search"></i></button>
+                            </form>
+                    </div>
+
+                </div>
+
+                <div id="sup-part">
+                    <div class="sub-footer">
+                        <div class="contact">
+                            <div class="text-mail">
+                                <p id="support">Never miss a deal.</p>
+                                <p id="mail">Get the latest deals and exclusive offers sent to your inbox.</p>
+                            </div>
+                        </div>
+                        <div class="subscribe">
+                            
+                            <form id="new-form">
+                                <input type="text" id="sub-inp" placeholder="Email Address"><button type="submit" id="sub-btn">GET DEALS</button>
+                            </form>
+                        </div>
+        
+                    </div>
+                    
+                </div>
+                 
+            </div>
+   
+
+            <div class="second-part">
+
+                <div class="firstfour">
+                    <div class="firbox">
+                        <div class="firbox-heading">
+                            <p class="firbox-btxt">Today’s Deals</p>
+                            <p class="firbox-stxt">View More<i class="fas fa-chevron-right"></i></p>
+                        </div>
+                        <div class="firbox-gallery">
+                            <div class="firbox-box">
+                                <div id="rectangle">78% 0ff</div>
+                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
+                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
+                                <p id="new-price-box">New Price</p>
+                                <p id="old-price-box">old Price</p>
+                            </div>
+
+                            <div class="firbox-box">
+                                <div id="rectangle">78% 0ff</div>
+                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
+                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
+                                <p id="new-price-box">New Price</p>
+                                <p id="old-price-box">old Price</p>
+                            </div>
+
+                            <div class="firbox-box">
+                                <div id="rectangle">78% 0ff</div>
+                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
+                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
+                                <p id="new-price-box">New Price</p>
+                                <p id="old-price-box">old Price</p>
+                            </div>
+
+                            <div class="firbox-box">
+                                <div id="rectangle">78% 0ff</div>
+                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
+                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
+                                <p id="new-price-box">New Price</p>
+                                <p id="old-price-box">old Price</p>
+                            </div>
+
+                            <div class="firbox-box">
+                                <div id="rectangle">78% 0ff</div>
+                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
+                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
+                                <p id="new-price-box">New Price</p>
+                                <p id="old-price-box">old Price</p>
+                            </div>
+
+                            
+                           
+                        </div>
+                        
+                    </div>
+                
+                </div> 
+            
+            
+                <div class="firstfour">
+                    <div class="firbox">
+                        <div class="firbox-heading">
+                            <p class="firbox-btxt">Recently Viewed</p>
+                            <p class="firbox-stxt">View More<i class="fas fa-chevron-right"></i></p>
+                        </div>
+                        <div class="firbox-gallery">
+                            <div class="firbox-box">
+                                <div id="rectangle">78% 0ff</div>
+                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
+                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
+                                <p id="new-price-box">New Price</p>
+                                <p id="old-price-box">old Price</p>
+                            </div>
+
+                            <div class="firbox-box">
+                                <div id="rectangle">78% 0ff</div>
+                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
+                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
+                                <p id="new-price-box">New Price</p>
+                                <p id="old-price-box">old Price</p>
+                            </div>
+
+                            <div class="firbox-box">
+                                <div id="rectangle">78% 0ff</div>
+                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
+                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
+                                <p id="new-price-box">New Price</p>
+                                <p id="old-price-box">old Price</p>
+                            </div>
+
+                            <div class="firbox-box">
+                                <div id="rectangle">78% 0ff</div>
+                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
+                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
+                                <p id="new-price-box">New Price</p>
+                                <p id="old-price-box">old Price</p>
+                            </div>
+
+                            <div class="firbox-box">
+                                <div id="rectangle">78% 0ff</div>
+                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
+                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
+                                <p id="new-price-box">New Price</p>
+                                <p id="old-price-box">old Price</p>
+                            </div>
+                           
+                           
+                        </div>
+                        
+                    </div>
+                
+                </div> 
+
+
+                <div class="secondfour">
+                    <p id="closing-txt">Eazycart.com is Nigeria’s leading online price comparison site that allows you to shop online for the best deals and lowest prices. Our mission is to help consumers use the power of information to easily find, compare and buy products online in less time and for the best price. You can read unbiased product reviews and compare prices online. Online shopping has never been as easy! Browse our large selection of fashion, clothing, consumer electronics, home and kitchen products. </p>
+
+                </div>
+            
+            </div>
+
+        </div>
+
+        <div class="footer">
+           
+            <div class="list-footer">
+                <div class="footera">
+                    <div class="a">
+                        <p id="footer-head">About EaziCart</p>
+                        <ul>
+                        <li>Home</li>
+                        <li>About Us</li>
+                        <li>Our Blog</li>
+                        <li>Contact Us</li>
+                        <li>Privacy</li>
+                        <li>User Agreement</li>
+                        </ul>
+                    </div>
+                    <div class="b">
+                        <p id="footer-head">Helpful stuff</p>
+                        <ul>
+                        <li>Site Index</li>
+                        <li>FAQ</li>
+                        <li>Blah</li>
+                        </ul>
+                    </div>
+                    <div class="c">
+                        <p id="footer-head">Follow</p>
+                        <ul>
+                        <li>Instagram</li>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        </ul>
+                    </div>
+                    <div class="d">
+                        <p id="footer-head">Download & Connect with us</p>
+                        <div class="store-img">
+                           <a href=""><i class="fab fa-google-play play-img"></i></a> 
+                           <a href=""><i class="fab fa-apple play-img"></i></a> 
+                        </div>
+                        <div class="f-contact">
+                            <div class="f-font-mail">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="f-text-mail">
+                                <p id="f-support">E-Mail Support</p>
+                                <p id="f-mail">help@eazicart.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footerb">
+                    <p class="copyright-text">Copyrigth &copy; 2020 EaziCart.com All rights Reserved</p>
+                </div>
+
+            </div>
+        </div>
+        
+        <script src="./script/index.js"></script>
+        <script>
+            document.querySelector(".drip-down").addEventListener("click", function(){
+                console.log('hello')
+                  this.classList.toggle("active");
+            });
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/styles/details.css">
+    <title>EaziCart | <%= phone.name %></title>
+</head>
+<body>
+    <div class="header">
+        <div class="head1">
+            <div class="sub-header1">
+                <a href="/"><img src="/img/EaziCart logo-White.svg" alt="logo" class="logo"></a> 
+                <form id="search-form">
+                    <div id="font-input-box">
+                        <i class="fas fa-search"></i><input type="text" id="search-input" placeholder="Search For Items, Brands And Juicy Items">
+                    </div>
+                    <button type="submit" id="search-btn">Search</button>
+                </form>
+              </div>
+            <div class="sub-header2">
+                 <ul id="top">
+                     <li id="li"><i class="fas fa-user"></i></li>
+                     <a href="/carts"><li id="li"><i class="fas fa-heart"></i></li></a>
+                     
+                     <li id="li"><i class="fas fa-bell"></i></li>
+                     <li id="li"><i class="far fa-question-circle"></i></li>
+                 </ul>
+            </div>
+        </div>
+        
+            
+    </div>
+
+    <div class="main-container">
+
+        <div class="first-part">
+            <div id="background">
+                <div class="head2">
+                    <ul id="below">
+                        <li>All Categories<i class="fas fa-bars"></i></li>
+                        <a href="/phones"><li><i class="fas fa-mobile"></i>Phones</li></a>               
+                        <li><i class="fas fa-laptop"></i>Computer & Accessories</li>
+                        <li><i class="fas fa-tv"></i>Eletronics</li>
+                        <li><i class="fas fa-tshirt"></i>Fashion</li>
+                        <li><i class="fas fa-home"></i>Home & Kitchen</li>
+                        <li><i class="far fa-building"></i>Office</li>
+                    </ul>
+                 </div>
+                 <div class="head3">
+                    <div class="cat-section-text">
+                        <p><span id="home">Home<i class="fas fa-chevron-right"></i></span><span id="category"><%= phone.category%><i class="fas fa-chevron-right"></i></span><span id="section"><%= phone.type%><i class="fas fa-chevron-right"></i></span><span id="sub-section"><%= phone.brand %><i class="fas fa-chevron-right"></i></span><span id="main-section"><%= phone.name %></span></p>
+                    </div>   
+                    <div class="detail-box">
+                        <div class="detail-img">
+                            <img src="<%= phone.img %>" id="detail-jpg">
+                        <img src="./img/playstore.jpg" alt="logo" id="detail-logo"></div>
+                        
+                        <div class="detail-details">
+                          <!--<div><img src="./img/playstore.jpg" alt="logo" id="detail-logo"></div>-->  
+                      <!--<p id="detail-name"><%= phone.name %></p>-->     
+                            <ul id= 'detail-details-ul'>
+                                <% if(phone.details.length > 0) { %>
+                                    <% let array = phone.details.slice(0, 10) %>
+                                    <% array.forEach(detail =>{ %>
+                                        <li id="detail-details-list"><%= detail.name %></li>
+
+                                   <% }) %>
+                               <% } %>
+                            </ul>    
+                            <a href="<%= phone.url %>"><button id='store-btn'><i class="fas fa-shopping-bag"></i> <p>Go to Store</p> <i class="fas fa-chevron-right "></i></button></a>
+                            
+                        </div>
+                        <div class="detail-price-box">
+                            <div id="price-history">
+                                <p id="history-heading"><i class="fas fa-chart-line"></i>Price History</p>
+                                <p id='price-label'>Now:</p>
+                                <p id="main-price"><%= phone.price %></p>
+                                <% if(phone.description) {%>
+                                    <p id="price-history-heading"><%= phone.description.substring(0,500) %></p>
+
+
+                                    <% } %>
+
+
+                                <ul>
+                                 <!--<li id="price-history-list">No Data</li>-->   
+                                   
+
+                                </ul>
+
+                            </div>
+                            <div id="save-alert-box"> 
+                                <a href="/add-to-cart/<%= phone._id %>"> <button id="save-btn" data-doc="<%= phone._id %>"><i class="fas fa-heart pl"></i>Save</button></a>
+                               
+                                <a class="popup-form"><button id="alert-btn"><i class="fas fa-bell pl"></i>Price Alert</button></a>
+                            </div>
+
+                            <div class="hover_bkgr_fricc">
+                                <span class="helper"></span>
+                                <div id="helpers">
+                                    <div class="popupCloseButton">&times;</div>
+                                    <div id="popup-form-container">
+                                        <p id="popup-heading">Create Price Alert</p>
+                                        <div id="popup-details">
+                                            <img src="<%= phone.img %>" alt="photo" id="pd-img">
+                                            <p id='pd-txt'><%= phone.name.substring(0,18) %></p>
+                                            <p id="ps-txt"><%= phone.price %></p>
+                                        </div>
+
+                                        <form action="" id="price-alert-form">
+                                            <p id="paf-text">Notify me when:</p>
+                                            <div id="input-flex">
+                                                <div id="form-radio">
+                                                    <input type="radio" id="fr-radio" name="price-drop" value="price drop">
+                                                    <label for="male"  id="fr-radio-label">The price drops</label><br>
+                                                    <input type="radio" id="fr-radio" name="price-drop" value="">
+                                                    <label for="female" id="fr-radio-label">The price drops below</label><br>
+                                                </div>
+                                                <div id="form-number">
+                                                    <input type="number" id="fn-input" name="price">
+                                                    <label for="price" id="naira">NGN</label><br>
+
+                                                </div>
+                                            </div>
+                                            <div id="stock-option">
+                                                <input type="checkbox" name="notify" id="stock-input"> <label for="notify">Only notify me when the product is in stock</label><br>
+                                            </div>
+
+                                            <button type="submit" id="paf-btn">Set Price Alert</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="compare-box">
+                                <a href="/add-to-compare/<%= phone._id %>"><button id="compare-btn"><i class="far fa-chart-bar"></i>Compare</button></a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="other-store-box">
+                        <div class="osb-box">
+                            <p id="osb-text">Price from other stores</p>
+                        </div>
+                        
+                        <div class="osp-box">
+                            <div class="osp-img-box"><img src="/img/shirt.png" id="osp-img-jpg"></div>
+                            <div class="osp-details-box">
+                                <ul id="odb-list">
+                                    <li id="obd-lists">Hello</li>
+                                    <li id="obd-lists">Hello</li>
+                                    <li id="obd-lists">Hello</li>
+                                </ul>
+                                <div id="osp-logo-box">
+                                    <img src="./img/playstore.jpg" alt="products-logo" id="osp-logo-img">
+                                </div>
+                            </div>
+                            <div class="osp-store-box">
+                                <a href=""><button id='osp-store-btn'><i class="fas fa-shopping-bag"></i> <p>Go to Store</p> <i class="fas fa-chevron-right "></i></button></a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                 </div>
+                 
+            </div>
+           
+            
+        </div>
+
+        <div class="second-part">
+            <div id="detail-features">
+                <p id="dt-text">Key Feature</p>
+                <ul id="sp-lists">
+                    <% if(phone.features.length > 0) { %>
+
+                        <% let newArray = phone.features.slice(0, 9) %>
+                        <% newArray.forEach(feature =>{ %>
+                            <li id="dtf-list"><%= feature.name %></li>
+
+                       <% }) %>
+
+                   <% } %>
+
+                  
+                </ul>
+            </div>
+            <div id="detail-spec">
+                <p id="ds-text">Products Specifications</p>
+                <ul id="sp-lists">
+                    <% if(phone.specification.length > 0) { %>
+                        <% phone.specification.forEach(spec =>{ %>
+                            <li id="ds-list"><%= spec.name %></li>
+
+                       <% }) %>
+                   <% } %>
+                </ul>
+            </div>
+        </div>
+
+        <div class="third-part">
+            <div id="recent-picks">
+                <div class="recent-text">
+                    <p id="recent-btxt">Recently Viewed</p>
+                    <p id="recent-stxt"><span id='txt'>See All</span> <i class="fas fa-chevron-right"></i></p>
+                </div>
+                <div class="recent-gallery">
+                    <div class="recent-pack">
+                        <p class="recent-discount">discount</p>
+                        <div class="recent-box">
+                            
+                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
+                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
+                        </div>
+                        <p class="recent-name">product</p>
+                        <p class="recent-price">New Price</p>
+                        <p class="recent-old-price">Old Price</p>
+                    </div>
+                    <div class="recent-pack">
+                        <p class="recent-discount">discount</p>
+                        <div class="recent-box">
+                            
+                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
+                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
+                        </div>
+                        <p class="recent-name">product</p>
+                        <p class="recent-price">New Price</p>
+                        <p class="recent-old-price">Old Price</p>
+                    </div>
+                    <div class="recent-pack">
+                        <p class="recent-discount">discount</p>
+                        <div class="recent-box">
+                            
+                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
+                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
+                        </div>
+                        <p class="recent-name">product</p>
+                        <p class="recent-price">New Price</p>
+                        <p class="recent-old-price">Old Price</p>
+                    </div>
+                    <div class="recent-pack">
+                        <p class="recent-discount">discount</p>
+                        <div class="recent-box">
+                            
+                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
+                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
+                        </div>
+                        <p class="recent-name">product</p>
+                        <p class="recent-price">New Price</p>
+                        <p class="recent-old-price">Old Price</p>
+                    </div>
+                    <div class="recent-pack">
+                        <p class="recent-discount">discount</p>
+                        <div class="recent-box">
+                            
+                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
+                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
+                        </div>
+                        <p class="recent-name">product</p>
+                        <p class="recent-price">New Price</p>
+                        <p class="recent-old-price">Old Price</p>
+                    </div>
+                   
+                    
+                </div>
+            </div>
+            <div class="closing-txt">
+                <p id="closing-txt">Eazycart.com is Nigeria’s leading online price comparison site that allows you to shop online for the best deals and lowest prices. Our mission is to help consumers use the power of information to easily find, compare and buy products online in less time and for the best price. You can read unbiased product reviews and compare prices online. Online shopping has never been as easy! Browse our large selection of fashion, clothing, consumer electronics, home and garden producsts now </p>
+            </div>
+        
+        </div>
+    </div>
+
+    <div class="footer">
+        
+        <div class="list-footer">
+            <div class="footera">
+                <div class="a">
+                    <p id="footer-head">About EaziCart</p>
+                    <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Our Blog</li>
+                    <li>Contact Us</li>
+                    <li>Privacy</li>
+                    <li>User Agreement</li>
+                    </ul>
+                </div>
+                <div class="b">
+                    <p id="footer-head">Helpful stuff</p>
+                    <ul>
+                    <li>Site Index</li>
+                    <li>FAQ</li>
+                    <li>Blah</li>
+                    </ul>
+                </div>
+                <div class="c">
+                    <p id="footer-head">Follow</p>
+                    <ul>
+                    <li>Instagram</li>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    </ul>
+                </div>
+                <div class="d">
+                    <p id="footer-head">Download & Connect with us</p>
+                    <div class="store-img">
+                       <a href=""><i class="fab fa-google-play play-img"></i></a> 
+                       <a href=""><i class="fab fa-apple play-img"></i></a> 
+                    </div>
+                    <div class="f-contact">
+                        <div class="f-font-mail">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="f-text-mail">
+                            <p id="f-support">E-Mail Support</p>
+                            <p id="f-mail">help@eazicart.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footerb">
+                <p class="copyright-text">Copyrigth &copy; 2020 EaziCart.com All rights Reserved</p>
+            </div>
+
+        </div>
+    </div>
+  <script>
+    $(document).ready(function () {
+$(".popup-form").click(function(){
+    $('.head3').css('background','#d4cdcd')
+    $('#alert-btn').css('background','#d4cdcd')
+   $('.hover_bkgr_fricc').show();
+});
+
+$('.popupCloseButton').click(function(){
+    $('.head3').css('background','white')
+    $('#alert-btn').css('background','white')
+    $('.hover_bkgr_fricc').hide();
+});
+});
+</script>
+
+
+
+  <script>
+      const saveBtn = document.querySelector('button#save-btn')
+      console.log(saveBtn)
+
+      saveBtn.addEventListener('click', (e)=>{
+          const endPoint = `/phones/${saveBtn.dataset.doc}`;
+
+          fetch(endPoint, {
+              method:'POST'
+          })
+          .then((response)=>{
+              return response.json()
+          })
+          .then((data)=>{
+              window.location.href=data.redirect
+              console.log(data)
+          })
+          .catch((err)=>{
+              console.log(err)
+          })
+
+      })
+
+  </script>
+</body>
+</html>
+

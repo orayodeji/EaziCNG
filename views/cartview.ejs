@@ -1,0 +1,30 @@
+<h1>Hello</h1>
+
+
+
+
+<% if(phoneCarts) { %>
+    <% phoneCarts.forEach(phone => { %>
+        <div class="product-pack">
+            <div id="inputs">
+                <i class="fas fa-heart like-btn"></i>
+                <input type="checkbox" name="" id="like-input">
+            </div>
+            
+                <img src="<%= phone.item.img %>" alt="top-product" class="product-img">
+                
+                <p class="product-name"><%= phone.item.name %></p>
+                <p class="product-price"><%= phone.item.price %></p>
+                <div id="old-price-discount">
+                    <p class="product-old-price"><%= phone.item.old_price %></p>
+                    <p class="product-discount"><%= phone.item.discount %></p>
+                </div>
+        
+                    <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+        
+                    <a href="/phones/<%= phone.item._id %>"><button class="details-btn">Details</button></a>
+            
+        </div>
+
+    <% }) %>
+<% } %>

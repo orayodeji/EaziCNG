@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EaziCart | Sign Up</title>
+    <link rel="stylesheet" href="styles/sign.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <div class="header-logo">
+            <a href="./index.html"><img src="./images/Eazicart logo new 3.svg" width="70" alt="Eazi Cart Logo"></a>
+        </div>
+        <div class="container-register">
+            <div class="info-center">
+                <div id="new"><h2>New To EaziCart?</h2></div>
+                <div id="already"><a style="text-decoration: none" href="./login.html"><h2>Already Registered?</h2></a></div>
+            </div>
+            <h3>SIGN UP WITH...</h3>
+            <div class="social-container">
+                <div class="social"><a href="#"><img src="./images/Google Button.png" alt="google" width="100%" height="100%"></a></div>
+                <div class="social"><a href="#"><img src="./images/qqq.png" alt="apple" width="100%" height="100%"></a></div>
+            </div>
+            <div class="social-container">
+                <div class="social"><a href="#"><img src="./images/Facebook Button.png" alt="facebook" width="100%"></a></div>
+                <div class="social"><a href="#"><img src="./images/Twitter Button.png" alt="twitter" width="100%"></a></div>
+            </div>
+            <p><b>Signing up with social is super quick. No extra passwords to remember - no brain fail.<br> Don't worry, 
+                we'll never share your data or post anything on your behalf. We know how that <br>annoying it is too</b></p>
+                <div class="or2"><b>OR</b></div>
+                <hr id="hr1">
+                <h3>SIGN UP USING YOUR EMAIL...</h3>
+                <form class="form" action="/signup" method="POST">
+                    <label for="user">Username:</label><br>
+                    <input type="text" name="user" id="email" required><br>
+                    <label for="email">Email Address:</label><br>
+                    <input type="email" name="email" id="email" required><br>
+                    <label for="" class="email">We'll send your order confirmation here.</label><br>
+                    <label for="firstname">First Name:</label><br>
+                    <input type="text" name="firstname" id="firstname" required><br>
+                    <label for="lastname">Last Name:</label><br>
+                    <input type="text" name="lastname" id="lastname" required><br>
+                    <label for="password">Password:</label><br>
+                    <span class="eye" onclick="myFunction()">
+                        <i id="hide1" class="fa fa-eye"></i>
+                        <i id="hide2" class="fa fa-eye-slash"></i>
+                    </span>
+                    <input type="password" id="myInput" name="password" required><br>
+                    <label for="" class="email">Must be 10 or more characters</label><br><br><br>
+                            <span>
+                                By creating your account, you agree to our <a id="terms" href="#">Terms and conditions</a> & <a id="terms" href="#">Privacy Policy</a>
+                            </span>
+                            <button class="signup" type="submit">CREATE ACCOUNT</button>
+                    </div>
+                </form>
+        </div>
+        
+    </div>
+    <script>
+        function myFunction (){
+  let a = document.getElementById("myInput");
+  let b = document.getElementById("hide1");
+  let c = document.getElementById("hide2");
+
+  if(a.type === "password"){
+      a.type = "text";
+      b.style.display = "block";
+      c.style.display = "none";
+  }
+  else{
+      a.type = "password";
+      b.style.display = "none";
+      c.style.display = "block";
+  }
+}
+    </script>
+</body>
+</html>
