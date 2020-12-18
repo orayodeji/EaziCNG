@@ -172,16 +172,15 @@
             
             
                 <div class="firstfour">
-                    <div class="firbox">
-                        <div class="firbox-heading">
-                            <p class="firbox-btxt">Recently Viewed</p>
-                            <p class="firbox-stxt">View More<i class="fas fa-chevron-right"></i></p>
-                        </div>
-                        <div class="firbox-gallery">
-
                             <% if(recents.length > 0) { %>
-                                <% recents.forEach(recent => { %>
+                                <div class="firbox">
+                                    <div class="firbox-heading">
+                                        <p class="firbox-btxt">Recently Viewed</p>
+                                        <p class="firbox-stxt">View More<i class="fas fa-chevron-right"></i></p>
+                                    </div>
+                                    <div class="firbox-gallery">
 
+                                <% recents.forEach(recent => { %>
                                     <a href="/phones/<%= recent._id%>">
 
                                         <div class="firbox-box">
@@ -195,19 +194,47 @@
     
                                        
                                     </a>
-
-                                   
                                     <% }) %>
-                                    <% } %>
-                         
-
-
-                          
-                           
-                           
-                        </div>
+                                      
+                                    </div>
                         
-                    </div>
+                                </div>
+
+                                    <% } else { %>
+                                        <div class="firbox">
+                                            <div class="firbox-heading">
+                                                <p class="firbox-btxt">Recently Viewed</p>
+                                                <p class="firbox-stxt">View More<i class="fas fa-chevron-right"></i></p>
+                                            </div>
+                                            <div class="firbox-gallery">
+
+                                        <% let newArray = deals.slice(99, 5) %>
+                                        <% newArray.forEach(deal => { %>
+
+                                            <a href="/phones/<%= deal._id%>">
+
+                                                <div class="firbox-box">
+                                                    <div id="rectangle"><%= deal.discount %></div>
+                                                    <a href=""><img src="<%= deal.img %>" alt="demo" class="fir-img"></a>
+                                                    <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                                    <p id="price-box"><%= deal.name.substring(0,41)%></p>
+                                                    <p id="new-price-box"><%= deal.price%></p>
+                                                    <p id="old-price-box"><%= deal.old_price %></p>
+                                                </div>
+            
+                                               
+                                            </a>
+
+
+
+                                            <% }) %>
+                                        </div>
+                        
+                                    </div>
+
+
+                                    <% } %>
+                        
                 
                 </div> 
 

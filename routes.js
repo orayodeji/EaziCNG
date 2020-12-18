@@ -49,19 +49,14 @@ router.get('/', (req, res, next)=>{
             
             Compare.find({user:req.user}).sort({createdAt:-1}).limit(5)
             .then((result)=>{
-                shuffle(result)
-                Phone.find()
-                .then((topdeals)=>{
-                shuffle(topdeals) 
-                
-                res.render('index', {users: users, recents: result, deals: topdeals});
- 
-                })
-                .catch((err)=>{
-                console.log(err)
-                    })
-                
 
+                shuffle(result)
+                    Phone.find()
+                    .then((topdeals)=>{
+                    shuffle(topdeals)  
+                    res.render('index', {users: users, recents: result, deals: topdeals});})
+                    .catch((err)=>{
+                    console.log(err)})
             })
             .catch((err)=>{
                 console.log(err)
