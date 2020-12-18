@@ -59,6 +59,10 @@ const phoneSchema = new Schema({
     description:{
         type: String,
         required:false
+    },
+    vendor:{
+        type:String,
+        required:false
     }
 })
 

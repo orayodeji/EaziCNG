@@ -109,7 +109,14 @@ router.get('/phones/:id',(req,res)=>{
     const id = req.params.id;
     Phone.findById(id)
     .then((result)=>{
-       res.render("details", {phone: result})
+        console.log(result.vendor)
+        let filter = result.name.substring(0,10)
+        Phone.find({$text : {$search: filter}})
+        .then((filterResult)=>{
+            shuffle(filterResult)
+            res.render("details", {phone: result, other: filterResult[0]})
+        })
+        
     })
     .catch((err)=>{
         console.log(err)

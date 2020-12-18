@@ -133,12 +133,54 @@ columnIcon.addEventListener('click', ()=>{
         detailsBtns[i].classList.remove('details-btn-with-row')
         detailsBtns[i].classList.add('details-btn-with-column')
     }
-    
-    
-    
-
 })
 
+
+rowIcon.addEventListener('click', ()=>{ 
+    rowIcon.style.color = ' #FF8200'
+    columnIcon.style.color = 'black'
+    pG.classList.add('flex')
+    pG.classList.remove('column')
+    for(let i = 0; i < demo.length; i++){  
+        demo[i].classList.add('withrow')
+        demo[i].classList.remove('withcolumn')
+    }
+
+    for(let i = 0; i < productImages.length; i++){  
+        productImages[i].classList.add('product-img-with-row')
+        productImages[i].classList.remove('product-img-with-column')
+    }
+
+    for(let i = 0; i < productNames.length; i++){  
+        productNames[i].classList.add('product-name-with-row')
+        productNames[i].classList.remove('product-name-with-column')
+    }
+
+    for(let i = 0; i < productPrices.length; i++){  
+        productPrices[i].classList.add('product-price-with-row')
+        productPrices[i].classList.remove('product-price-with-column')
+    }
+    
+    for(let i = 0; i < opds.length; i++){  
+        opds[i].classList.add('opd-with-row')
+        opds[i].classList.remove('opd-with-column')
+    }
+
+    for(let i = 0; i < productOldPrices.length; i++){  
+        productOldPrices[i].classList.add('product-old-price-with-row')
+        productOldPrices[i].classList.remove('product-old-price-with-column')
+    }
+    
+    for(let i = 0; i < productLogos.length; i++){  
+        productLogos[i].classList.add('product-logo-with-row')
+        productLogos[i].classList.remove('product-logo-with-column')
+    }
+
+    for(let i = 0; i < detailsBtns.length; i++){  
+        detailsBtns[i].classList.add('details-btn-with-row')
+        detailsBtns[i].classList.remove('details-btn-with-column')
+    }
+})
 
 
 window.onload = function(){

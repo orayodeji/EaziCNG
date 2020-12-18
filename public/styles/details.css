@@ -331,7 +331,7 @@ ul{
 
 #store-btn:hover{
     color: #FF8200;
-    border: 1px solid black;
+    border: 1px solid #C0BCBC;
     background: white;
 }
 
@@ -351,7 +351,7 @@ ul{
 
 #price-history{
     width: 95%;
-    border: 1px solid #525252;
+    border: 1px solid #C0BCBC;
     -webkit-border-before-width: 2px;
     margin-top: 4%;
     height: 65%;
@@ -436,15 +436,32 @@ ul{
     line-height: 25px;
     letter-spacing: 0em;
     text-align: center;
+    border: 1px solid #C0BCBC;
     color: #000000;
     border-radius: 20px;
 }
 
-#save-btn:hover{
-    background: #FF8200;
-    border: 0;
-    color: white;
+#compare-btn{
+    
+    border-radius: 20px;
+    border: 1px solid #C0BCBC;
+
+    height: 68px;
+    width: 368px;
+    font-family: Encode Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #000000;
+    margin-left: 4.0%;
+    font-family: Encode Sans;
+
 }
+
+
 
 /* pop up form for price alert */
 .hover_bkgr_fricc{
@@ -569,7 +586,7 @@ ul{
     left: 975px;
     top: 775px;
     border-radius: 0px;
-    border: 1px solid black;
+    border: 1px solid #C0BCBC;
     font-family: Futura PT;
     font-size: 22px;
     font-style: normal;
@@ -674,9 +691,7 @@ ul{
     margin-right: 23px;
 }
 
-.pl:hover{
-    color: white;
-}
+
 
 
 #compare-box{
@@ -685,20 +700,9 @@ ul{
     align-items: center;
 }
 
-#compare-btn{
-    border-radius: 20px;
-    height: 68px;
-    width: 368px;
-    font-family: Encode Sans;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 25px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #000000;
-    margin-left: 4.0%;
-}
+
+
+
 
 .fa-chart-bar{
     margin-right:23px ;
@@ -711,6 +715,8 @@ ul{
 
 .osb-box{
     height: 20%;
+    border: 1px solid #C0BCBC;
+
 }
 
 #osb-text{
@@ -721,29 +727,57 @@ ul{
     line-height: 30px;
     letter-spacing: 0em;
     text-align: left;
-    margin-top: 0%;
+    margin-top: 1.5%;
+    margin-left: 2.5%;
     color: #000000;
 
 }
 
+
 .osp-box{
     height: 80%;
     display: flex;
+    border: 1px solid #C0BCBC;
+    border-top: 0px;
 }
 
 .osp-img-box{
     width: 25%;
     height: 100%;
-    border: 1px solid #282828;
+    position: relative;
+    border-right: 1px  solid #C0BCBC;
 } 
 #osp-img-jpg{
     width: 85%;
-    height: 85%;
-    margin: 4% 8%;
+    height: 95%;
+    margin: 2% 8%;
 }
+
+#rectangle{ height: 40px;
+    position: absolute;
+    width: 85px;
+    left: 228px;
+    top: 15px; 
+    transform:rotate(10deg);  
+    transform: skewY(-15deg); /* IE 9 */
+    transform: skewX(-15deg);
+    background: orange;
+    padding-top: 2%;
+    font-family: Encode Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
+
 .osp-details-box{
     width: 50%;
-    border: 1px solid #282828;
+    border-right: 1px  solid #C0BCBC;
+    
+
 }
 
 #odb-list{
@@ -757,20 +791,42 @@ ul{
     text-align: left;
     margin-left: 5%;
 }
-#obd-lists{
-    margin-bottom: 3px;
-}
+
+    #obd-lists{
+        margin-top: 7%;
+        font-family: Encode Sans;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin-left: 5%;
+        margin-bottom: 4%;
+        
+    }
+
+    #huncho{
+        font-family: Encode Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+
+    }
+
 
 #osp-logo-img{
     width: 16%;
-    height: 06%;
+    height: 012%;
     margin-left: 5%;
-    margin-top: 9px;
+    margin-top: 2%;
 }
 
 .osp-store-box{
     width: 25%;
-    border: 1px solid #282828;
 
 }
 #osp-store-btn{
@@ -794,7 +850,7 @@ ul{
 
 #osp-store-btn:hover{
     color: #FF8200;
-    border: 1px solid black;
+    border: 1px solid #C0BCBC;
     background: white;
 }
 
@@ -829,7 +885,7 @@ ul{
 
 #detail-features, #detail-spec{
     width: 45%;
-    border: 1px solid black;
+    border: 1px solid #C0BCBC;
     border-radius: 7px;
     height: 80%;
     margin-top: 1%;
@@ -948,10 +1004,31 @@ h3{
     margin: 0;
     background: white;
     height: 100%;
-    width: 15%; 
+    width: 18%;
+    position: relative;
     align-items: center;
     box-shadow:1px 04px #a5a3a1;  
     border-radius: 9px;
+    border: 2px solid red;
+}
+#recent-rectangle{ height: 30px;
+    position: absolute;
+    width: 65px;
+    left: 158px;
+    top: 21px; 
+    transform:rotate(10deg);  
+    transform: skewY(-15deg); /* IE 9 */
+    transform: skewX(-15deg);
+    background: orange;
+    padding-top: 2%;
+    font-family: Encode Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: center;
+
 }
 
 .recent-box{
@@ -959,6 +1036,7 @@ h3{
     flex-direction: column;
     height: 70%;
     align-items: center;
+    border: 3px solid red;
 }
 
 .recent-discount{
@@ -979,6 +1057,7 @@ h3{
     height:75%;
     border-radius: 5%;
     margin-top: 15%;
+    border: 3px solid red;
 }
 .recent-logo{
     width: 40%;

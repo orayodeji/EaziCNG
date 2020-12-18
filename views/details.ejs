@@ -59,7 +59,18 @@
                     <div class="detail-box">
                         <div class="detail-img">
                             <img src="<%= phone.img %>" id="detail-jpg">
-                        <img src="./img/playstore.jpg" alt="logo" id="detail-logo"></div>
+
+                            <% if(phone.vendor) { %>
+                                            
+                                <img src="<%= phone.vendor %>" alt="vendor-logo" id="detail-logo">
+                                <% } else { %>
+                                    <img aria-describedby="caption-attachment-27644" id="detail-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+
+
+                                    <% } %>
+
+
+                        </div>
                         
                         <div class="detail-details">
                           <!--<div><img src="./img/playstore.jpg" alt="logo" id="detail-logo"></div>-->  
@@ -151,24 +162,47 @@
                         <div class="osb-box">
                             <p id="osb-text">Price from other stores</p>
                         </div>
-                        
-                        <div class="osp-box">
-                            <div class="osp-img-box"><img src="/img/shirt.png" id="osp-img-jpg"></div>
-                            <div class="osp-details-box">
-                                <ul id="odb-list">
-                                    <li id="obd-lists">Hello</li>
-                                    <li id="obd-lists">Hello</li>
-                                    <li id="obd-lists">Hello</li>
-                                </ul>
-                                <div id="osp-logo-box">
-                                    <img src="./img/playstore.jpg" alt="products-logo" id="osp-logo-img">
+
+                        <% if(other) {%>
+                            <div class="osp-box">
+                                <div class="osp-img-box">
+                                    <div id="rectangle"><%= other.discount %></div>
+
+                                    <a href="/phones/<%= other._id %>">
+                                        <img src="<%= other.img %>" id="osp-img-jpg"></a>
+    
+                                    
                                 </div>
-                            </div>
-                            <div class="osp-store-box">
-                                <a href=""><button id='osp-store-btn'><i class="fas fa-shopping-bag"></i> <p>Go to Store</p> <i class="fas fa-chevron-right "></i></button></a>
+
+                                <div class="osp-details-box">
+    
+                                    <p id="obd-lists">Product: <span id="huncho"><%= other.name %></span></p>
+    
+                                    <p id="obd-lists">Price: <span id="huncho"><%= other.price %></span></p>
+
+
+                                    <% if(other.vendor) { %>
+                                            
+                                        <img src="<%= other.vendor %>" alt="vendor-logo" id="osp-logo-img">
+                                        <% } else { %>
+                                            <img aria-describedby="caption-attachment-27644" id="osp-logo-img" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+        
+        
+                                            <% } %>
+    
+    
+                                    
+                                </div>
+
+                                <div class="osp-store-box">
+                                    <a href="<%= other.url %>"><button id='osp-store-btn'><i class="fas fa-shopping-bag"></i> <p>Go to Store</p> <i class="fas fa-chevron-right "></i></button></a>
+                                </div>
+    
                             </div>
 
-                        </div>
+                        
+                        <% } %>
+                    
                     </div>
 
                  </div>
@@ -199,7 +233,9 @@
                 <p id="ds-text">Products Specifications</p>
                 <ul id="sp-lists">
                     <% if(phone.specification.length > 0) { %>
-                        <% phone.specification.forEach(spec =>{ %>
+                        <% let newArray = phone.specification.slice(0, 11) %>
+
+                        <% newArray.forEach(spec =>{ %>
                             <li id="ds-list"><%= spec.name %></li>
 
                        <% }) %>
@@ -216,16 +252,17 @@
                 </div>
                 <div class="recent-gallery">
                     <div class="recent-pack">
-                        <p class="recent-discount">discount</p>
+                        <div id="recent-rectangle">78% 0ff</div>
                         <div class="recent-box">
                             
-                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
+                            <img src="/img/OIP.jpg" alt="top-product" class="recent-img">
+                            <img src="/img/playstore.jpg" alt="vendor-logo" class="recent-logo">
                         </div>
                         <p class="recent-name">product</p>
                         <p class="recent-price">New Price</p>
                         <p class="recent-old-price">Old Price</p>
                     </div>
+
                     <div class="recent-pack">
                         <p class="recent-discount">discount</p>
                         <div class="recent-box">
