@@ -1009,8 +1009,9 @@ h3{
     align-items: center;
     box-shadow:1px 04px #a5a3a1;  
     border-radius: 9px;
-    border: 2px solid red;
 }
+
+
 #recent-rectangle{ height: 30px;
     position: absolute;
     width: 65px;
@@ -1034,9 +1035,8 @@ h3{
 .recent-box{
     display: flex;
     flex-direction: column;
-    height: 70%;
+    height: 75%;
     align-items: center;
-    border: 3px solid red;
 }
 
 .recent-discount{
@@ -1053,16 +1053,15 @@ h3{
 }
 
 .recent-img{
-    width:50%;
-    height:75%;
+    width:90%;
+    height:83%;
     border-radius: 5%;
-    margin-top: 15%;
-    border: 3px solid red;
+    margin-top: 3%;
 }
 .recent-logo{
     width: 40%;
     height: 13%;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .recent-name{
@@ -1074,7 +1073,7 @@ h3{
     letter-spacing: 0em;
     text-align: left;
     margin-left: 2%;
-    margin-top: 2%;
+    margin-bottom: 3%;
 }
 
 .recent-price, .recent-old-price{

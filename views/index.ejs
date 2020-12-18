@@ -124,50 +124,43 @@
                             <p class="firbox-stxt">View More<i class="fas fa-chevron-right"></i></p>
                         </div>
                         <div class="firbox-gallery">
-                            <div class="firbox-box">
-                                <div id="rectangle">78% 0ff</div>
-                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
-                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
-                                <p id="new-price-box">New Price</p>
-                                <p id="old-price-box">old Price</p>
-                            </div>
 
-                            <div class="firbox-box">
-                                <div id="rectangle">78% 0ff</div>
-                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
-                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
-                                <p id="new-price-box">New Price</p>
-                                <p id="old-price-box">old Price</p>
-                            </div>
+                            <% if(deals.length > 0) { %>
+                                <% let newArray = deals.slice(0, 5) %>
 
-                            <div class="firbox-box">
-                                <div id="rectangle">78% 0ff</div>
-                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
-                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
-                                <p id="new-price-box">New Price</p>
-                                <p id="old-price-box">old Price</p>
-                            </div>
 
-                            <div class="firbox-box">
-                                <div id="rectangle">78% 0ff</div>
-                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
-                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
-                                <p id="new-price-box">New Price</p>
-                                <p id="old-price-box">old Price</p>
-                            </div>
+                                <% newArray.forEach(deal => { %>
 
-                            <div class="firbox-box">
-                                <div id="rectangle">78% 0ff</div>
-                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
-                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
-                                <p id="new-price-box">New Price</p>
-                                <p id="old-price-box">old Price</p>
-                            </div>
+                                   <!----> 
+
+                                        <div class="firbox-box">
+                                            <div id="rectangle"><%= deal.discount%></div>
+                                            <img src="<%= deal.img %>" alt="demo" class="fir-img">
+
+                                            <% if(deal.vendor) { %>
+                                            
+                                                <img src="<%= deal.vendor %>" alt="vendor-logo" class="product-logo">
+                                                <% } else { %>
+                                                    <img aria-describedby="caption-attachment-27644" class="product-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+                
+                
+                                                    <% } %>
+
+
+                                                    <a href="/phones/<%= deal._id%>"> <p id="price-box"><%= deal.name.substring(0,32) %></p>
+                                                    </a>
+
+                                            
+                                            <p id="new-price-box"><%= deal.price %></p>
+                                            <p id="old-price-box"><%= deal.old_price %></p>
+                                        </div>
+
+                            <!-- -->       
+
+                                    <% }) %>
+                                    <% } %>
+
+                           
 
                             
                            
@@ -185,50 +178,31 @@
                             <p class="firbox-stxt">View More<i class="fas fa-chevron-right"></i></p>
                         </div>
                         <div class="firbox-gallery">
-                            <div class="firbox-box">
-                                <div id="rectangle">78% 0ff</div>
-                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
-                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
-                                <p id="new-price-box">New Price</p>
-                                <p id="old-price-box">old Price</p>
-                            </div>
 
-                            <div class="firbox-box">
-                                <div id="rectangle">78% 0ff</div>
-                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
-                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
-                                <p id="new-price-box">New Price</p>
-                                <p id="old-price-box">old Price</p>
-                            </div>
+                            <% if(recents.length > 0) { %>
+                                <% recents.forEach(recent => { %>
 
-                            <div class="firbox-box">
-                                <div id="rectangle">78% 0ff</div>
-                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
-                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
-                                <p id="new-price-box">New Price</p>
-                                <p id="old-price-box">old Price</p>
-                            </div>
+                                    <a href="/phones/<%= recent._id%>">
 
-                            <div class="firbox-box">
-                                <div id="rectangle">78% 0ff</div>
-                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
-                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
-                                <p id="new-price-box">New Price</p>
-                                <p id="old-price-box">old Price</p>
-                            </div>
+                                        <div class="firbox-box">
+                                            <div id="rectangle"><%= recent.discount %></div>
+                                            <a href=""><img src="<%= recent.img %>" alt="demo" class="fir-img"></a>
+                                            <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+                                            <p id="price-box"><%= recent.name.substring(0,41)%></p>
+                                            <p id="new-price-box"><%= recent.price%></p>
+                                            <p id="old-price-box"><%= recent.old_price %></p>
+                                        </div>
+    
+                                       
+                                    </a>
 
-                            <div class="firbox-box">
-                                <div id="rectangle">78% 0ff</div>
-                                <a href=""><img src="./img/OIP.jpg" alt="demo" class="fir-img"></a>
-                                <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                <p id="price-box">Infinix Smart 4 (X653)6.6"INCH HD+ (16GB ROM, 1GB RAM) Andriod 9 Pie jumia slot under guanrantee apalo ajjdh gdhhdgu dhjsjsu</p>
-                                <p id="new-price-box">New Price</p>
-                                <p id="old-price-box">old Price</p>
-                            </div>
+                                   
+                                    <% }) %>
+                                    <% } %>
+                         
+
+
+                          
                            
                            
                         </div>

@@ -54,7 +54,7 @@
             
             <% if(phoneCarts) { %>
                 <% phoneCarts.forEach(phone => { %>
-                    <a href="/phones/<%= phone.item._id %>">
+                    
                         <div id="saved-contents">
                             <a href="/remove-cart/<%= phone.item._id %>"><div id="rm-rf">x</div></a>
                             
@@ -69,9 +69,9 @@
                                 <p id="detail"> 
                                 </p>
                                 <a href="<%= phone.item.url %>"><button id='osp-store-btn'><i class="fas fa-shopping-bag"></i> <p>Go to Store</p></button></a>
-                                    <button id="notify">Notify Me of Price Drop</button>
+                                <a href="/phones/<%= phone.item._id %>">  <button id="notify">Notify Me of Price Drop</button></a>
                             </div>
-                        </div></a>
+                        </div>
                    
 
 
@@ -88,13 +88,9 @@
             
 
         </div>
-        <div class="sync">
-            <div id="image"><img src="./img/vector.png"></div>            
-            <p id="sync">Sign in to sync your saved items across all your <br> 
-                devices and get notified about new deals
-            </p>
-            <a href=""><button id='osp-store-btn'><p>Sign In</p></button></a>
-        </div>
+       
+
+        
         <div class="third-part">
             <div class="closing-txt">
                 <p id="closing-txt">Eazycart.com is Nigeria’s leading online price comparison site that allows you to shop 

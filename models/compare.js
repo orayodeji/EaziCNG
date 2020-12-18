@@ -16,6 +16,14 @@ const compareSchema = new Schema({
         type : String,
         required: true
     },
+    discount:{
+        type:String,
+        required:false
+    },
+    old_price:{
+        type:String,
+        required:false
+    },
     price:{
         type : String,
         required: true
@@ -24,7 +32,7 @@ const compareSchema = new Schema({
         type : String,
         required: false
     },
-    logo:{
+    vendor:{
         type : String,
         required: false
     },

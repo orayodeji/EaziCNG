@@ -1,35 +1,32 @@
-var express = require('express');
-var passport = require('passport');
-
-var router = express.Router();
-
-const Phone = require("./models/phones")
-const Compare = require("./models/compare")
-const Cart = require('./models/carts')
-var User = require('./models/user');
-var Order = require('./models/order');
+const express = require('express');
+const passport = require('passport');
+const router = express.Router();
+const Phone = require("./models/phones");
+const Compare = require("./models/compare");
+const Cart = require('./models/carts');
+const User = require('./models/user');
+const Order = require('./models/order');
 
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-  
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-  
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-  
       // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-  
     return array;
   }
 
-var router = express.Router();
+  function randomNumber(array){
+       return Math.floor(Math.random()*array.length*0.75)
+  }
+
 
 router.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated()
@@ -49,9 +46,27 @@ router.get('/', (req, res, next)=>{
             if (err) {
                 return next(err);
             }
-            res.render('index', {
-                users: users
-            });
+            
+            Compare.find({user:req.user}).sort({createdAt:-1}).limit(5)
+            .then((result)=>{
+                shuffle(result)
+                Phone.find()
+                .then((topdeals)=>{
+                shuffle(topdeals) 
+                
+                res.render('index', {users: users, recents: result, deals: topdeals});
+ 
+                })
+                .catch((err)=>{
+                console.log(err)
+                    })
+                
+
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+
         });
 });
 
@@ -217,7 +232,7 @@ router.get('/shoppings', ensureAuthenticated, (req, res, next)=>{
         })
         let storedDatas =  cart.generateArray()
 
-       res.render('shoppingcart',{phoneCarts: cart.generateArray(), total: cart.totalQty})
+       res.render('shoppingcart',{phoneCarts: cart.generateArray(), total: storedDatas.length})
         
     })
 })
@@ -232,12 +247,14 @@ router.get('/add-to-compare/:id',ensureAuthenticated, (req, res,next)=>{
         let name = result.name;
         let price = result.price;
         let url = result.url;
-        let logo = result.logo;
+        let vendor = result.vendor;
+        let discount = result.discount;
         let features = result.features;
         let img = result.img;
         let brand = result.brand;
+        let old_price = result.old_price;
 
-        let  newResult = {name, url, brand, price, img, logo, features, user} 
+        let  newResult = {name, url, brand, price,discount,old_price, img, vendor, features, user} 
 
         const compare = new Compare(newResult)
         compare.save()
