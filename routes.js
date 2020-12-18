@@ -5,13 +5,29 @@ var router = express.Router();
 
 const Phone = require("./models/phones")
 const Compare = require("./models/compare")
-
 const Cart = require('./models/carts')
-
-
 var User = require('./models/user');
 var Order = require('./models/order');
 
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
 
 var router = express.Router();
 
@@ -25,10 +41,6 @@ router.use(function (req, res, next) {
 });
 
 router.get('/', (req, res, next)=>{
-    function hell(){
-        console.log('how are you')
-    }
-   hell()
     User.find()
         .sort({
             createdAt: 'descending'
@@ -69,12 +81,12 @@ router.post('/signup', function (req, res, next) {
             password: password
         });
         newUser.save((err, result)=>{
-            res.redirect('/')
+           res.redirect('/login')
         });
 
     });
 }, passport.authenticate("login", {
-    successRedirect: "/",
+    successRedirect: "/login",
     failureRedirect: "/signup",
     failureFlash: true
 }));
@@ -83,7 +95,8 @@ router.post('/signup', function (req, res, next) {
 router.get('/phones', (req, res)=>{
     Phone.find()
     .then((result)=>{
-        res.render('phones',{phones: result})
+      shuffle(result)  
+        res.render('phones',{phones: result, counts: result.length})
     })
     .catch((err)=>{
         console.log(err)
@@ -91,12 +104,11 @@ router.get('/phones', (req, res)=>{
     
 })
 
+
 router.get('/phones/:id',(req,res)=>{
     const id = req.params.id;
-   // console.log(id)
     Phone.findById(id)
     .then((result)=>{
-      // console.log(result)
        res.render("details", {phone: result})
     })
     .catch((err)=>{
@@ -120,37 +132,57 @@ router.get('/add-to-cart/:id',ensureAuthenticated, (req, res, next)=>{
             }
             cart.add(phone, phone.id);
             req.session.cart = cart;
-            //let order = new Order
-           console.log(req.session.cart)
 
-          // res.redirect('/')
-          console.log(req.session.cart.items.length)
-
-            //console.log(req.session.cart.generateArray().length)
-          // console.log(req.session.cart.generateArray()[0].item.name) 
-         // console.log(req.session.cart.generateArray())
-          //console.log(req.session.cart.totalQty)
-          //  console.log(cart.totalQty)
-        const order = new Order({
+            const order = new Order({
              user: req.user,
              order : cart
          })
           order.save((err, result)=>{
               console.log('new one saved')
+             res.redirect('/carts')          
+          })
+        })
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+   
+})
+
+router.get('/remove-cart/:id', ensureAuthenticated,(req, res, next)=>{
+    Order.findOneAndDelete({user:req.user})
+    .then((result)=>{
+        console.log('order deleted')
+        
+        let productId = req.params.id;
+        let cart = new Cart(req.session.cart ? req.session.cart : {})
+        Phone.findById(productId, (err, phone)=>{
+           
+            if(err){
+                return res.redirect('/')
+            }
+            cart.remove(phone.id);
+            req.session.cart = cart;
+
+
+        const order = new Order({
+             user: req.user,
+             order : cart
+         })
+          order.save((err, result)=>{
+              console.log('deleted')
              res.redirect('/carts')
             
           })
     
         })
-        //res.json({redirect:'/blogs' })
-
 
     })
     .catch((err)=>{
         console.log(err)
     })
-
    
+
 })
 
 router.get('/carts', (req, res, next)=>{
@@ -158,33 +190,31 @@ router.get('/carts', (req, res, next)=>{
         return res.render('shoppingcart', {phoneCarts: null, total: null})
     } 
     var cart = new Cart(req.session.cart)
-    console.log(cart)
     let fff = cart.generateArray()
-    console.log(fff.length)
-    //console.log(cart.totalQty)
+
     res.render('shoppingcart', {phoneCarts: cart.generateArray(), total: fff.length})
 })
 
+
+//to access in the profile if possible
 router.get('/shoppings', ensureAuthenticated, (req, res, next)=>{
     Order.find({user: req.user}, (err, orders)=>{
         if(err){
             return res.write('error')
         }
-        //console.log(orders)
         
         var cart;
         orders.forEach(function(order){
             cart = new Cart(order.order);
             order.items = cart.generateArray();
-          //  console.log(order.items)
         })
         let storedDatas =  cart.generateArray()
-        console.log(storedDatas.length)
-       //console.log(cart.generateArray())
+
        res.render('shoppingcart',{phoneCarts: cart.generateArray(), total: cart.totalQty})
         
     })
 })
+
 
 
 router.get('/add-to-compare/:id',ensureAuthenticated, (req, res,next)=>{
@@ -201,11 +231,11 @@ router.get('/add-to-compare/:id',ensureAuthenticated, (req, res,next)=>{
         let brand = result.brand;
 
         let  newResult = {name, url, brand, price, img, logo, features, user} 
-      //  console.log(newResult)
+
         const compare = new Compare(newResult)
         compare.save()
         .then((result)=>{
-            console.log("saved")
+            console.log("")
             res.redirect('/compare')
         })
         .catch((err)=>{
@@ -220,19 +250,17 @@ router.get('/add-to-compare/:id',ensureAuthenticated, (req, res,next)=>{
 router.get('/compare', (req, res, next)=>{
     Compare.find({user: req.user}).sort({createdAt: -1}).limit(2)
     .then((result)=>{
-      //  console.log(result[1].brand)
         
         let filter = result[0].brand
-        Phone.find({brand:filter}).limit(10)
+        Phone.find({brand:filter})
         .then((phones)=>{
-            console.log(phones)
-             res.render('compare',{compares: result, suggestions: phones})
+            shuffle(phones)
+            res.render('compare',{compares: result, suggestions: phones})
 
         })
         .catch((err)=>{
             console.log(err) 
         })
-        //res.render('compare',{compares: result})
     })
     .catch((err)=>{
         console.log(err)

@@ -67,6 +67,17 @@ body{
     padding: 1% 0 0 2% ;
 }
 
+#count-txt{
+    font-family: Encode Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
 .fa-search{
     color: white;
 }
@@ -340,7 +351,7 @@ ul{
     align-items: center;
 }
 
-.top-pack:hover{
+.top-pack:hover, .recent-pack:hover{
     box-shadow:1px 03px 9px 9px  #eceae8;   
 }
 .top-box{
@@ -404,7 +415,6 @@ ul{
     width: 95%;
     display: flex;
     padding-top: 2%;   
- 
 }
 
 
@@ -498,17 +508,47 @@ h3{
 
 .products-gallery{
     width: 100%;
-    height: 95%;
+    height: 92%;
+    padding-top: 2%;
+}
+.flex{
     display: flex;
     flex-wrap: wrap;
-    padding-top: 4%;
 }
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
 .product-pack.hide{
     display: none;
 }
 
+#loader{
+    border: 1.6rem solid white;
+    border-radius: 50%;
+    border-top: 1.6rem solid #FF8200;
+    width: 12rem;
+    height: 12rem;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg)
+    }
+}
+
+.hidden{
+    display: none;
+}
+
 .product-pack.show{
-    display: block;
+  /*  display: block; */
     animation: show .5s ease;
 }
 
@@ -527,119 +567,127 @@ h3{
 
 
 .product-pack{
-    width: 22%;
     background: white;
-    height: 20%;
     border-radius: 10px;
     margin-bottom: 04%;
 }
+
+.withcolumn{
+    width: 95%;
+    height: 5.7%;
+    display: flex;
+    align-items: center;
+    margin:0.5% auto;
+}
+.withrow{
+    width: 22%;
+    height: 20%;
+}
+
 .product-pack:hover{
     box-shadow:1px 03px 9px 9px  #eceae8;   
 }
 
-#old-price-discount{
+
+.opd-with-row{
     display: flex;
 }
 
-.page-number{
-    height: 03%;
-    width: 95%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.page-number div{
-    display: inline-block;
-    text-align: center;
-    background-color: red;
-    cursor: pointer;
-}
-
-.page-number .prev.disabled,
-.page-number .next.disabled{
-    border-color: grey;
-    color: grey;
-    pointer-events: none;
-}
-
-
-
-/*
-.page-number button{
-    width: 50px;
-    height: 50px;
-    appearance: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.page-number button:hover{
-    background: #153B50;
-}
-
-.page-number button.active{
-    background: red;
-}
-
-*/
-
-
-#inputs{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 4%;
-}
-
-#like-input{
-    margin: 0 04% 0 0;
-    display: none;
+/* */
+.opd-with-column{
+    width: 150px;
 }
 
 
 
 .product-name{
     font-family: Encode Sans;
-    font-size: 16px;
     font-style: normal;
-    font-weight: 500;
     line-height: 25px;
     letter-spacing: 0em;
     text-align: left;
-    margin-left: 5%;
     margin-bottom: 1%;
 }
 
+.product-name-with-row{
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 5%;
+}
 
-.product-img{
+.product-name-with-column{
+    font-family: Encode Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left: 2%;
+    margin-bottom: 1%;
+    width: 25%;
+    margin-left: 2%;
+    font-size: 18px;
+    width: 25%;
+    font-weight: 700;
+
+}
+
+
+.product-img-with-row{
     width: 85%;
     margin: 4% 08%;
     height: 45%;
 }
 
+.product-img-with-column{
+    width: 15%;
+    margin-left: 3%;
+    height: 98%;
+}
+
 .product-price{
     font-family: Encode Sans;
-    font-size: 14px;
     font-style: normal;
     font-weight: 900;
     line-height: 23px;
     letter-spacing: 0em;
     text-align: left;
+}
+
+.product-price-with-row{
+    font-size: 14px;
     margin-left: 5%;
     margin-bottom: 1%;
 }
+
+.product-price-with-column{
+    font-size: 18px;
+    margin-left: 1%;
+}
+
 .product-old-price{
     font-family: Encode Sans;
-    font-size: 13px;
     font-style: normal;
-    font-weight: 600;
     line-height: 23px;
     letter-spacing: 0em;
     text-align: left;
+}
+
+.product-old-price-with-row{
+    font-weight: 600;
+    font-size: 13px;
     margin-left: 5%;
+
+
+
+
+}
+
+.product-old-with-column{
+    margin-left: 1%;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .product-old-price{
@@ -661,10 +709,17 @@ h3{
     
 }
 
-.product-logo{
-    width: 030%;
-    height: 07%;
+
+.product-logo-with-row{
+    width: 020%;
+    height: 04%;
     margin: 5% 40% 0 40%;
+}
+
+.product-logo-with-column{
+    
+    width: 15%;
+    height: 30%;
 }
 
 .like-btn{
@@ -674,15 +729,11 @@ h3{
 }
 
 
+
 .details-btn{
-    
-    width: 030%;
-    height: 07%;
-    margin: 5% 40% 0 40%;
     text-align: center;
     margin-right: 4%;
     font-family: Encode Sans;
-    font-size: 12px;
     font-style: normal;
     font-weight: 800;
     line-height: 15px;
@@ -693,12 +744,95 @@ h3{
     border: 0;
 }
 
+.details-btn-with-row{
+    width: 030%;
+    height: 07%;
+    margin: 5% 0% 0 35%;
+    font-size: 12px;
+}
+
+.details-btn-with-column{
+    width: 150px;
+    height: 70px;
+    font-size: 18px;
+    margin-right: 3%;
+}
+
 .details-btn:hover{
     color: #FF8200;
     background: white;
 }
 
 
+
+
+
+.page-number{
+    height: 03%;
+    width: 95%;
+    align-items: center;
+}
+
+
+#new-block{
+    float: right;
+    margin-right: 10%;
+}
+
+.prev, .next{
+    height: 50px;
+    width: 100px;
+    background: #FF8200;
+    border: 0px;
+    text-align: center;
+    font-family: Encode Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 15px;
+    letter-spacing: 0em;
+    color: white;
+    border-radius: 5px;
+    }
+
+.page-number div{
+    display: inline-block;
+    text-align: center;   
+    cursor: pointer;
+}
+
+.page-number .prev.disabled,
+.page-number .next.disabled{
+    border-color: grey;
+    color: grey;
+    pointer-events: none;
+}
+
+.page{
+    text-align: center;
+    font-family: Encode Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 15px;
+    letter-spacing: 0em;
+
+}
+
+
+
+
+
+#inputs{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 4%;
+}
+
+#like-input{
+    margin: 0 04% 0 0;
+    display: none;
+}
 
 
 .third-part{
@@ -749,22 +883,46 @@ h3{
     justify-content: space-around;
     height: 80%;
     align-items: center;
+
 }
 
 .recent-pack{
+    position: relative;
     margin: 0;
     background: white;
     height: 100%;
-    width: 15%; 
+    width: 17.5%; 
+
+ 
     align-items: center;
     box-shadow:1px 04px #a5a3a1;  
     border-radius: 9px;
 }
 
+#recent-rectangle{ height: 30px;
+    position: absolute;
+    width: 65px;
+    left: 158px;
+    top: 21px; 
+    transform:rotate(10deg);  
+    transform: skewY(-15deg); /* IE 9 */
+    transform: skewX(-15deg);
+    background: orange;
+    padding-top: 2%;
+    font-family: Encode Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
+
 .recent-box{
     display: flex;
     flex-direction: column;
-    height: 70%;
+    height: 78%;
     align-items: center;
 }
 
@@ -782,15 +940,16 @@ h3{
 }
 
 .recent-img{
-    width:50%;
-    height:75%;
+    width:80%;
+    height:85%;
     border-radius: 5%;
-    margin-top: 15%;
+    margin-top: 2%;
 }
+
 .recent-logo{
     width: 40%;
     height: 13%;
-    margin-top: 5%;
+    margin-top: 1%;
 }
 
 .recent-name{
@@ -801,11 +960,11 @@ h3{
     line-height: 28px;
     letter-spacing: 0em;
     text-align: left;
-    margin-left: 2%;
+    margin-left: 5%;
     margin-top: 2%;
 }
 
-.recent-price, .recent-old-price{
+.recent-price{
     font-family: Encode Sans;
     font-size: 18px;
     font-style: normal;
@@ -813,7 +972,18 @@ h3{
     line-height: 25px;
     letter-spacing: 0em;
     text-align: left;
-    margin-left: 2%;
+    margin-left: 5%;
+    margin-top: 2%;    
+}
+.recent-old-price{
+    font-family: Encode Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left: 5%;
     margin-top: 2%;    
 }
 

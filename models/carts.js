@@ -15,6 +15,20 @@ module.exports = function Cart(oldCart){
         
     }
 
+    this.remove = function(id){
+       // let storedItem = this.items[id];
+
+       delete this.items[id];
+      //  if(storedItem){
+        //    delete storedItem
+       // }
+          //storedItem.qty++;
+        //  storedItem.price = Number(storedItem.item.price.replace(/[^0-9.-]+/g,"")) * storedItem.qty;
+          this.totalQty--;
+       //   this.totalPrice += Number(storedItem.item.price.replace(/[^0-9.-]+/g,""));
+    }
+
+
     this.generateArray = function(){
         let arr = [];
         for(var id in this.items){

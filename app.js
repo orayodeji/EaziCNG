@@ -13,7 +13,7 @@ const MongoStore = require('connect-mongo')(session);
 
 
 //listen for request
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 
 //connect to mongodb
 const dbUrl = 'mongodb+srv://tunji:Bolaji93,@nodetuts.2wjqz.mongodb.net/nodetuts?retryWrites=true&w=majority'

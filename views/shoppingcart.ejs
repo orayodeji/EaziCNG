@@ -56,7 +56,8 @@
                 <% phoneCarts.forEach(phone => { %>
                     <a href="/phones/<%= phone.item._id %>">
                         <div id="saved-contents">
-                            <div id="rm-rf">x</div>
+                            <a href="/remove-cart/<%= phone.item._id %>"><div id="rm-rf">x</div></a>
+                            
                             <img id="saved-img" src="<%= phone.item.img %>">
                             <div id="saved-content">
                                 <p class="apple"><%= phone.item.name %></p>

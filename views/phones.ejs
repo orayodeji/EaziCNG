@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/category.css">
     <title>EaziCart | Phones</title>
 </head>
 <body>
     <div class="header">
+
         <div class="head1">
             <div class="sub-header1">
                 <a href="/"><img src="./img/EaziCart logo-White.svg" alt="logo" class="logo"></a> 
@@ -20,6 +21,7 @@
                     </div>
                     <button type="submit" id="search-btn">Search</button>
                 </form>
+
               </div>
             <div class="sub-header2">
                  <ul id="top">
@@ -152,7 +154,7 @@
             
             <div class="products-section">
                 <div class="products-heading">
-                    <p id="product-category">Men's Fashion</p>
+                    <p id="product-category">Phones</p>
                     <div id="sort-div">
                            <p>Sort By: Popularity <i class="fas fa-angle-down"></i></p>  
                     </div>
@@ -160,8 +162,8 @@
                 <hr>
                 <div class="products-details">
                     <div class="products-count"> 
-                        <p>
-                            <span id="numbers-results">1000</span> Products Found
+                        <p id="count-txt">
+                            <span id="numbers-results"><%= counts%></span> Products Found
                         </p>
                     </div>
                     <div class="display-icon">
@@ -170,28 +172,35 @@
                     </div>
                 </div>
                 <hr>
-                <div class="products-gallery">
+
+                <div id="loader"></div>
+
+                <div class="products-gallery hidden flex">
                     
                     <% if(phones.length > 0) { %>
                         <% phones.forEach(phone => { %>
-                            <div class="product-pack">
-                                <div id="inputs">
-                                    <i class="fas fa-heart like-btn"></i>
-                                    <input type="checkbox" name="" id="like-input">
-                                </div>
+                            <div class="product-pack withrow">
                                 
-                                    <img src="<%= phone.img %>" alt="top-product" class="product-img">
+                                
+                                    <img src="<%= phone.img %>" alt="top-product" class="product-img product-img-with-row">
                                     
-                                    <p class="product-name"><%= phone.name %></p>
-                                    <p class="product-price"><%= phone.price %></p>
-                                    <div id="old-price-discount">
-                                        <p class="product-old-price"><%= phone.old_price %></p>
+                                    <p class="product-name product-name-with-row"><%= phone.name %></p>
+                                    <p class="product-price product-price-with-row"><%= phone.price %></p>
+                                    <div id="old-price-discount" class="opd opd-with-row">
+                                        <p class="product-old-price product-old-price-with-row"><%= phone.old_price %></p>
                                         <p class="product-discount"><%= phone.discount %></p>
                                     </div>
+
+                                    <% if(phone.logo) { %>
                                             
-                                        <img src="<%= phone.logo %>" alt="vendor-logo" class="product-logo">
+                                        <img src="<%= phone.logo %>" alt="vendor-logo" class="product-logo product-logo-with-row">
+                                        <% } else { %>
+                                            <img aria-describedby="caption-attachment-27644" class="product-logo product-logo-with-row" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+
+
+                                            <% } %>
                             
-                                        <a href="/phones/<%= phone._id %>"><button class="details-btn">Details</button></a>
+                                        <a href="/phones/<%= phone._id %>"><button class="details-btn details-btn-with-row">Details</button></a>
                                 
                             </div>
 
@@ -204,10 +213,14 @@
 
                 </div>
                 <div class="page-number">
-                    <button class="prev"> Prev</button>
+                    <div id="new-block">
+                        <button class="prev"> Prev</button>
                     
                     <div class="page">Page <span class="page-numbers"></span></div>
                     <button class="next">Next</button>
+
+                    </div>
+                    
 
                 </div>
                 
@@ -222,8 +235,9 @@
                     <p id="recent-stxt"><span id='txt'>See All</span> <i class="fas fa-chevron-right"></i></p>
                 </div>
                 <div class="recent-gallery">
+                    
                     <div class="recent-pack">
-                        <p class="recent-discount">discount</p>
+                        <div id="recent-rectangle">78% 0ff</div>
                         <div class="recent-box">
                             
                             <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
@@ -233,8 +247,9 @@
                         <p class="recent-price">New Price</p>
                         <p class="recent-old-price">Old Price</p>
                     </div>
+
                     <div class="recent-pack">
-                        <p class="recent-discount">discount</p>
+                        <div id="recent-rectangle">78% 0ff</div>
                         <div class="recent-box">
                             
                             <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
@@ -244,8 +259,9 @@
                         <p class="recent-price">New Price</p>
                         <p class="recent-old-price">Old Price</p>
                     </div>
+
                     <div class="recent-pack">
-                        <p class="recent-discount">discount</p>
+                        <div id="recent-rectangle">78% 0ff</div>
                         <div class="recent-box">
                             
                             <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
@@ -255,8 +271,9 @@
                         <p class="recent-price">New Price</p>
                         <p class="recent-old-price">Old Price</p>
                     </div>
+
                     <div class="recent-pack">
-                        <p class="recent-discount">discount</p>
+                        <div id="recent-rectangle">78% 0ff</div>
                         <div class="recent-box">
                             
                             <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
@@ -266,8 +283,9 @@
                         <p class="recent-price">New Price</p>
                         <p class="recent-old-price">Old Price</p>
                     </div>
+
                     <div class="recent-pack">
-                        <p class="recent-discount">discount</p>
+                        <div id="recent-rectangle">78% 0ff</div>
                         <div class="recent-box">
                             
                             <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
@@ -277,10 +295,13 @@
                         <p class="recent-price">New Price</p>
                         <p class="recent-old-price">Old Price</p>
                     </div>
-                   
+                    
                     
                 </div>
             </div>
+
+
+           
             <div class="closing-txt">
                 <p id="closing-txt">Eazycart.com is Nigeria’s leading online price comparison site that allows you to shop online for the best deals and lowest prices. Our mission is to help consumers use the power of information to easily find, compare and buy products online in less time and for the best price. You can read unbiased product reviews and compare prices online. Online shopping has never been as easy! Browse our large selection of fashion, clothing, consumer electronics, home and garden producsts now </p>
             </div>

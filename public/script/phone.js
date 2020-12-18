@@ -14,8 +14,10 @@ setInterval(run, 5000);
 
 
 // the image gallery
+
+
 let productsGallery = document.querySelector('.products-gallery').children
-console.log(productsGallery)
+//console.log(productsGallery)
 
 let prev = document.querySelector('.prev')
 let next = document.querySelector('.next')
@@ -26,7 +28,7 @@ let maxItem = 16;
 let index = 1;
 
 let pagination = Math.ceil(productsGallery.length/maxItem);
-console.log(pagination)
+//console.log(pagination)
 
 
 prev.addEventListener('click', ()=>{
@@ -68,13 +70,82 @@ function showItems(){
         }
         page.innerHTML = index
     }
-
-   
-
 }
 
 
+let rowIcon = document.getElementById('row-icon')
+let columnIcon = document.getElementById('column-icon')
+let pG = document.querySelector('.products-gallery')
+let loader = document.getElementById('loader')
+let demo = document.querySelector('.products-gallery').children
+let productImages = document.querySelectorAll('.product-img')
+let productNames = document.querySelectorAll('.product-name')
+let productPrices = document.querySelectorAll('.product-price')
+let opds = document.querySelectorAll('.opd')
+let productOldPrices = document.querySelectorAll('.product-old-price')
+let productLogos = document.querySelectorAll('.product-logo')
+let detailsBtns = document.querySelectorAll('.details-btn')
+//let productImages = document.querySelectorAll('.product-img')
+
+
+
+columnIcon.addEventListener('click', ()=>{ 
+    columnIcon.style.color = ' #FF8200'
+    rowIcon.style.color = 'black'
+    pG.classList.remove('flex')
+    pG.classList.add('column')
+    for(let i = 0; i < demo.length; i++){  
+        demo[i].classList.remove('withrow')
+        demo[i].classList.add('withcolumn')
+    }
+
+    for(let i = 0; i < productImages.length; i++){  
+        productImages[i].classList.remove('product-img-with-row')
+        productImages[i].classList.add('product-img-with-column')
+    }
+
+    for(let i = 0; i < productNames.length; i++){  
+        productNames[i].classList.remove('product-name-with-row')
+        productNames[i].classList.add('product-name-with-column')
+    }
+
+    for(let i = 0; i < productPrices.length; i++){  
+        productPrices[i].classList.remove('product-price-with-row')
+        productPrices[i].classList.add('product-price-with-column')
+    }
+    
+    for(let i = 0; i < opds.length; i++){  
+        opds[i].classList.remove('opd-with-row')
+        opds[i].classList.add('opd-with-column')
+    }
+
+    for(let i = 0; i < productOldPrices.length; i++){  
+        productOldPrices[i].classList.remove('product-old-price-with-row')
+        productOldPrices[i].classList.add('product-old-price-with-column')
+    }
+    
+    for(let i = 0; i < productLogos.length; i++){  
+        productLogos[i].classList.remove('product-logo-with-row')
+        productLogos[i].classList.add('product-logo-with-column')
+    }
+
+    for(let i = 0; i < detailsBtns.length; i++){  
+        detailsBtns[i].classList.remove('details-btn-with-row')
+        detailsBtns[i].classList.add('details-btn-with-column')
+    }
+    
+    
+    
+
+})
+
+
+
 window.onload = function(){
+
+    pG.classList.remove('hidden')
+    loader.classList.add('hidden')
+
     showItems();
     check();
 }

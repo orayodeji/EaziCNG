@@ -78,7 +78,8 @@
 
             <ul class="similar-list">
                 <% if(suggestions.length > 0) { %>
-                    <% suggestions.forEach(suggestion => { %>
+                    <% let newSuggestions = suggestions.slice(0, 10) %>
+                    <% newSuggestions.forEach(suggestion => { %>
                         <a href="/add-to-compare/<%= suggestion._id %>">
                             <li class="similar-item"><img src="<%= suggestion.img%>" alt="img" id="similar-img"> <p id="similar-name"><%= suggestion.name.substring(0,18) %></p> <p id="similar-price"><%= suggestion.price %></p></li></a>
                        
