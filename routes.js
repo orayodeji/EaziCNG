@@ -4,6 +4,8 @@ const router = express.Router();
 const Phone = require("./models/phones");
 const Compare = require("./models/compare");
 const Cart = require('./models/carts');
+const Recent = require('./models/recent');
+
 const User = require('./models/user');
 const Order = require('./models/order');
 
@@ -53,8 +55,13 @@ router.get('/', (req, res, next)=>{
                 shuffle(result)
                     Phone.find()
                     .then((topdeals)=>{
-                    shuffle(topdeals)  
-                    res.render('index', {users: users, recents: result, deals: topdeals});})
+                    shuffle(topdeals)
+                    let newArray = topdeals.slice(0,5)
+                  
+                    shuffle(topdeals)
+                    
+                    res.render('index', {users: users, recents: result, deals: topdeals,goldrush:newArray});})
+                    
                     .catch((err)=>{
                     console.log(err)})
             })
@@ -102,11 +109,21 @@ router.post('/signup', function (req, res, next) {
 }));
 
 
-router.get('/phones', (req, res)=>{
+router.get('/products', (req, res)=>{
     Phone.find()
     .then((result)=>{
-      shuffle(result)  
-        res.render('phones',{phones: result, counts: result.length})
+
+        let recent = new Recent(req.session.recent)
+        let recentArray = recent.generateArray()
+        shuffle(recentArray)
+        console.log(recentArray.length)
+
+      shuffle(result)
+      let newArray = result.slice(0,5)
+      shuffle(result)
+
+      console.log(result.length)  
+        res.render('phones',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray})
     })
     .catch((err)=>{
         console.log(err)
@@ -119,7 +136,12 @@ router.get('/phones/:id',(req,res)=>{
     const id = req.params.id;
     Phone.findById(id)
     .then((result)=>{
-        console.log(result.vendor)
+
+        let recent = new Recent(req.session.recent ? req.session.recent : {})
+        recent.add(result, result.id)
+        req.session.recent  = recent;
+
+        console.log(result.id)
         let filter = result.name.substring(0,10)
         Phone.find({$text : {$search: filter}})
         .then((filterResult)=>{
@@ -131,6 +153,18 @@ router.get('/phones/:id',(req,res)=>{
     .catch((err)=>{
         console.log(err)
     })
+    
+})
+
+router.get('/phones',(req,res)=>{ 
+        Phone.find({$text : {$search: "laptop"}})
+        .then((filterResult)=>{
+           console.log(filterResult.length)
+            res.render("phones", {phones: filterResult, counts: filterResult.length})
+        })
+        .catch((err)=>{
+        console.log(err)
+        })
     
 })
 

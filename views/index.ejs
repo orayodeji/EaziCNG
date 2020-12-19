@@ -61,8 +61,8 @@
                     <div class="head2">
                 
                         <ul id="below">
-                            <li>All Categories<i class="fas fa-bars"></i></li>
-                             <a href="/phones"><li><i class="fas fa-mobile"></i>Phones</li></a> 
+                            <a href="/products">  <li>All Categories<i class="fas fa-bars"></i></li></a> 
+                             <li><i class="fas fa-mobile"></i>Phones</li>
                              <li><i class="fas fa-tshirt"></i>Fashion</li>
                             <li><i class="fas fa-laptop"></i>Computer & Accessories</li>
                             <li><i class="fas fa-tv"></i>Eletronics</li>
@@ -127,15 +127,21 @@
 
                             <% if(deals.length > 0) { %>
                                 <% let newArray = deals.slice(0, 5) %>
-
-
                                 <% newArray.forEach(deal => { %>
 
                                    <!----> 
 
                                         <div class="firbox-box">
-                                            <div id="rectangle"><%= deal.discount%></div>
-                                            <img src="<%= deal.img %>" alt="demo" class="fir-img">
+
+                                            <% if(deal.discount){%>
+                                                <div id="rectangle"><%= deal.discount%></div>
+
+
+                                                <% } %>
+
+
+
+                                                <a href="/phones/<%= deal._id%>">      <img src="<%= deal.img %>" alt="demo" class="fir-img">  </a>
 
                                             <% if(deal.vendor) { %>
                                             
@@ -147,7 +153,7 @@
                                                     <% } %>
 
 
-                                                    <a href="/phones/<%= deal._id%>"> <p id="price-box"><%= deal.name.substring(0,32) %></p>
+                                                    <a href="/phones/<%= deal._id%>"> <p id="price-box"><%= deal.name.substring(0,41) %></p>
                                                     </a>
 
                                             
@@ -172,6 +178,7 @@
             
             
                 <div class="firstfour">
+                    
                             <% if(recents.length > 0) { %>
                                 <div class="firbox">
                                     <div class="firbox-heading">
@@ -179,14 +186,27 @@
                                         <p class="firbox-stxt">View More<i class="fas fa-chevron-right"></i></p>
                                     </div>
                                     <div class="firbox-gallery">
-
                                 <% recents.forEach(recent => { %>
                                     <a href="/phones/<%= recent._id%>">
-
+        
                                         <div class="firbox-box">
-                                            <div id="rectangle"><%= recent.discount %></div>
-                                            <a href=""><img src="<%= recent.img %>" alt="demo" class="fir-img"></a>
-                                            <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
+
+                                            <% if(recent.discount) {%>
+                                                <div id="rectangle"><%= recent.discount %></div>
+                                                <% } %>
+
+                                            <a href="/phones/<%= recent._id%>"><img src="<%= recent.img %>" alt="demo" class="fir-img"></a>
+
+                                            <% if(recent.vendor) { %>
+                                    
+                                                <img src="<%= recent.vendor %>" alt="vendor-logo" class="product-logo">
+                                                <% } else { %>
+                                                    <img aria-describedby="caption-attachment-27644" class="product-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+                
+                
+                                                    <% } %>
+
+
                                             <p id="price-box"><%= recent.name.substring(0,41)%></p>
                                             <p id="new-price-box"><%= recent.price%></p>
                                             <p id="old-price-box"><%= recent.old_price %></p>
@@ -195,46 +215,57 @@
                                        
                                     </a>
                                     <% }) %>
-                                      
-                                    </div>
-                        
-                                </div>
 
-                                    <% } else { %>
+                                </div>
+                        
+                            </div>
+       
+                                    
+                                    <% } else {%>
                                         <div class="firbox">
                                             <div class="firbox-heading">
-                                                <p class="firbox-btxt">Recently Viewed</p>
+                                                <p class="firbox-btxt">Products You May Also Like</p>
                                                 <p class="firbox-stxt">View More<i class="fas fa-chevron-right"></i></p>
                                             </div>
                                             <div class="firbox-gallery">
 
-                                        <% let newArray = deals.slice(99, 5) %>
-                                        <% newArray.forEach(deal => { %>
-
-                                            <a href="/phones/<%= deal._id%>">
-
+                                        <% goldrush.forEach(recent => { %>
+                                            <a href="/phones/<%= recent._id%>">
+        
                                                 <div class="firbox-box">
-                                                    <div id="rectangle"><%= deal.discount %></div>
-                                                    <a href=""><img src="<%= deal.img %>" alt="demo" class="fir-img"></a>
-                                                    <img src="./img/playstore.jpg" alt="vendor-logo" class="product-logo">
-                                                    <p id="price-box"><%= deal.name.substring(0,41)%></p>
-                                                    <p id="new-price-box"><%= deal.price%></p>
-                                                    <p id="old-price-box"><%= deal.old_price %></p>
+
+                                                    <% if(recent.discount) {%>
+                                                        <div id="rectangle"><%= recent.discount %></div>
+                                                        <% } %>
+
+                                                    <a href="/phones/<%= recent._id%>"><img src="<%= recent.img %>" alt="demo" class="fir-img"></a>
+
+                                                    <% if(recent.vendor) { %>
+                                            
+                                                        <img src="<%= recent.vendor %>" alt="vendor-logo" class="product-logo">
+                                                        <% } else { %>
+                                                            <img aria-describedby="caption-attachment-27644" class="product-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+                        
+                        
+                                                            <% } %>
+
+
+                                                    <p id="price-box"><%= recent.name.substring(0,41)%></p>
+                                                    <p id="new-price-box"><%= recent.price%></p>
+                                                    <p id="old-price-box"><%= recent.old_price %></p>
                                                 </div>
             
                                                
                                             </a>
-
-
-
                                             <% }) %>
                                         </div>
                         
                                     </div>
+               
 
 
-                                    <% } %>
-                        
+
+                                        <% } %>                        
                 
                 </div> 
 

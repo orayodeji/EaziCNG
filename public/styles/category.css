@@ -69,7 +69,7 @@ body{
 
 #count-txt{
     font-family: Encode Sans;
-    font-size: 24px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: 30px;
@@ -230,16 +230,17 @@ ul{
 
 #home, #category, #section, #sub-section, #main-section{
     font-family: Encode Sans;
-    font-size: 22px;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 28px;
     letter-spacing: 0em;
     text-align: left;    
-    color:black;
-    
+    color:black;  
 }
-#main-section{
+
+
+#category{
     color: #FF8200;
 }
 .fa-chevron-right{
@@ -252,20 +253,22 @@ ul{
 
 .carousel{
     height: 87%;
-    width: 95%;
+    width: 1300px;
     overflow: hidden;
 }
 
 .font-categories{  
     display: flex;
-    transition: transform 3.5s ease-in-out;
+    width: 1200px;
+    height: 100%;
+    transition: transform 4.5s ease-in-out;
     transform: translateX(0);
 }
 
 .img-carousel{
-    object-fit: cover;
+     object-fit: cover; 
     height: 100%;
-    width: 100%;
+    width: 1400px;
 }
 
 
@@ -327,7 +330,8 @@ ul{
     position: absolute;
     width: 70px;
     left: 158px;
-    top: 21px; 
+    top: 14px;
+    border-radius: 4px; 
     transform:rotate(10deg);  
     transform: skewY(-15deg); /* IE 9 */
     transform: skewX(-15deg);
@@ -347,17 +351,20 @@ ul{
     margin: 0;
     background: white;
     height: 95%;
-    width: 19%; 
+    width: 18%; 
+    border-radius: 7px;
     align-items: center;
 }
 
-.top-pack:hover, .recent-pack:hover{
-    box-shadow:1px 03px 9px 9px  #eceae8;   
+.top-pack:hover, .recent-pack:hover, .product-pack:hover{
+    box-shadow:2px 2px 07px 7px  #dd8b34;    
 }
+
+
 .top-box{
-    display: flex;
-    flex-direction: column;
-    height: 75%;
+ /*   display: flex;
+    flex-direction: column; */
+    height: 70%;
     align-items: center;
 
 }
@@ -372,22 +379,24 @@ ul{
 
 .top-img{
     width:90%;
-    height:87%;
+    height:85%;
     border-radius: 5%;
+    margin-left: 5%;
     margin-top: 1%;
 
 }
 .top-logo{
     width: 30%;
-    height: 13%;
+    height: 5%;
     margin-top: 1%;
+    margin-left: 35%;
 }
 
 .top-name{
     font-family: Encode Sans;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 20px;
     letter-spacing: 0em;
     text-align: left;
@@ -396,9 +405,9 @@ ul{
 
  .top-price, .top-old-price{
     font-family: Encode Sans;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 25px;
     letter-spacing: 0em;
     text-align: left;
@@ -408,6 +417,8 @@ ul{
 
 .top-old-price{
     text-decoration: line-through;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .second-part{
@@ -438,7 +449,7 @@ ul{
 #product-category {
     margin-left: 3%;
     font-family: Encode Sans;
-    font-size: 30px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: 38px;
@@ -451,9 +462,9 @@ ul{
     margin-right: 1%;
     width: 290px;
     font-family: Encode Sans;
-    font-size: 22px;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 28px;
     letter-spacing: 0em;
     text-align: left;
@@ -584,9 +595,7 @@ h3{
     height: 20%;
 }
 
-.product-pack:hover{
-    box-shadow:1px 03px 9px 9px  #eceae8;   
-}
+
 
 
 .opd-with-row{
@@ -637,7 +646,7 @@ h3{
 .product-img-with-row{
     width: 85%;
     margin: 4% 08%;
-    height: 45%;
+    height: 52%;
 }
 
 .product-img-with-column{
@@ -745,10 +754,11 @@ h3{
 }
 
 .details-btn-with-row{
-    width: 030%;
+    width: 070%;
     height: 07%;
-    margin: 5% 0% 0 35%;
+    margin: 4% 0% 0 15%;
     font-size: 12px;
+    cursor: pointer;
 }
 
 .details-btn-with-column{
@@ -758,10 +768,6 @@ h3{
     margin-right: 3%;
 }
 
-.details-btn:hover{
-    color: #FF8200;
-    background: white;
-}
 
 
 

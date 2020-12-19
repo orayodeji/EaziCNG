@@ -54,19 +54,14 @@
                  </div>
                  <div class="head3">
                     <div class="cat-section-text">
-                        <p><span id="home">Home<i class="fas fa-chevron-right"></i></span><span id="category">Phones</span></p>
+                        <p><span id="home">Home<i class="fas fa-chevron-right"></i></span><span id="category">All Products</span></p>
                     </div>
 
                     <div class="carousel">
-                        <div class="font-categories" id="imgs">
-                           
-                            <img src="https://cdn57.androidauthority.net/wp-content/uploads/2020/02/samsung-galaxy-a71.jpg" alt="" class="img-carousel">
-                            <img src="https://m-cdn.phonearena.com/images/article/126258-two_1200/How-low-can-5G-phones-go-Samsungs-Galaxy-A32-may-hold-the-answer.jpg" alt="" class="img-carousel">
-                            <img src="https://m-cdn.phonearena.com/images/article/126258-two_1200/How-low-can-5G-phones-go-Samsungs-Galaxy-A32-may-hold-the-answer.jpg" alt="" class="img-carousel">
-                            <img src="https://cdn57.androidauthority.net/wp-content/uploads/2020/02/samsung-galaxy-a71.jpg" alt="" class="img-carousel">
-                            
-                            
-                        </div>
+                        <img src="https://image.shutterstock.com/image-photo/hong-kong-circa-january-2016-260nw-692166772.jpg" alt="hdhdh" class="img-carousel">
+
+
+                       
 
                     </div>
 
@@ -85,66 +80,34 @@
                 <hr>
                 
                 <div class="top-gallery">
-                    <div class="top-pack">
-                        <div id="rectangle">78% 0ff</div>
-                        <div class="top-box">
-                            
-                            <img src="./img/OIP.jpg" alt="top-product" class="top-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="top-logo">
+
+                    <% topPicks.forEach(recent => { %>
+                        <div class="top-pack">
+                            <% if(recent.discount) {%>
+                                <div id="rectangle"><%= recent.discount %></div>
+                                <% } %>
+                            <div class="top-box">
+                                <a href="/phones/<%= recent._id%>"><img src="<%= recent.img %>" alt="demo" class="top-img"></a>
+                                
+                                <% if(recent.vendor) { %>
+                                            
+                                    <img src="<%= recent.vendor %>" alt="vendor-logo" class="top-logo">
+                                    <% } else { %>
+                                        <img aria-describedby="caption-attachment-27644" class="top-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+        
+                                        <% } %>
+
+                            </div>
+                            <p class="top-name"><%= recent.name.substring(0,41) %></p>
+                            <p class="top-price"><span id="top-price-span"></span><%= recent.price %></p>
+                            <p class="top-old-price"> <span id="top-old-price-span"></span><%= recent.old_price %></p>
                         </div>
-                        <p class="top-name">jumi hot Infinix with guanrante of tow year with free delievry around in lagoss</p>
-                        <p class="top-price">₦ <span id="top-price-span"></span>00000</p>
-                        <p class="top-old-price">₦ <span id="top-old-price-span"></span>00000</p>
-                    </div>
+    
 
 
-                    <div class="top-pack">
-                        <div id="rectangle">78% 0ff</div>
-                        <div class="top-box">
-                            
-                            <img src="./img/OIP.jpg" alt="top-product" class="top-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="top-logo">
-                        </div>
-                        <p class="top-name">jumi hot Infinix with guanrante of tow year with free delievry around in lagoss</p>
-                        <p class="top-price">₦ <span id="top-price-span"></span>00000</p>
-                        <p class="top-old-price">₦ <span id="top-old-price-span"></span>00000</p>
-                    </div>
-
-                    <div class="top-pack">
-                        <div id="rectangle">78% 0ff</div>
-                        <div class="top-box">
-                            
-                            <img src="./img/OIP.jpg" alt="top-product" class="top-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="top-logo">
-                        </div>
-                        <p class="top-name">jumi hot Infinix with guanrante of tow year with free delievry around in lagoss</p>
-                        <p class="top-price">₦ <span id="top-price-span"></span>00000</p>
-                        <p class="top-old-price">₦ <span id="top-old-price-span"></span>00000</p>
-                    </div>
-
-                    <div class="top-pack">
-                        <div id="rectangle">78% 0ff</div>
-                        <div class="top-box">
-                            
-                            <img src="./img/OIP.jpg" alt="top-product" class="top-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="top-logo">
-                        </div>
-                        <p class="top-name">jumi hot Infinix with guanrante of tow year with free delievry around in lagoss</p>
-                        <p class="top-price">₦ <span id="top-price-span"></span>00000</p>
-                        <p class="top-old-price">₦ <span id="top-old-price-span"></span>00000</p>
-                    </div>
-
-                    <div class="top-pack">
-                        <div id="rectangle">78% 0ff</div>
-                        <div class="top-box">
-                            
-                            <img src="./img/OIP.jpg" alt="top-product" class="top-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="top-logo">
-                        </div>
-                        <p class="top-name">jumi hot Infinix with guanrante of tow year with free delievry around in lagoss</p>
-                        <p class="top-price">₦ <span id="top-price-span"></span>00000</p>
-                        <p class="top-old-price">₦ <span id="top-old-price-span"></span>00000</p>
-                    </div>
+                        <% }) %>                      
+                    
+                   
                     
                 </div>
             </div>
@@ -154,7 +117,7 @@
             
             <div class="products-section">
                 <div class="products-heading">
-                    <p id="product-category">Phones</p>
+                    <p id="product-category">Products</p>
                     <div id="sort-div">
                            <p>Sort By: Popularity <i class="fas fa-angle-down"></i></p>  
                     </div>
@@ -191,9 +154,9 @@
                                         <p class="product-discount"><%= phone.discount %></p>
                                     </div>
 
-                                    <% if(phone.logo) { %>
+                                    <% if(phone.vendor) { %>
                                             
-                                        <img src="<%= phone.logo %>" alt="vendor-logo" class="product-logo product-logo-with-row">
+                                        <img src="<%= phone.vendor %>" alt="vendor-logo" class="product-logo product-logo-with-row">
                                         <% } else { %>
                                             <img aria-describedby="caption-attachment-27644" class="product-logo product-logo-with-row" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
 
@@ -229,79 +192,85 @@
         </div>
 
         <div class="third-part">
-            <div id="recent-picks">
-                <div class="recent-text">
-                    <p id="recent-btxt">Recently Viewed</p>
-                    <p id="recent-stxt"><span id='txt'>See All</span> <i class="fas fa-chevron-right"></i></p>
-                </div>
-                <div class="recent-gallery">
-                    
-                    <div class="recent-pack">
-                        <div id="recent-rectangle">78% 0ff</div>
-                        <div class="recent-box">
-                            
-                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
-                        </div>
-                        <p class="recent-name">product</p>
-                        <p class="recent-price">New Price</p>
-                        <p class="recent-old-price">Old Price</p>
+
+            <% if(recentViews.length > 4) { %>
+                <div id="recent-picks">
+                    <div class="recent-text">
+                        <p id="recent-btxt">Recently Viewed</p>
+                        <p id="recent-stxt"><span id='txt'>See All</span> <i class="fas fa-chevron-right"></i></p>
                     </div>
+                    <div class="recent-gallery">
+                        <% recentViews.forEach(recent => { %>
 
-                    <div class="recent-pack">
-                        <div id="recent-rectangle">78% 0ff</div>
-                        <div class="recent-box">
-                            
-                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
+                            <div class="recent-pack">
+                                <% if(recent.item.discount) {%>
+                                    <div id="recent-rectangle"><%= recent.item.discount %></div>
+                                    <% } %>
+
+
+                                <div class="recent-box">
+                                    <a href="/phones/<%= recent.item._id%>"><img src="<%= recent.item.img %>" alt="demo" class="recent-img"></a>
+
+                                    <% if(recent.item.vendor) { %>
+                                    
+                                        <img src="<%= recent.item.vendor %>" alt="vendor-logo" class="recent-logo">
+                                        <% } else { %>
+                                            <img aria-describedby="caption-attachment-27644" class="recent-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+        
+        
+                                            <% } %>
+
+                                </div>
+                                <p class="recent-name"><%= recent.item.name %></p>
+                                <p class="recent-price"><%= recent.item.price %></p>
+                                <p class="recent-old-price"><%= recent.item.old_price %></p>
+                            </div>
+
+                            <% }) %>
+
                         </div>
-                        <p class="recent-name">product</p>
-                        <p class="recent-price">New Price</p>
-                        <p class="recent-old-price">Old Price</p>
+                        
                     </div>
-
-                    <div class="recent-pack">
-                        <div id="recent-rectangle">78% 0ff</div>
-                        <div class="recent-box">
-                            
-                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
-                        </div>
-                        <p class="recent-name">product</p>
-                        <p class="recent-price">New Price</p>
-                        <p class="recent-old-price">Old Price</p>
-                    </div>
-
-                    <div class="recent-pack">
-                        <div id="recent-rectangle">78% 0ff</div>
-                        <div class="recent-box">
-                            
-                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
-                        </div>
-                        <p class="recent-name">product</p>
-                        <p class="recent-price">New Price</p>
-                        <p class="recent-old-price">Old Price</p>
-                    </div>
-
-                    <div class="recent-pack">
-                        <div id="recent-rectangle">78% 0ff</div>
-                        <div class="recent-box">
-                            
-                            <img src="./img/OIP.jpg" alt="top-product" class="recent-img">
-                            <img src="./img/playstore.jpg" alt="vendor-logo" class="recent-logo">
-                        </div>
-                        <p class="recent-name">product</p>
-                        <p class="recent-price">New Price</p>
-                        <p class="recent-old-price">Old Price</p>
-                    </div>
-                    
-                    
-                </div>
-            </div>
-
-
-           
+                            <% } else { %>
+                                <div id="recent-picks">
+                                    <div class="recent-text">
+                                        <p id="recent-btxt">Top Picks</p>
+                                        <p id="recent-stxt"><span id='txt'>See All</span> <i class="fas fa-chevron-right"></i></p>
+                                    </div>
+                                    <div class="recent-gallery">
+                                        <% topPicks.forEach(recent => { %>
+                
+                                            <div class="recent-pack">
+                                                <% if(recent.discount) {%>
+                                                    <div id="recent-rectangle"><%= recent.discount %></div>
+                                                    <% } %>
+                
+                
+                                                <div class="recent-box">
+                                                    <a href="/phones/<%= recent._id%>"><img src="<%= recent.img %>" alt="demo" class="recent-img"></a>
+                
+                                                    <% if(recent.vendor) { %>
+                                                    
+                                                        <img src="<%= recent.vendor %>" alt="vendor-logo" class="recent-logo">
+                                                        <% } else { %>
+                                                            <img aria-describedby="caption-attachment-27644" class="recent-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+                        
+                        
+                                                            <% } %>
+                
+                                                </div>
+                                                <p class="recent-name"><%= recent.name %></p>
+                                                <p class="recent-price"><%= recent.price %></p>
+                                                <p class="recent-old-price"><%= recent.old_price %></p>
+                                            </div>
+                
+                                            <% }) %>
+                
+                                        </div>
+                                        
+                                    </div>
+                                <% } %>
+                                           
             <div class="closing-txt">
                 <p id="closing-txt">Eazycart.com is Nigeria’s leading online price comparison site that allows you to shop online for the best deals and lowest prices. Our mission is to help consumers use the power of information to easily find, compare and buy products online in less time and for the best price. You can read unbiased product reviews and compare prices online. Online shopping has never been as easy! Browse our large selection of fashion, clothing, consumer electronics, home and garden producsts now </p>
             </div>

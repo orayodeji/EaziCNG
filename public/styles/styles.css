@@ -505,16 +505,21 @@ input{
     position: relative;
 }
 
-#rectangle{ height: 33px;
+.firbox-box:hover{
+       box-shadow:2px 2px 07px 7px  #FF8200;   
+}
+
+#rectangle{ height: 27px;
+    border-radius: 5px;
     position: absolute;
-    width: 70px;
-    left: 158px;
+    width: 60px;
+    left: 180px;
     top: 21px; 
     transform:rotate(10deg);  
     transform: skewY(-15deg); /* IE 9 */
     transform: skewX(-15deg);
     background: orange;
-    padding-top: 2%;
+    padding-top: 1%;
     font-family: Encode Sans;
     font-size: 14px;
     font-style: normal;
@@ -522,19 +527,18 @@ input{
     line-height: 23px;
     letter-spacing: 0em;
     text-align: center;
-
 }
 
 .fir-img{
     width: 95%;
-    height: 55%;
+    height: 65%;
     margin: 3% 3% 0 3%;
 }
 
 .product-logo{
-    width: 025%;
-    height: 07%;
-    margin: 0% 40% 4% 40%;  
+    width: 018%;
+    height: 02.5%;
+    margin: 2% 40% 4% 40%;  
 }
 
 #price-box{
@@ -566,9 +570,9 @@ input{
 
 #old-price-box{
     font-family: Encode Sans;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 20px;
     letter-spacing: 0em;
     text-align: left;
