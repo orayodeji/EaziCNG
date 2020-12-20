@@ -25,11 +25,10 @@ function shuffle(array) {
     }
     return array;
   }
-
+ 
   function randomNumber(array){
        return Math.floor(Math.random()*array.length*0.75)
   }
-
 
 router.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated()
@@ -128,25 +127,133 @@ router.post('/signup', function (req, res, next) {
 
 
 router.get('/products', (req, res)=>{
-    Phone.find()
-    .then((result)=>{
 
-        let recent = new Recent(req.session.recent)
-        let fiveArray = recent.generateArray()
-        let recentArray = fiveArray.slice(0,5)
-        shuffle(recentArray)
+    if(!req.session.recent){
 
-      shuffle(result)
-      let newArray = result.slice(0,5)
-      shuffle(result)
-
-        res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "All Products", title: "All Products"})
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
+        Phone.find()
+        .then((result)=>{    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
     
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: null, category: "All Products", title: "All Products"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    } else{
+
+        Phone.find()
+        .then((result)=>{
+    
+    
+            let recent = new Recent(req.session.recent)
+            let fiveArray = recent.generateArray()
+            let recentArray = fiveArray.slice(0,5)
+            shuffle(recentArray)
+    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "All Products", title: "All Products"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+
+
 })
+
+
+
+router.get('/category-phones',(req,res)=>{ 
+
+    if(!req.session.recent){
+
+        Phone.find({$text : {$search: "phones tablets"}})
+        .then((result)=>{    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: null, category: "Phones and Tablets", title: "Phones"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    } else{
+
+        Phone.find({$text : {$search: "phones tablets"}})
+        .then((result)=>{
+    
+            
+            let recent = new Recent(req.session.recent)
+            let fiveArray = recent.generateArray()
+            let recentArray = fiveArray.slice(0,5)
+            shuffle(recentArray)
+    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "Phones and Tablets", title: "Phones"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+
+
+})
+
+router.get('/category-laptops',(req,res)=>{ 
+
+    if(!req.session.recent){
+
+        Phone.find({$text : {$search: "laptops"}})
+        .then((result)=>{    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: null, category: "Computers & Accessories", title: "Computers"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    } else{
+
+        Phone.find({$text : {$search: "laptops"}})
+        .then((result)=>{
+    
+            
+            let recent = new Recent(req.session.recent)
+            let fiveArray = recent.generateArray()
+            let recentArray = fiveArray.slice(0,5)
+            shuffle(recentArray)
+    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "Computers & Accesories", title: "Laptops"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+
+
+})
+
 
 
 router.get('/phones/:id',(req,res)=>{
@@ -157,7 +264,7 @@ router.get('/phones/:id',(req,res)=>{
     
     const protocol = req.protocol
     //console.log(req.hostname)
-   console.log(req.originalUrl)
+  // console.log(req.originalUrl)
     //console.log(protocol)
   //  console.log(hhh)
     //console.log(urll)
@@ -190,34 +297,6 @@ router.get('/phones/:id',(req,res)=>{
 })
 
 
-router.post('/phones/:id',(req,res)=>{
-    const id = req.params.id;
-   // console.log(req.body.email)
-   // console.log(req.user.username)
-   // console.log(req.body.pricedrop)
-   // console.log(req.body.price)
-   const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
-
-   console.log(urll)
-   checkPrice()
-
-   async function checkPrice(){
-      const priceString =  nightmare.goto(urll)
-                                    .wait("#main-price")
-                                    .evaluate(()=> document.getElementById('main-price').innerText)
-                                    .end()
-      const priceNumber = Number(priceString.replace(/[^0-9.-]+/g,""))
-      if(priceNumber < 200){
-          console.log("it's cheap" )
-      } else {
-          console.log('it is expensive')
-      }
-    
-   }
-   
-   
-    
-})
 
 
 router.get('/phones',(req,res)=>{ 
@@ -460,6 +539,46 @@ function ensureAuthenticated(req, res, next) {
         res.redirect("/login");
     }
 }
+
+
+router.post('/phones/:id',(req,res)=>{
+    const id = req.params.id;
+    let emails = req.body.email
+   //console.log(req.user.username)
+   // console.log(req.body.pricedrop)
+   transporter.sendMail(mailOptions, (err, info)=>{
+    if(err){
+        console.log(err)
+    }
+    console.log("info: ", info)
+})
+       let givenPrice = req.body.price
+   const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
+
+
+  // console.log( typeof urll)
+  checkPrice()
+
+   async function checkPrice(){
+      const priceString = await nightmare.goto(urll)
+                                    .wait("#main-price")
+                                    .evaluate(()=> 
+                                    document.getElementById
+                                    ('main-price')
+                                    .innerText)
+                                    .end()
+                                 
+    const priceNumber = parseFloat(priceString.replace(/[^0-9.-]+/g,""))
+    //console.log(priceNumber)
+    if(priceNumber < givenPrice){
+          console.log("it's cheap" )
+      } else {
+        console.log("ok") 
+      }
+   }
+
+ 
+})
 
 
 module.exports = router;
