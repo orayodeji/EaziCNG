@@ -1,4 +1,5 @@
 const express = require('express');
+const nightmare = require('nightmare')()
 const passport = require('passport');
 const router = express.Router();
 const Phone = require("./models/phones");
@@ -49,10 +50,24 @@ router.get('/', (req, res, next)=>{
                 return next(err);
             }
             
-            let recent = new Recent(req.session.recent)
-            let allArray = recent.generateArray()
-            shuffle(allArray)
-            let recentIndexArray = allArray.slice(0,5) 
+            if(!req.session.recent){
+                Phone.find()
+                    .then((topdeals)=>{
+                    shuffle(topdeals)
+                    let newArray = topdeals.slice(0,5)
+        
+                  
+                    shuffle(topdeals)  
+                    res.render('index', {users: users, recents: null, deals: topdeals,goldrush:newArray});})
+                    
+                    .catch((err)=>{
+                    console.log(err)})
+
+            } else{
+                let recent = new Recent(req.session.recent)
+                let allArray = recent.generateArray()
+                shuffle(allArray)
+                let recentIndexArray = allArray.slice(0,5) 
 
                     Phone.find()
                     .then((topdeals)=>{
@@ -65,6 +80,9 @@ router.get('/', (req, res, next)=>{
                     
                     .catch((err)=>{
                     console.log(err)})
+            }
+            
+               
            
 
         });
@@ -78,6 +96,7 @@ router.get('/signup', function (req, res) {
 
 router.post('/signup', function (req, res, next) {
     var username = req.body.user;
+    var email = req.body.email;
     var password = req.body.password;
 
     User.findOne({
@@ -93,7 +112,8 @@ router.post('/signup', function (req, res, next) {
 
         var newUser = new User({
             username: username,
-            password: password
+            password: password,
+            email :email
         });
         newUser.save((err, result)=>{
            res.redirect('/login')
@@ -131,6 +151,17 @@ router.get('/products', (req, res)=>{
 
 router.get('/phones/:id',(req,res)=>{
     const id = req.params.id;
+   const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
+    const url = req.protocol + '://' + req.hostname + req.originalUrl; 
+    const hhh = req.get('host')
+    
+    const protocol = req.protocol
+    //console.log(req.hostname)
+   console.log(req.originalUrl)
+    //console.log(protocol)
+  //  console.log(hhh)
+    //console.log(urll)
+    //console.log(url)
     Phone.findById(id)
     .then((result)=>{
 
@@ -138,7 +169,7 @@ router.get('/phones/:id',(req,res)=>{
         recent.add(result, result.id)
         req.session.recent  = recent;
 
-        console.log(result.id)
+      //  console.log(result.id)
         let filter = result.name.substring(0,10)
         Phone.find({$text : {$search: filter}})
         .then((filterResult)=>{
@@ -157,6 +188,37 @@ router.get('/phones/:id',(req,res)=>{
     })
     
 })
+
+
+router.post('/phones/:id',(req,res)=>{
+    const id = req.params.id;
+   // console.log(req.body.email)
+   // console.log(req.user.username)
+   // console.log(req.body.pricedrop)
+   // console.log(req.body.price)
+   const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
+
+   console.log(urll)
+   checkPrice()
+
+   async function checkPrice(){
+      const priceString =  nightmare.goto(urll)
+                                    .wait("#main-price")
+                                    .evaluate(()=> document.getElementById('main-price').innerText)
+                                    .end()
+      const priceNumber = Number(priceString.replace(/[^0-9.-]+/g,""))
+      if(priceNumber < 200){
+          console.log("it's cheap" )
+      } else {
+          console.log('it is expensive')
+      }
+    
+   }
+   
+   
+    
+})
+
 
 router.get('/phones',(req,res)=>{ 
         Phone.find({$text : {$search: "laptop"}})

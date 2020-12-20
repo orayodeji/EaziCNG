@@ -247,6 +247,8 @@ ul{
 }
 
 
+
+
 .font-categories{  
     display: flex;
     transition: transform 3.5s ease-in-out;
@@ -295,7 +297,7 @@ ul{
 }
 
 #detail-details-ul{
-    margin: 4% 0 0 07%;
+    margin: 10% 0 0 07%;
 }
 
 #detail-details-list{
@@ -408,10 +410,10 @@ ul{
 #price-history-list{
     font-family: Encode Sans;
     font-style: normal;
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 6px ;
     line-height: 22px;
-    font-weight: 450;
+    font-weight: 700;
     margin-left: 5%;
     margin-bottom: 4%;
     color: #282828;
@@ -1278,4 +1280,17 @@ color: #FFFFFF;
     letter-spacing: 0em;
     text-align: left;
     color: #FFFFFF;
+}
+
+
+.multi{
+    color: #FF8200;
+    background: -webkit-linear-gradient(green, red);
+    background: -webkit-linear-gradient(270deg, rgba(227,58,43,1) 38%, rgba(82,180,58,1) 68%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#cash-text{
+    margin-right: 1px;
 }

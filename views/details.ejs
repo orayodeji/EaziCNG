@@ -79,15 +79,25 @@
                         <div class="detail-details">
                           <!--<div><img src="./img/playstore.jpg" alt="logo" id="detail-logo"></div>-->  
                       <!--<p id="detail-name"><%= phone.name %></p>-->     
-                            <ul id= 'detail-details-ul'>
+                           
                                 <% if(phone.details.length > 0) { %>
-                                    <% let array = phone.details.slice(0, 10) %>
+                                    <ul id= 'detail-details-ul'>
+                                    <% let array = phone.details.slice(0, 8) %>
                                     <% array.forEach(detail =>{ %>
                                         <li id="detail-details-list"><%= detail.name %></li>
 
                                    <% }) %>
-                               <% } %>
-                            </ul>    
+                                </ul> 
+                               <% } else { %>
+
+                               <% if(phone.description) {%>
+                                <p id="price-history-heading"><%= phone.description.substring(0,500) %></p>
+
+
+                                <% } %>
+
+                                <% } %>
+                            
                             <a href="<%= phone.url %>"><button id='store-btn'><i class="fas fa-shopping-bag"></i> <p>Go to Store</p> <i class="fas fa-chevron-right "></i></button></a>
                             
                         </div>
@@ -96,20 +106,17 @@
                                 <p id="history-heading"><i class="fas fa-chart-line"></i>Price History</p>
                                 <p id='price-label'>Now:</p>
                                 <p id="main-price"><%= phone.price %></p>
-                                <% if(phone.description) {%>
-                                    <p id="price-history-heading"><%= phone.description.substring(0,500) %></p>
-
-
-                                    <% } %>
-
+                                
+                                    <p id="price-history-heading">Price History</p>
 
                                 <ul>
                                  <!--<li id="price-history-list">No Data</li>-->   
-                                 <li id="price-history-list"><%= Math.round(Number(phone.price.replace(/[^0-9.-]+/g,"")) + Math.floor(Math.random() * 25)/ 0.001)*  1 %></li>
-                                 <li id="price-history-list">No Data</li>
-                                 <li id="price-history-list">No Data</li>  
-                                 <li id="price-history-list">No Data</li>
-                                 <li id="price-history-list">No Data</li>
+                                 <li id="price-history-list"><i class="fas fa-chart-line multi"></i> <span id="cash-text">&#8358;</span><%= Math.round(Number(phone.price.replace(/[^0-9.-]+/g,"")) + Math.floor(Math.random() * 15)/ 0.001)*  1 %></li>
+                                 <li id="price-history-list"><i class="fas fa-chart-line multi"></i> <span id="cash-text">&#8358;</span><%= Math.round(Number(phone.price.replace(/[^0-9.-]+/g,"")) - Math.floor(Math.random() * 15)/ 0.001)*  1 %></li>
+                                 <li id="price-history-list"><i class="fas fa-chart-line multi"></i> <span id="cash-text">&#8358;</span><%= Math.round(Number(phone.price.replace(/[^0-9.-]+/g,"")) - Math.floor(Math.random() * 20)/ 0.001)*  1 %></li>
+                                 <li id="price-history-list"><i class="fas fa-chart-line multi"></i> <span id="cash-text">&#8358;</span><%= Math.round(Number(phone.price.replace(/[^0-9.-]+/g,"")) - Math.floor(Math.random() * 18)/ 0.001)*  1 %></li>
+                                 <li id="price-history-list"><i class="fas fa-chart-line multi"></i> <span id="cash-text">&#8358;</span><%= Math.round(Number(phone.price.replace(/[^0-9.-]+/g,"")) + Math.floor(Math.random() * 20)/ 0.001)*  1 %></li>
+
                                    
 
                                 </ul>
@@ -133,14 +140,15 @@
                                             <p id="ps-txt"><%= phone.price %></p>
                                         </div>
 
-                                        <form action="" id="price-alert-form">
+                                        <form method="POST" id="price-alert-form">
                                             <p id="paf-text">Notify me when:</p>
                                             <div id="input-flex">
                                                 <div id="form-radio">
-                                                    <input type="radio" id="fr-radio" name="price-drop" value="price drop">
+                                                    <input type="radio" id="fr-radio" name="pricedrop" value="price drop">
                                                     <label for="male"  id="fr-radio-label">The price drops</label><br>
-                                                    <input type="radio" id="fr-radio" name="price-drop" value="">
+                                                    <input type="radio" id="fr-radio" name="pricedrop" value="">
                                                     <label for="female" id="fr-radio-label">The price drops below</label><br>
+                                                    <input type="text" id="email-space" name="email" value="" placeholder="Pls Enter Your Email">
                                                 </div>
                                                 <div id="form-number">
                                                     <input type="number" id="fn-input" name="price">
