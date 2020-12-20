@@ -716,6 +716,7 @@ ul{
 .osb-box{
     height: 20%;
     border: 1px solid #C0BCBC;
+    border-radius: 5px 5px 0px 0px;
 
 }
 
@@ -735,6 +736,7 @@ ul{
 
 
 .osp-box{
+    border-radius: 0px 0px 5px 5px;
     height: 80%;
     display: flex;
     border: 1px solid #C0BCBC;
@@ -958,19 +960,20 @@ h3{
 #recent-picks{
     width: 95%;
     background: #F8F8F8;
-    height: 70%;  
+    height: 73%;  
 }
 
 .recent-text{
-    height: 15%;
+    height: 10%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
 #recent-btxt{
-    margin: 1.5% 0 0 2%;
+    margin: 0 0 0 2%;
     font-family: Encode Sans;
-    font-size: 28px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 700;
     line-height: 34px;
@@ -979,12 +982,12 @@ h3{
 }
 
 #recent-stxt{
-    margin: 1.5% 3% 0 0;
+    margin: 0% 3% 0 0;
     cursor: pointer;
     width: 90px;  
     color: #FF8200;
     font-family: Encode Sans;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 23px;
@@ -997,6 +1000,7 @@ h3{
     display: flex;
     justify-content: space-around;
     height: 80%;
+    margin-top: 2%;
     align-items: center;
 }
 
@@ -1011,6 +1015,9 @@ h3{
     border-radius: 9px;
 }
 
+.recent-pack:hover{
+    box-shadow:2px 2px 07px 7px  #FF8200;   
+}
 
 #recent-rectangle{ height: 30px;
     position: absolute;
@@ -1033,9 +1040,7 @@ h3{
 }
 
 .recent-box{
-    display: flex;
-    flex-direction: column;
-    height: 75%;
+    height: 65%;
     align-items: center;
 }
 
@@ -1054,22 +1059,24 @@ h3{
 
 .recent-img{
     width:90%;
-    height:83%;
+    height:90%;
     border-radius: 5%;
-    margin-top: 3%;
+    margin-top: 0%;
+    margin-left: 5%;
 }
 .recent-logo{
-    width: 40%;
-    height: 13%;
-    margin-top: 2%;
+    width: 30%;
+    height: 8%;
+    margin-left: 35%;
+    margin-top: 1%;
 }
 
 .recent-name{
     font-family: Encode Sans;
-    font-size: 22px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 500;
-    line-height: 28px;
+    font-weight: 600;
+    line-height: 23px;
     letter-spacing: 0em;
     text-align: left;
     margin-left: 2%;
@@ -1080,7 +1087,7 @@ h3{
     font-family: Encode Sans;
     font-size: 18px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 25px;
     letter-spacing: 0em;
     text-align: left;
@@ -1090,6 +1097,7 @@ h3{
 
 .recent-old-price{
     text-decoration: line-through;
+    font-size: 16px;
 }
 
 .closing-txt{
@@ -1104,7 +1112,7 @@ h3{
     font-family: Encode Sans;
     font-size: 18px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 31px;
     letter-spacing: 0em;
     text-align: center;

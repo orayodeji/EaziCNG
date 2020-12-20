@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.css">
-    <title>EaziCart</title>
+    <title>EaziCart | Home</title>
 </head>
 <body>
     
@@ -187,19 +187,19 @@
                                     </div>
                                     <div class="firbox-gallery">
                                 <% recents.forEach(recent => { %>
-                                    <a href="/phones/<%= recent._id%>">
+                                    <a href="/phones/<%= recent.item._id%>">
         
                                         <div class="firbox-box">
 
-                                            <% if(recent.discount) {%>
-                                                <div id="rectangle"><%= recent.discount %></div>
+                                            <% if(recent.item.discount) {%>
+                                                <div id="rectangle"><%= recent.item.discount %></div>
                                                 <% } %>
 
-                                            <a href="/phones/<%= recent._id%>"><img src="<%= recent.img %>" alt="demo" class="fir-img"></a>
+                                            <a href="/phones/<%= recent.item._id%>"><img src="<%= recent.item.img %>" alt="demo" class="fir-img"></a>
 
-                                            <% if(recent.vendor) { %>
+                                            <% if(recent.item.vendor) { %>
                                     
-                                                <img src="<%= recent.vendor %>" alt="vendor-logo" class="product-logo">
+                                                <img src="<%= recent.item.vendor %>" alt="vendor-logo" class="product-logo">
                                                 <% } else { %>
                                                     <img aria-describedby="caption-attachment-27644" class="product-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
                 
@@ -207,9 +207,9 @@
                                                     <% } %>
 
 
-                                            <p id="price-box"><%= recent.name.substring(0,41)%></p>
-                                            <p id="new-price-box"><%= recent.price%></p>
-                                            <p id="old-price-box"><%= recent.old_price %></p>
+                                            <p id="price-box"><%= recent.item.name.substring(0,31)%></p>
+                                            <p id="new-price-box"><%= recent.item.price%></p>
+                                            <p id="old-price-box"><%= recent.item.old_price %></p>
                                         </div>
     
                                        
@@ -230,7 +230,7 @@
                                             <div class="firbox-gallery">
 
                                         <% goldrush.forEach(recent => { %>
-                                            <a href="/phones/<%= recent._id%>">
+                                   <a href="/phones/<%= recent._id%>">         
         
                                                 <div class="firbox-box">
 
@@ -238,7 +238,7 @@
                                                         <div id="rectangle"><%= recent.discount %></div>
                                                         <% } %>
 
-                                                    <a href="/phones/<%= recent._id%>"><img src="<%= recent.img %>" alt="demo" class="fir-img"></a>
+                                                    <a href="/phones/<%= recent.id%>"><img src="<%= recent.img %>" alt="demo" class="fir-img"></a>
 
                                                     <% if(recent.vendor) { %>
                                             
@@ -256,7 +256,7 @@
                                                 </div>
             
                                                
-                                            </a>
+                                 </a>          
                                             <% }) %>
                                         </div>
                         

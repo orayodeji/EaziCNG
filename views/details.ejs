@@ -54,7 +54,11 @@
                  </div>
                  <div class="head3">
                     <div class="cat-section-text">
-                        <p><span id="home">Home<i class="fas fa-chevron-right"></i></span><span id="category"><%= phone.category%><i class="fas fa-chevron-right"></i></span><span id="section"><%= phone.type%><i class="fas fa-chevron-right"></i></span><span id="sub-section"><%= phone.brand %><i class="fas fa-chevron-right"></i></span><span id="main-section"><%= phone.name %></span></p>
+                        <p><span id="home">Home<i class="fas fa-chevron-right"></i></span><span id="category"><%= phone.category%><i class="fas fa-chevron-right"></i></span>
+                              <% if(phone.type){%>
+                                    <span id="section"> <%= phone.type%><i class="fas fa-chevron-right"></i></span>
+                                <% } %>
+                                <span id="sub-section"><%= phone.brand %><i class="fas fa-chevron-right"></i></span><span id="main-section"><%= phone.name %></span></p>
                     </div>   
                     <div class="detail-box">
                         <div class="detail-img">
@@ -101,6 +105,11 @@
 
                                 <ul>
                                  <!--<li id="price-history-list">No Data</li>-->   
+                                 <li id="price-history-list"><%= Math.round(Number(phone.price.replace(/[^0-9.-]+/g,"")) + Math.floor(Math.random() * 25)/ 0.001)*  1 %></li>
+                                 <li id="price-history-list">No Data</li>
+                                 <li id="price-history-list">No Data</li>  
+                                 <li id="price-history-list">No Data</li>
+                                 <li id="price-history-list">No Data</li>
                                    
 
                                 </ul>
@@ -166,7 +175,9 @@
                         <% if(other) {%>
                             <div class="osp-box">
                                 <div class="osp-img-box">
-                                    <div id="rectangle"><%= other.discount %></div>
+                                    <% if(other.discount){%>
+                                        <div id="rectangle"><%= other.discount %></div>
+                                        <% } %>
 
                                     <a href="/phones/<%= other._id %>">
                                         <img src="<%= other.img %>" id="osp-img-jpg"></a>
@@ -245,29 +256,50 @@
         </div>
 
         <div class="third-part">
-            <div id="recent-picks">
-                <div class="recent-text">
-                    <p id="recent-btxt">Recently Viewed</p>
-                    <p id="recent-stxt"><span id='txt'>See All</span> <i class="fas fa-chevron-right"></i></p>
-                </div>
-                <div class="recent-gallery">
-                    <div class="recent-pack">
-                        <div id="recent-rectangle">78% 0ff</div>
-                        <div class="recent-box">
-                            
-                            <img src="/img/OIP.jpg" alt="top-product" class="recent-img">
-                            <img src="/img/playstore.jpg" alt="vendor-logo" class="recent-logo">
-                        </div>
-                        <p class="recent-name">product</p>
-                        <p class="recent-price">New Price</p>
-                        <p class="recent-old-price">Old Price</p>
-                    </div>
 
-                    
-                   
-                    
-                </div>
-            </div>
+            <% if(recentViews.length > 0) { %>
+                <div id="recent-picks">
+                    <div class="recent-text">
+                        <p id="recent-btxt">Recently Viewed</p>
+                        <p id="recent-stxt"><span id='txt'>See All</span> <i class="fas fa-chevron-right"></i></p>
+                    </div>
+                    <hr>
+                    <div class="recent-gallery">
+                        <% recentViews.forEach(recent => { %>
+
+                            <div class="recent-pack">
+                                <% if(recent.item.discount) {%>
+                                    <div id="recent-rectangle"><%= recent.item.discount %></div>
+                                    <% } %>
+
+
+                                <div class="recent-box">
+                                    <a href="/phones/<%= recent.item._id%>"><img src="<%= recent.item.img %>" alt="demo" class="recent-img"></a>
+
+                                    <% if(recent.item.vendor) { %>
+                                    
+                                        <img src="<%= recent.item.vendor %>" alt="vendor-logo" class="recent-logo">
+                                        <% } else { %>
+                                            <img aria-describedby="caption-attachment-27644" class="recent-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+        
+        
+                                            <% } %>
+
+                                </div>
+                                <p class="recent-name"><%= recent.item.name.substring(0,50) %></p>
+                                <p class="recent-price"><%= recent.item.price %></p>
+                                <p class="recent-old-price"><%= recent.item.old_price %></p>
+                            </div>
+
+                            <% }) %>
+
+                        </div>
+                        
+                    </div>
+                            <% } %>
+
+
+            
             <div class="closing-txt">
                 <p id="closing-txt">Eazycart.com is Nigeria’s leading online price comparison site that allows you to shop online for the best deals and lowest prices. Our mission is to help consumers use the power of information to easily find, compare and buy products online in less time and for the best price. You can read unbiased product reviews and compare prices online. Online shopping has never been as easy! Browse our large selection of fashion, clothing, consumer electronics, home and garden producsts now </p>
             </div>

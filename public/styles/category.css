@@ -289,7 +289,7 @@ ul{
 #picks-btxt{
     margin: 1.5% 0 0 2%;
     font-family: Encode Sans;
-    font-size: 28px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: 34px;
@@ -300,9 +300,10 @@ ul{
 }
 #picks-stxt{
     margin: 1.5% 3% 0 0;
-    font-size: 17px;
+    font-size: 14px;
     cursor: pointer;
-    width: 90px;  
+    width: 90px; 
+    font-weight: 600; 
     color: #FF8200;
 }
 #txt{
@@ -386,10 +387,10 @@ ul{
 
 }
 .top-logo{
-    width: 30%;
+    width: 25%;
     height: 5%;
     margin-top: 1%;
-    margin-left: 35%;
+    margin-left: 37.5%;
 }
 
 .top-name{
@@ -853,29 +854,30 @@ h3{
 }
 
 .recent-text{
-    height: 15%;
+    height: 10%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #recent-btxt{
-    margin: 1.5% 0 0 2%;
+    margin: 0% 0 0 2%;
     font-family: Encode Sans;
     font-size: 28px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 34px;
     letter-spacing: 0.02em;
     text-align: left;
 }
 
 #recent-stxt{
-    margin: 1.5% 3% 0 0;
+    margin: 0% 3% 0 0;
     cursor: pointer;
     width: 90px;  
     color: #FF8200;
     font-family: Encode Sans;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 23px;
@@ -887,7 +889,7 @@ h3{
 .recent-gallery{
     display: flex;
     justify-content: space-around;
-    height: 80%;
+    height: 90%;
     align-items: center;
 
 }
@@ -896,7 +898,7 @@ h3{
     position: relative;
     margin: 0;
     background: white;
-    height: 100%;
+    height: 95%;
     width: 17.5%; 
 
  
@@ -908,8 +910,8 @@ h3{
 #recent-rectangle{ height: 30px;
     position: absolute;
     width: 65px;
-    left: 158px;
-    top: 21px; 
+    left: 148px;
+    top: 14px; 
     transform:rotate(10deg);  
     transform: skewY(-15deg); /* IE 9 */
     transform: skewX(-15deg);
@@ -926,9 +928,8 @@ h3{
 }
 
 .recent-box{
-    display: flex;
-    flex-direction: column;
-    height: 78%;
+    
+    height: 70%;
     align-items: center;
 }
 
@@ -946,24 +947,26 @@ h3{
 }
 
 .recent-img{
-    width:80%;
+    width:90%;
     height:85%;
     border-radius: 5%;
+    margin-left: 5%;
     margin-top: 2%;
 }
 
 .recent-logo{
-    width: 40%;
-    height: 13%;
-    margin-top: 1%;
+    width: 28%;
+    height: 09%;
+    
+    margin-left: 36%;
 }
 
 .recent-name{
     font-family: Encode Sans;
-    font-size: 22px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
-    line-height: 28px;
+    line-height: 20px;
     letter-spacing: 0em;
     text-align: left;
     margin-left: 5%;
@@ -983,7 +986,7 @@ h3{
 }
 .recent-old-price{
     font-family: Encode Sans;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: 25px;

@@ -513,8 +513,8 @@ input{
     border-radius: 5px;
     position: absolute;
     width: 60px;
-    left: 180px;
-    top: 21px; 
+    left: 190px;
+    top: 18px; 
     transform:rotate(10deg);  
     transform: skewY(-15deg); /* IE 9 */
     transform: skewX(-15deg);

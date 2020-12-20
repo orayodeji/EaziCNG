@@ -49,25 +49,23 @@ router.get('/', (req, res, next)=>{
                 return next(err);
             }
             
-            Compare.find({user:req.user}).sort({createdAt:-1}).limit(5)
-            .then((result)=>{
+            let recent = new Recent(req.session.recent)
+            let allArray = recent.generateArray()
+            shuffle(allArray)
+            let recentIndexArray = allArray.slice(0,5) 
 
-                shuffle(result)
                     Phone.find()
                     .then((topdeals)=>{
                     shuffle(topdeals)
                     let newArray = topdeals.slice(0,5)
+        
                   
-                    shuffle(topdeals)
-                    
-                    res.render('index', {users: users, recents: result, deals: topdeals,goldrush:newArray});})
+                    shuffle(topdeals)  
+                    res.render('index', {users: users, recents: recentIndexArray, deals: topdeals,goldrush:newArray});})
                     
                     .catch((err)=>{
                     console.log(err)})
-            })
-            .catch((err)=>{
-                console.log(err)
-            })
+           
 
         });
 });
@@ -114,16 +112,15 @@ router.get('/products', (req, res)=>{
     .then((result)=>{
 
         let recent = new Recent(req.session.recent)
-        let recentArray = recent.generateArray()
+        let fiveArray = recent.generateArray()
+        let recentArray = fiveArray.slice(0,5)
         shuffle(recentArray)
-        console.log(recentArray.length)
 
       shuffle(result)
       let newArray = result.slice(0,5)
       shuffle(result)
 
-      console.log(result.length)  
-        res.render('phones',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray})
+        res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "All Products", title: "All Products"})
     })
     .catch((err)=>{
         console.log(err)
@@ -145,8 +142,13 @@ router.get('/phones/:id',(req,res)=>{
         let filter = result.name.substring(0,10)
         Phone.find({$text : {$search: filter}})
         .then((filterResult)=>{
+            let recent = new Recent(req.session.recent)
+            let fiveArray = recent.generateArray()
+            let recentArray = fiveArray.slice(0,5)
+        shuffle(recentArray)
+
             shuffle(filterResult)
-            res.render("details", {phone: result, other: filterResult[0]})
+            res.render("details", {phone: result, other: filterResult[0],recentViews:recentArray})
         })
         
     })
@@ -160,7 +162,7 @@ router.get('/phones',(req,res)=>{
         Phone.find({$text : {$search: "laptop"}})
         .then((filterResult)=>{
            console.log(filterResult.length)
-            res.render("phones", {phones: filterResult, counts: filterResult.length})
+            res.render("phones", {phones: filterResult, counts: filterResult.length, title: "Phones"})
         })
         .catch((err)=>{
         console.log(err)

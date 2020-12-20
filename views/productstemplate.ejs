@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/category.css">
-    <title>EaziCart | Phones</title>
+    <title>EaziCart | <%= title %></title>
 </head>
 <body>
     <div class="header">
@@ -54,7 +54,7 @@
                  </div>
                  <div class="head3">
                     <div class="cat-section-text">
-                        <p><span id="home">Home<i class="fas fa-chevron-right"></i></span><span id="category">All Products</span></p>
+                        <p><span id="home">Home<i class="fas fa-chevron-right"></i></span><span id="category"><%= category %></span></p>
                     </div>
 
                     <div class="carousel">
@@ -193,7 +193,7 @@
 
         <div class="third-part">
 
-            <% if(recentViews.length > 4) { %>
+            <% if(recentViews.length > 0) { %>
                 <div id="recent-picks">
                     <div class="recent-text">
                         <p id="recent-btxt">Recently Viewed</p>
@@ -221,7 +221,7 @@
                                             <% } %>
 
                                 </div>
-                                <p class="recent-name"><%= recent.item.name %></p>
+                                <p class="recent-name"><%= recent.item.name.substring(0,50) %></p>
                                 <p class="recent-price"><%= recent.item.price %></p>
                                 <p class="recent-old-price"><%= recent.item.old_price %></p>
                             </div>
@@ -259,7 +259,7 @@
                                                             <% } %>
                 
                                                 </div>
-                                                <p class="recent-name"><%= recent.name %></p>
+                                                <p class="recent-name"><%= recent.name.substring(0,50) %></p>
                                                 <p class="recent-price"><%= recent.price %></p>
                                                 <p class="recent-old-price"><%= recent.old_price %></p>
                                             </div>
@@ -270,7 +270,7 @@
                                         
                                     </div>
                                 <% } %>
-                                           
+
             <div class="closing-txt">
                 <p id="closing-txt">Eazycart.com is Nigeria’s leading online price comparison site that allows you to shop online for the best deals and lowest prices. Our mission is to help consumers use the power of information to easily find, compare and buy products online in less time and for the best price. You can read unbiased product reviews and compare prices online. Online shopping has never been as easy! Browse our large selection of fashion, clothing, consumer electronics, home and garden producsts now </p>
             </div>
