@@ -114,10 +114,19 @@ ul{
         border-color: transparent transparent #fff transparent;
       }
 
+      .cursor{
+          cursor: pointer;
+      }
 
       li.active .dropdown{
         display: block;
       }
+
+      li.active .dropsheets{
+          display: block;
+      }
+
+      
 
       #drop-txt{
           margin-left: 40px;
@@ -172,8 +181,98 @@ ul{
     padding-top: 1%;
     display: flex;
     justify-content: space-around;
+    position: relative;
     width: 95%;
 }
+
+.dropsheets{
+    position: absolute;
+    
+    width: 1150px;
+    height: 508px;
+    left: 61px;
+    top: 49px;
+    display: none;
+
+    flex-direction: column;
+    border-radius: 9px;
+    background-color: white;
+}
+.dropsheet-1{
+    margin-top:2%;
+    height: 85%;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+#ds-boc{
+    height: 50%;
+    width: 95%;
+    display: flex;
+}
+
+#mini-box{
+    height: 100%;
+    width: 40%;
+}
+.fa-chevron-right{
+    font-size: 16px;
+    color: #4D4D4D;
+}
+
+
+
+#mb-btxt{
+    font-family: Encode Sans;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #1D1D1D;
+    margin: 5% 0%;
+    cursor: pointer;
+}
+
+#mb-stxt{
+    cursor: pointer;
+    font-family: Encode Sans;
+    margin-bottom: 4%;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 18px;
+letter-spacing: 0em;
+text-align: left;
+color: #4D4D4D;
+}
+
+.dropsheet-2{
+    height: 13%;
+    width: 95%;
+    align-items: center;
+}
+#ds2-allcat{
+    font-family: Encode Sans;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: right;
+    margin-right: 3%;
+    text-decoration: underline;
+    color: #FF8200;
+    margin-top: 1%;
+    cursor: pointer;
+}
+
+.orange{
+    color: #FF8200;
+}
+
 
 .head2 ul li{
     font-family: Encode Sans;

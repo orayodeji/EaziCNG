@@ -61,10 +61,47 @@
                     <div class="head2">
                 
                         <ul id="below">
-                            <a href="/products">  <li>All Categories<i class="fas fa-bars"></i></li></a> 
+                            <li id="slide-in" class="cursor">All Categories<i class="fas fa-bars"></i>
+                            
+                                <div class="dropsheets">
+                                    <div class="dropsheet-1">
+                                        <div id="ds-boc">
+                                           <div id="mini-box">
+                                               <p id="mb-btxt">Phones <i class="fas fa-chevron-right"></i></p>
+                                               <p id="mb-stxt">Android</p>
+                                               <p id="mb-stxt">Ios</p>
+                                               <p id="mb-stxt">Phone Accessories</p>
+                                           </div>
+                                           <div id="mini-box">
+                                               <p id="mb-btxt">Computers And Accessories <i class="fas fa-chevron-right"></i></p>
+                                               <p id="mb-stxt">Laptops</p>
+                                               <p id="mb-stxt">Computer Accessories</p>
+                                           </div>
+                                           <div id="mini-box"></div>
+                                        </div>
+   
+                                        <div id="ds-boc">
+                                           <div id="mini-box"></div>
+                                           <div id="mini-box"></div>
+                                           <div id="mini-box"></div>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="dropsheet-2">
+                                       <a href="/products"><p id="ds2-allcat">See all categories <i class="fas fa-chevron-right orange"></i></p></a>
+                                    </div>
+   
+   
+                                </div>
+                            
+                            
+                            </li> 
+
+
                          <a href="/category-phones"><li><i class="fas fa-mobile"></i>Phones</li></a>
                            
                              <li><i class="fas fa-tshirt"></i>Fashion</li>
+                            
                             <li><i class="fas fa-laptop"></i>Computer & Accessories</li>
                             <li><i class="fas fa-tv"></i>Eletronics</li>
                             
@@ -335,9 +372,12 @@
             </div>
         </div>
         
-        <script src="./script/index.js"></script>
         <script>
             document.querySelector(".drip-down").addEventListener("click", function(){
+                console.log('hello')
+                  this.classList.toggle("active");
+            });
+            document.querySelector("#slide-in").addEventListener("click", function(){
                 console.log('hello')
                   this.classList.toggle("active");
             });
