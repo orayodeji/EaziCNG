@@ -2,15 +2,19 @@ const express = require('express');
 const nightmare = require('nightmare')()
 const passport = require('passport');
 const router = express.Router();
-const Phone = require("./models/phones");
-const Compare = require("./models/compare");
 const Cart = require('./models/carts');
 const Recent = require('./models/recent');
 
+
+//models for products
+const Phone = require("./models/phones");
+const Compare = require("./models/compare");
 const User = require('./models/user');
 const Order = require('./models/order');
 
 
+
+// to display the products randomly
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     // While there remain elements to shuffle...
@@ -26,9 +30,17 @@ function shuffle(array) {
     return array;
   }
  
-  function randomNumber(array){
-       return Math.floor(Math.random()*array.length*0.75)
-  }
+ 
+
+  router.use(function (req, res, next) {
+    res.locals.login = req.isAuthenticated()
+    res.locals.session = req.session;
+    res.locals.currentUser = req.user;
+    res.locals.errors = req.flash("error");
+    res.locals.infos = req.flash("info");
+    next();
+});
+
 
 router.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated()
@@ -126,6 +138,29 @@ router.post('/signup', function (req, res, next) {
 }));
 
 
+router.get('/login', function (req, res) {
+    res.render('loginuser')
+});
+
+
+router.post('/login', passport.authenticate('login', {
+    successRedirect: "/",
+    failureRedirect: "/signup",
+    failureFlash: true
+}));
+
+router.get('/about-us',(req,res)=>{
+    res.render('about')
+})
+
+router.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
+});
+
+
+
+//Routes to create all products available from the database
 router.get('/products', (req, res)=>{
 
     if(!req.session.recent){
@@ -135,7 +170,6 @@ router.get('/products', (req, res)=>{
           shuffle(result)
           let newArray = result.slice(0,5)
           shuffle(result)
-    
             res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: null, category: "All Products", title: "All Products"})
         })
         .catch((err)=>{
@@ -180,7 +214,7 @@ router.get('/category-phones',(req,res)=>{
           let newArray = result.slice(0,5)
           shuffle(result)
     
-            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: null, category: "Phones and Tablets", title: "Phones"})
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: null, category: "Phones, Tablets And Accessories", title: "Phones"})
         })
         .catch((err)=>{
             console.log(err)
@@ -190,7 +224,6 @@ router.get('/category-phones',(req,res)=>{
 
         Phone.find({$text : {$search: "phones tablets"}})
         .then((result)=>{
-    
             
             let recent = new Recent(req.session.recent)
             let fiveArray = recent.generateArray()
@@ -201,7 +234,7 @@ router.get('/category-phones',(req,res)=>{
           let newArray = result.slice(0,5)
           shuffle(result)
     
-            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "Phones and Tablets", title: "Phones"})
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "Phones, Tablets And Accessories", title: "Phones"})
         })
         .catch((err)=>{
             console.log(err)
@@ -254,7 +287,91 @@ router.get('/category-laptops',(req,res)=>{
 
 })
 
+router.get('/androids',(req,res)=>{ 
 
+    if(!req.session.recent){
+
+        Phone.find({type:"Smartphones"})
+        .then((result)=>{    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: null, category: "Android Phones", title: "Smart Phones"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    } else{
+
+        Phone.find({type:"Smartphones"})
+        .then((result)=>{
+    
+            
+            let recent = new Recent(req.session.recent)
+            let fiveArray = recent.generateArray()
+            let recentArray = fiveArray.slice(0,5)
+            shuffle(recentArray)
+    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "Android Phones", title: "Smart Phones"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+
+
+})
+
+router.get('/iOS-apple',(req,res)=>{ 
+
+    if(!req.session.recent){
+
+        Phone.find({type:"iOS Phones"})
+        .then((result)=>{    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: null, category: "iOS Phones", title: "Smart Phones"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    } else{
+
+        Phone.find({type:"iOS Phones"})
+        .then((result)=>{
+    
+            
+            let recent = new Recent(req.session.recent)
+            let fiveArray = recent.generateArray()
+            let recentArray = fiveArray.slice(0,5)
+            shuffle(recentArray)
+    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "iOS Phones", title: "Smart Phones"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+})
+
+
+
+//to details
 
 router.get('/phones/:id',(req,res)=>{
     const id = req.params.id;
@@ -297,21 +414,7 @@ router.get('/phones/:id',(req,res)=>{
 })
 
 
-
-
-router.get('/phones',(req,res)=>{ 
-        Phone.find({$text : {$search: "laptop"}})
-        .then((filterResult)=>{
-           console.log(filterResult.length)
-            res.render("phones", {phones: filterResult, counts: filterResult.length, title: "Phones"})
-        })
-        .catch((err)=>{
-        console.log(err)
-        })
-    
-})
-
-
+//saving products to cart  and removing products from cart 
 router.get('/add-to-cart/:id',ensureAuthenticated, (req, res, next)=>{
     Order.findOneAndDelete({user:req.user})
     .then((result)=>{
@@ -343,7 +446,7 @@ router.get('/add-to-cart/:id',ensureAuthenticated, (req, res, next)=>{
    
 })
 
-router.get('/remove-cart/:id', ensureAuthenticated,(req, res, next)=>{
+router.get('/remove-cart/:id',(req, res, next)=>{
     Order.findOneAndDelete({user:req.user})
     .then((result)=>{
         console.log('order deleted')
@@ -390,26 +493,7 @@ router.get('/carts', (req, res, next)=>{
 })
 
 
-//to access in the profile if possible
-router.get('/shoppings', ensureAuthenticated, (req, res, next)=>{
-    Order.find({user: req.user}, (err, orders)=>{
-        if(err){
-            return res.write('error')
-        }
-        
-        var cart;
-        orders.forEach(function(order){
-            cart = new Cart(order.order);
-            order.items = cart.generateArray();
-        })
-        let storedDatas =  cart.generateArray()
-
-       res.render('shoppingcart',{phoneCarts: cart.generateArray(), total: storedDatas.length})
-        
-    })
-})
-
-
+//the compare button to show list of a particular product with the same brand 
 
 router.get('/add-to-compare/:id',ensureAuthenticated, (req, res,next)=>{
     let phoneId = req.params.id;
@@ -466,49 +550,11 @@ router.get('/compare', (req, res, next)=>{
 
 
 
-router.get("/users/:username", function (req, res, next) {
-    User.findOne({
-        username: req.params.username
-    }, function (err, user) {
-        if (err) {
-            return next(err);
-        }
-        if (!user) {
-            return res.status(404).send('404: File not found!');
-        }
-        res.render("profile", {
-            user: user
-        });
-    });
-});
+
+//it ends here for now
 
 
-router.get('/login', function (req, res) {
-    res.render('loginuser')
-});
 
-
-router.post('/login', passport.authenticate('login', {
-    successRedirect: "/",
-    failureRedirect: "/signup",
-    failureFlash: true
-}));
-
-
-router.get("/logout", function (req, res) {
-    req.logout();
-    res.redirect("/");
-});
-
-
-router.use(function (req, res, next) {
-    res.locals.login = req.isAuthenticated()
-    res.locals.session = req.session;
-    res.locals.currentUser = req.user;
-    res.locals.errors = req.flash("error");
-    res.locals.infos = req.flash("info");
-    next();
-});
 
 
 router.get("/edit", ensureAuthenticated, function (req, res) {
@@ -579,6 +625,44 @@ router.post('/phones/:id',(req,res)=>{
 
  
 })
+
+router.get("/users/:username", function (req, res, next) {
+    User.findOne({
+        username: req.params.username
+    }, function (err, user) {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.status(404).send('404: File not found!');
+        }
+        res.render("profile", {
+            user: user
+        });
+    });
+});
+
+
+
+//to access in the profile if possible
+router.get('/shoppings', ensureAuthenticated, (req, res, next)=>{
+    Order.find({user: req.user}, (err, orders)=>{
+        if(err){
+            return res.write('error')
+        }
+        
+        var cart;
+        orders.forEach(function(order){
+            cart = new Cart(order.order);
+            order.items = cart.generateArray();
+        })
+        let storedDatas =  cart.generateArray()
+
+       res.render('shoppingcart',{phoneCarts: cart.generateArray(), total: storedDatas.length})
+        
+    })
+})
+
 
 
 module.exports = router;

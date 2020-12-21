@@ -273,6 +273,10 @@ color: #4D4D4D;
     color: #FF8200;
 }
 
+#uyu{
+    border: 2px solid black;
+}
+
 
 .head2 ul li{
     font-family: Encode Sans;
@@ -792,7 +796,8 @@ li{
 
 a{
     text-decoration: none;
-    color: black;
+    color: inherit;
+    
     
 }
 
