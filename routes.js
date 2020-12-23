@@ -287,6 +287,88 @@ router.get('/category-laptops',(req,res)=>{
 
 })
 
+router.get('/category-electronics',(req,res)=>{ 
+
+    if(!req.session.recent){
+
+        Phone.find({category: "Electronics"})
+        .then((result)=>{    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: null, category: "Electronics", title: "Electronics"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    } else{
+
+        Phone.find({category: "Electronics"})
+        .then((result)=>{
+    
+            
+            let recent = new Recent(req.session.recent)
+            let fiveArray = recent.generateArray()
+            let recentArray = fiveArray.slice(0,5)
+            shuffle(recentArray)
+    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "Electronics", title: "Electronics"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+
+
+})
+
+router.get('/televisions',(req,res)=>{ 
+
+    if(!req.session.recent){
+
+        Phone.find({type:"Televisions"})
+        .then((result)=>{    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: null, category: "Televisions", title: "Televisions"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    } else{
+
+        Phone.find({type:"Televisions"})
+        .then((result)=>{
+    
+            
+            let recent = new Recent(req.session.recent)
+            let fiveArray = recent.generateArray()
+            let recentArray = fiveArray.slice(0,5)
+            shuffle(recentArray)
+    
+          shuffle(result)
+          let newArray = result.slice(0,5)
+          shuffle(result)
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "Televisions", title: "Televisions"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+
+})
+
 router.get('/androids',(req,res)=>{ 
 
     if(!req.session.recent){

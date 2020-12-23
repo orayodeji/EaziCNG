@@ -8,7 +8,9 @@
 
 body{
     width: 1440px;
-    height: 2845px;
+    height: 2400px;
+
+    /*height: 2845px; */
     font-size: 19px;
     align-items: center;
     justify-content: center;
@@ -40,7 +42,8 @@ body{
 .logo{
     position: absolute;
     width: 130px;
-    height: 90px;
+    height: 65px;
+   /* height: 70px; */
     top: -07px;
     left: 0;
 }
@@ -132,6 +135,7 @@ ul{
           margin-left: 40px;
           text-align: left;
           margin-bottom: 5px;
+          color: black;
       }
 
       .dud{
@@ -140,6 +144,9 @@ ul{
 
       }
 
+      .black{
+          color:black
+      }
      
       
 
@@ -453,7 +460,7 @@ input{
 }
 
 .text-mail{
-    margin: 4% 0 0 7.5%;
+    margin: 2% 0 0 7.5%;
 }
 
 #support{
@@ -538,7 +545,7 @@ input{
 .second-part{
     height: 70%;
     text-align: center;
-    align-items: center;
+  /*  align-items: center; */
     width: 100%;
 
 
@@ -546,15 +553,16 @@ input{
 
 .firstfour{
     height: 40%;
+   /* height: 37.5%; */
     width: 100%;    
-    margin: 3% auto 3% auto;
-
+   /* margin: 3% auto 3% auto; */
 }
 
 .firbox{
+    margin-top: 2%;
     border-radius: 15px;
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 85%;
     background: #F8F8F8;
     position: relative;
 
@@ -564,11 +572,13 @@ input{
 .firbox-heading{
     display: flex;
     justify-content: space-between;
-    height: 10%;
+    height: 15%;
+    border-bottom: 1px solid #5E6871;    
+
 }
 
 .firbox-btxt{
-    margin: 0.5% 0 0 2%;
+    margin: 2% 0 0 2%;
     font-family: Encode Sans;
     font-size: 28px;
     font-style: normal;
@@ -579,7 +589,7 @@ input{
 }
 
 .firbox-stxt{
-    margin: 1.5% 3% 0 0;
+    margin: 2% 3% 0 0;
     cursor: pointer;
     font-family: Encode Sans;
     font-size: 18px;
@@ -597,15 +607,16 @@ input{
 .firbox-gallery{
     display: flex;
     justify-content: space-around;
-    height: 90%;    
+    height: 85%;
 }
 
 .firbox-box{
     background: #ffffff;;
-    width: 18%;
-    height: 98%;
+    width: 17%;
+    height: 90%;
     border-radius: 10px;
     position: relative;
+    margin-top: 1%;
 }
 
 .firbox-box:hover{
@@ -616,7 +627,7 @@ input{
     border-radius: 5px;
     position: absolute;
     width: 60px;
-    left: 190px;
+    left: 140px;
     top: 18px; 
     transform:rotate(10deg);  
     transform: skewY(-15deg); /* IE 9 */
@@ -634,14 +645,14 @@ input{
 
 .fir-img{
     width: 95%;
-    height: 65%;
+    height: 48%;
     margin: 3% 3% 0 3%;
 }
 
 .product-logo{
     width: 018%;
     height: 02.5%;
-    margin: 2% 40% 4% 40%;  
+    margin: 2% 40% 8% 40%;  
 }
 
 #price-box{
@@ -659,7 +670,7 @@ input{
 
 #new-price-box{
     font-family: Encode Sans;
-    font-size: 17px;
+    font-size: 19px;
     font-style: normal;
     font-weight: 600;
     line-height: 20px;
@@ -673,20 +684,22 @@ input{
 
 #old-price-box{
     font-family: Encode Sans;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 20px;
     letter-spacing: 0em;
     text-align: left;
     margin: 1% 4% 0 3%;
+    color: #928F90;
+
     
     text-decoration: line-through;
 }
 
 .secondfour{
-   
-    height: 20%;
+   height: 20%;
+   /* height: 25%; */
     justify-content: center;
     align-items: center;
     margin: 0 auto;
@@ -704,9 +717,10 @@ input{
     line-height: 31px;
     letter-spacing: 0em;
     text-align: center;
-    height: 92px;
+    height: 50%;
     width: 88%;
     margin-top: 3%;
+ 
 }
 
 
@@ -797,8 +811,6 @@ li{
 a{
     text-decoration: none;
     color: inherit;
-    
-    
 }
 
 button:focus {

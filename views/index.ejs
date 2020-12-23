@@ -22,12 +22,12 @@
                             <li id="li" class="drip-down"><i class="fas fa-user"> <%= currentUser.name() %></i><i class="fas fa-angle-down"></i>
                                 <div class="dropdown">
                                     <ul>
-                                        <li id="drop-txt dud"><a href="/logout" id="login-txt"><i class="fas dud"></i>Sign Out</a></li>
+                                        <li id="drop-txt"><a href="/logout" id="login-txt"><i class="fas dud"></i>Sign Out</a></li>
                           <li id="drop-txt"><a href=#><i class="fas fa-user dud"></i> My Account</a></li>
-                          <li id="drop-txt"><a href="/contact-us"><i class="fas fa-comment-alt dud"></i> Contact Preference</li>
-                        </ul>
+                          <li id="drop-txt"><a href="/contact-us"><i class="fas fa-comment-alt dud"></i> Contact Preference</a></li>
+                                  </ul>
                     </div>
-                            </li></a>
+                            </li>
                             
 
                             <% } else { %>
@@ -118,13 +118,15 @@
 
                          <li><a href="/category-laptops"><i class="fas fa-laptop"></i>Computer & Accessories</a></li>
 
+                         <li><a href="/category-electronics"><i class="fas fa-tv"></i>Eletronics</a></li>
+
                            
                              <li><i class="fas fa-tshirt"></i>Fashion</li>
 
                              
                             
                             
-                            <li><i class="fas fa-tv"></i>Eletronics</li>
+                            
                             
                             <li><i class="fas fa-home"></i>Home & Kitchen</li>
                             <li><i class="far fa-building"></i>Office</li>
@@ -212,7 +214,7 @@
                                                     <% } %>
 
 
-                                                    <a href="/phones/<%= deal._id%>"> <p id="price-box"><%= deal.name.substring(0,41) %></p>
+                                                    <a href="/phones/<%= deal._id%>"> <p id="price-box"><%= deal.name.substring(0,50) %></p>
                                                     </a>
 
                                             
