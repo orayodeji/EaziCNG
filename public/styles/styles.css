@@ -192,6 +192,10 @@ ul{
     width: 95%;
 }
 
+#cross{
+    cursor: not-allowed;
+}
+
 .dropsheets{
     position: absolute;
     
@@ -573,7 +577,8 @@ input{
     display: flex;
     justify-content: space-between;
     height: 15%;
-    border-bottom: 1px solid #5E6871;    
+    /*border-bottom: 1px solid #5E6871;*/  
+    border-bottom: 1px solid #B8B6B6  
 
 }
 
@@ -670,7 +675,7 @@ input{
 
 #new-price-box{
     font-family: Encode Sans;
-    font-size: 19px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 600;
     line-height: 20px;
@@ -684,7 +689,7 @@ input{
 
 #old-price-box{
     font-family: Encode Sans;
-    font-size: 16px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 800;
     line-height: 20px;

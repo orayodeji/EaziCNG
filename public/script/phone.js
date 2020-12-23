@@ -24,7 +24,7 @@ let next = document.querySelector('.next')
 let page = document.querySelector('.page-numbers')
 
 
-let maxItem = 16;
+let maxItem = 20;
 let index = 1;
 
 let pagination = Math.ceil(productsGallery.length/maxItem);
