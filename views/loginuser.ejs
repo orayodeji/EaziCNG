@@ -18,6 +18,12 @@
                 <div id="new1"><a style="text-decoration: none;" href="./signup"><h2>New To EaziCart?</h2></a></div>
                 <div id="new"><h2>Already Registered?</h2></a></div>
             </div>
+            <% errors.forEach(function(error) { %>
+                <div class="alert" role="alert">
+                    <%= error %>
+                </div>
+            <% }) %>
+
             <h3>LOG IN WITH EMAIL</h3>
             <form class="form1" method="POST" action="/login">
                 <label for="email">Username:</label><br>

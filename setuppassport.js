@@ -33,8 +33,8 @@ module.exports = function () {
                     if(isMatch) {
                         return done(null, user);
                     } else {
-                        return done(null, user, {
-                            message: 'Invalid password'
+                        return done(null, false, {
+                            message: 'Wrong Password, Pls Enter a valid password'
                         });
                     }
                 });

@@ -23,8 +23,12 @@
             
 
             <h3>LOG IN WITH EMAIL</h3>
-            
 
+            <% errors.forEach(function(error) { %>
+                <div class="alert alert-info" role="alert">
+                    <%= error %>
+                </div>
+            <% }) %>
 
             <form class="form1" action="/login" method="POST">
               

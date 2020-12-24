@@ -59,6 +59,11 @@ body{
     color: #FFFFFF;
 }
 
+#cross{
+    cursor: not-allowed;
+}
+
+
 #font-input-box{
     width: 628px;
     height: 52px;
@@ -192,6 +197,7 @@ ul{
     display: flex;
     justify-content: space-around;
     width: 95%;
+    color: white;
 }
 
 .head2 ul li{
@@ -278,6 +284,7 @@ ul{
     width: 90%;
     background: transparent;
     height: 50%; 
+    background-color: #F8F8F8;
 }
 
 .picks-text{
@@ -902,10 +909,8 @@ h3{
     position: relative;
     margin: 0;
     background: white;
-    height: 95%;
+    height: 85%;
     width: 17.5%; 
-
- 
     align-items: center;
     box-shadow:1px 04px #a5a3a1;  
     border-radius: 9px;
@@ -928,12 +933,11 @@ h3{
     line-height: 23px;
     letter-spacing: 0em;
     text-align: center;
-
 }
 
+
 .recent-box{
-    
-    height: 70%;
+    height: 65%;
     align-items: center;
 }
 
@@ -992,12 +996,13 @@ h3{
     font-family: Encode Sans;
     font-size: 14px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 800;
     line-height: 25px;
     letter-spacing: 0em;
     text-align: left;
     margin-left: 5%;
-    margin-top: 2%;    
+    margin-top: 2%;  
+    color: #928F90;
 }
 
 .recent-old-price{
@@ -1131,7 +1136,8 @@ ul{
 
 a{
     text-decoration: none;
-    color: black;
+    color: white;
+  /*  color: black; */
 }
 
 

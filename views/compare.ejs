@@ -24,10 +24,10 @@
             <div class="sub-header2">
                  <ul id="top">
                      <li id="li"><i class="fas fa-user"></i></li>
-                     <li id="li"><i class="fas fa-heart"></i></li>
+                     <a href="/carts"><li id="li"><i class="fas fa-heart"></i></li></a>                     
                      <li id="li"><i class="fas fa-bell"></i></li>
-                     <li id="li"><i class="far fa-question-circle"></i></li>
-                 </ul>
+                     <a href="/about-us"><li id="li"><i class="far fa-question-circle"></i></li></a>
+                    </ul>
             </div>
         </div>
         
@@ -112,10 +112,22 @@
         
                                <% }) %>
         
-                           <% } %>
-                           <li id="detail-item"><img src="<%= compare.logo %>" alt="" srcset=""> </li>
+                           <% } else {%>
+                            <% compare.specification.forEach(spec =>{%>
+                                <li id="detail-item"><%= spec.name %></li>
 
 
+                                <% }) %>
+
+                            <% } %>
+
+                            <% if(compare.vendor) { %>
+                                <li id="detail-item"><img src="<%= compare.vendor %>" alt="" srcset=""> </li>
+
+
+                                <% } else { %>
+                                    <img id="detail-item" aria-describedby="caption-attachment-27644" class="product-logo" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" >
+                                    <% } %>
                         </ul>
                     </div>
 
@@ -132,7 +144,7 @@
                     online for the best deals and lowest prices. Our mission is to help consumers use the power of information to easily find,
                      compare and buy products online in less time and for the best price. You can read unbiased product reviews and compare 
                      prices online. Online shopping has never been as easy! Browse our large selection of fashion, clothing, consumer 
-                     electronics, home and garden producsts now 
+                     electronics, home and garden products now. 
                 </p>
             </div>
         

@@ -36,6 +36,10 @@ const compareSchema = new Schema({
         type : String,
         required: false
     },
+    specification:{
+        type: Array,
+        required: false
+    },
     features:{
         type: Array,
         required: false

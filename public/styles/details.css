@@ -211,7 +211,9 @@ ul{
     height: 95%;
 }
 
-
+#cross{
+    cursor: not-allowed;
+}
 
 .cat-section-text{
     width: 95%;
@@ -223,7 +225,7 @@ ul{
     font-family: Encode Sans;
     font-size: 19px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 28px;
     letter-spacing: 0em;
     text-align: left;    
@@ -1087,7 +1089,7 @@ h3{
 
 .recent-price, .recent-old-price{
     font-family: Encode Sans;
-    font-size: 18px;
+    font-size: 19px;
     font-style: normal;
     font-weight: 700;
     line-height: 25px;
@@ -1099,7 +1101,8 @@ h3{
 
 .recent-old-price{
     text-decoration: line-through;
-    font-size: 16px;
+    font-size: 18px;
+    color: #525252;
 }
 
 .closing-txt{
@@ -1229,7 +1232,7 @@ ul{
 
 a{
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 

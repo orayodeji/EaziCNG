@@ -2,6 +2,7 @@ const express = require('express');
 const nightmare = require('nightmare')()
 const passport = require('passport');
 const router = express.Router();
+const connectFlash = require('connect-flash')
 const Cart = require('./models/carts');
 const Recent = require('./models/recent');
 
@@ -32,20 +33,11 @@ function shuffle(array) {
  
  
 
-  router.use(function (req, res, next) {
-    res.locals.login = req.isAuthenticated()
-    res.locals.session = req.session;
-    res.locals.currentUser = req.user;
-    res.locals.errors = req.flash("error");
-    res.locals.infos = req.flash("info");
-    next();
-});
-
-
 router.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated()
     res.locals.session = req.session;
     res.locals.currentUser = req.user;
+    res.locals.success = req.flash('success')
     res.locals.errors = req.flash('error');
     res.locals.info = req.flash('info');
     next();
@@ -67,7 +59,6 @@ router.get('/', (req, res, next)=>{
                     shuffle(topdeals)
                     let newArray = topdeals.slice(0,5)
         
-                  
                     shuffle(topdeals)  
                     res.render('index', {users: users, recents: null, deals: topdeals,goldrush:newArray});})
                     
@@ -106,9 +97,9 @@ router.get('/signup', function (req, res) {
 })
 
 router.post('/signup', function (req, res, next) {
-    var username = req.body.user;
-    var email = req.body.email;
-    var password = req.body.password;
+    let username = req.body.user;
+    let email = req.body.email;
+    let password = req.body.password;
 
     User.findOne({
         username: username
@@ -118,7 +109,7 @@ router.post('/signup', function (req, res, next) {
         }
         if (user) {
             req.flash('error', 'User already exists');
-            return res.redirect('/login');
+            return res.redirect('/signup');
         }
 
         var newUser = new User({
@@ -145,7 +136,7 @@ router.get('/login', function (req, res) {
 
 router.post('/login', passport.authenticate('login', {
     successRedirect: "/",
-    failureRedirect: "/signup",
+    failureRedirect: "/login",
     failureFlash: true
 }));
 
@@ -584,6 +575,7 @@ router.get('/add-to-compare/:id',ensureAuthenticated, (req, res,next)=>{
         let user = req.user
         let name = result.name;
         let price = result.price;
+        let specification = result.specification;
         let url = result.url;
         let vendor = result.vendor;
         let discount = result.discount;
@@ -592,7 +584,7 @@ router.get('/add-to-compare/:id',ensureAuthenticated, (req, res,next)=>{
         let brand = result.brand;
         let old_price = result.old_price;
 
-        let  newResult = {name, url, brand, price,discount,old_price, img, vendor, features, user} 
+        let  newResult = {name, url, brand, price,discount,old_price, img, vendor,specification, features, user} 
 
         const compare = new Compare(newResult)
         compare.save()
@@ -745,6 +737,15 @@ router.get('/shoppings', ensureAuthenticated, (req, res, next)=>{
     })
 })
 
+
+router.use(function (req, res, next) {
+    res.locals.login = req.isAuthenticated()
+    res.locals.session = req.session;
+    res.locals.currentUser = req.user;
+    res.locals.errors = req.flash("error");
+    res.locals.infos = req.flash("info");
+    next();
+});
 
 
 module.exports = router;

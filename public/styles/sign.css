@@ -162,6 +162,14 @@ hr{
     margin-top: 20px;
 }
 
+.alert{
+    color: red;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: Encode Sans;
+    text-align: center;
+}
+
 .form{
     margin-left: 60px;
     width: 80%;

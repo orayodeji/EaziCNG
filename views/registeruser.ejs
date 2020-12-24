@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Encode+Sans&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div id="container">
         <div class="header-logo">
@@ -31,6 +32,13 @@
                 we'll never share your data or post anything on your behalf. We know how that <br>annoying it is too</b></p>
                 <div class="or2"><b>OR</b></div>
                 <hr id="hr1">
+
+                <% errors.forEach(function(error) { %>
+                    <div class="alert" role="alert">
+                        <%= error %>
+                    </div>
+                <% }) %>
+
                 <h3>SIGN UP USING YOUR EMAIL...</h3>
                 <form class="form" action="/signup" method="POST">
                     <label for="user">Username:</label><br>

@@ -24,10 +24,10 @@
             <div class="sub-header2">
                  <ul id="top">
                      <li id="li"><i class="fas fa-user"></i></li>
-                     <li id="li"><i class="fas fa-heart"></i></li>
+                     <a href="/carts"><li id="li"><i class="fas fa-heart"></i></li></a>
                      <li id="li"><i class="fas fa-bell"></i></li>
-                     <li id="li"><i class="far fa-question-circle"></i></li>
-                 </ul>
+                     <a href="/about-us"><li id="li"><i class="far fa-question-circle"></i></li>
+                     </ul>
             </div>
         </div>
         
@@ -56,7 +56,7 @@
                 <% phoneCarts.forEach(phone => { %>
                     
                         <div id="saved-contents">
-                            <a href="/remove-cart/<%= phone.item._id %>"><div id="rm-rf">x</div></a>
+                            <a href="/remove-cart/<%= phone.item._id %>"><div id="rm-rf"><i class="far fa-trash-alt"></i></div></a>
                             
                             <img id="saved-img" src="<%= phone.item.img %>">
                             <div id="saved-content">
@@ -68,7 +68,7 @@
                                 <hr>
                                 <p id="detail"> 
                                 </p>
-                                <a href="<%= phone.item.url %>"><button id='osp-store-btn'><i class="fas fa-shopping-bag"></i> <p>Go to Store</p></button></a>
+                                <a href="<%= phone.item.url %>" target="_blank"><button id='osp-store-btn'><i class="fas fa-shopping-bag"></i> <p>Go to Store</p></button></a>
                                 <a href="/phones/<%= phone.item._id %>">  <button id="notify">Notify Me of Price Drop</button></a>
                             </div>
                         </div>
