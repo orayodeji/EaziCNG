@@ -2,7 +2,7 @@ const express = require('express');
 const nightmare = require('nightmare')()
 const passport = require('passport');
 const router = express.Router();
-const connectFlash = require('connect-flash')
+//const connectFlash = require('connect-flash')
 const Cart = require('./models/carts');
 const Recent = require('./models/recent');
 
@@ -83,26 +83,17 @@ router.get('/', (req, res, next)=>{
                     .catch((err)=>{
                     console.log(err)})
             }
-            
-               
-           
 
         });
 });
 
 router.get('/search', function (req, res) {
     let filter = req.query.dsearch;
-    //    Phone.find({$text : {$search: filter}})
-
-
+    
    // Phone.find({ name: {'$regex': filter, '$options': 'i'}})
     Phone.find({$text : {$search: filter}})
     .then((filterResult)=>{
-        console.log(filterResult.length)
-      //  console.log(filterResult)
-        let newArray = filterResult.slice(0,5)
-
-       res.render('searchtemplate',{phones: filterResult, counts: filterResult.length, topPicks: newArray, recentViews: newArray, category: "Search Result(s)", title: "Search Results"})
+       res.render('searchtemplate',{phones: filterResult, counts: filterResult.length, category: "Search Result(s)", title: "Search Results"})
 
     })
     .catch((err)=>{
@@ -602,7 +593,7 @@ router.get('/add-to-compare/:id',ensureAuthenticated, (req, res,next)=>{
         const compare = new Compare(newResult)
         compare.save()
         .then((result)=>{
-            console.log("")
+         //   console.log("")
             res.redirect('/compare')
         })
         .catch((err)=>{
@@ -679,7 +670,7 @@ router.post('/phones/:id',(req,res)=>{
     let emails = req.body.email
     let givenPrice = req.body.price
     const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
-    console.log(urll)
+   // console.log(urll)
     checkPrice()
 
    async function checkPrice(){
@@ -697,7 +688,7 @@ router.post('/phones/:id',(req,res)=>{
     //sif(priceNumber < givenPrice){
         //  console.log("it's cheap" )
       //} 
-      console.log(priceString)    
+     // console.log(priceString)    
 
      
    }
