@@ -29,8 +29,7 @@ function shuffle(array) {
       array[randomIndex] = temporaryValue;
     }
     return array;
-  }
- 
+}
  
 
 router.use(function (req, res, next) {
@@ -42,6 +41,7 @@ router.use(function (req, res, next) {
     res.locals.info = req.flash('info');
     next();
 });
+
 
 router.get('/', (req, res, next)=>{
     User.find()
@@ -89,6 +89,62 @@ router.get('/', (req, res, next)=>{
 
         });
 });
+
+router.get('/search', (req, res)=>{
+    let filter = req.query.dsearch
+
+    if(!req.session.recent){
+
+        Phone.find()
+        .then((result)=>{
+            shuffle(result)
+            let newArray = result.slice(0,5)
+            Phone.find({$text: {$search:filter}})
+            .then((filterResult)=>{
+                res.render('productstemplate',{phones: filterResult, counts: filterResult.length, topPicks:newArray, recentViews: null, category: "All Products", title: "All Products"})
+
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+         
+            
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    } else{
+
+        Phone.find()
+        .then((result)=>{
+            let recent = new Recent(req.session.recent)
+            let fiveArray = recent.generateArray()
+            let recentArray = fiveArray.slice(0,5)
+            shuffle(recentArray)
+            
+            shuffle(result)
+            let newArray = result.slice(0,5)
+            Phone.find({$text:{$search:filter}})
+            .then((filterResult)=>{
+                res.render('productstemplate',{phones: filterResult, counts: filterResult.length, topPicks:newArray, recentViews: recentArray, category: "All Products", title: "All Products"})
+
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+    
+            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "All Products", title: "All Products"})
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+
+
+})
+
 
 
 
@@ -192,8 +248,6 @@ router.get('/products', (req, res)=>{
 
 
 })
-
-
 
 router.get('/category-phones',(req,res)=>{ 
 
@@ -449,16 +503,6 @@ router.get('/iOS-apple',(req,res)=>{
 router.get('/phones/:id',(req,res)=>{
     const id = req.params.id;
    const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
-    const url = req.protocol + '://' + req.hostname + req.originalUrl; 
-    const hhh = req.get('host')
-    
-    const protocol = req.protocol
-    //console.log(req.hostname)
-  // console.log(req.originalUrl)
-    //console.log(protocol)
-  //  console.log(hhh)
-    //console.log(urll)
-    //console.log(url)
     Phone.findById(id)
     .then((result)=>{
 
@@ -559,9 +603,9 @@ router.get('/carts', (req, res, next)=>{
     if(!req.session.cart){
         return res.render('shoppingcart', {phoneCarts: null, total: null})
     } 
+
     var cart = new Cart(req.session.cart)
     let fff = cart.generateArray()
-
     res.render('shoppingcart', {phoneCarts: cart.generateArray(), total: fff.length})
 })
 
@@ -664,39 +708,34 @@ function ensureAuthenticated(req, res, next) {
 router.post('/phones/:id',(req,res)=>{
     const id = req.params.id;
     let emails = req.body.email
-   //console.log(req.user.username)
-   // console.log(req.body.pricedrop)
-   transporter.sendMail(mailOptions, (err, info)=>{
-    if(err){
-        console.log(err)
-    }
-    console.log("info: ", info)
-})
-       let givenPrice = req.body.price
-   const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
-
-
-  // console.log( typeof urll)
-  checkPrice()
+    let givenPrice = req.body.price
+    const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
+    console.log(urll)
+    checkPrice()
 
    async function checkPrice(){
       const priceString = await nightmare.goto(urll)
                                     .wait("#main-price")
                                     .evaluate(()=> 
-                                    document.getElementById
-                                    ('main-price')
+                                    document.getElementById('main-price')
                                     .innerText)
                                     .end()
-                                 
-    const priceNumber = parseFloat(priceString.replace(/[^0-9.-]+/g,""))
-    //console.log(priceNumber)
-    if(priceNumber < givenPrice){
-          console.log("it's cheap" )
-      } else {
-        console.log("ok") 
-      }
-   }
+                           
+   // const priceNumber = parseFloat(priceString.replace(/[^0-9.-]+/g,""))
+      //  const priceNumber = Number(priceString.replace(/[^0-9.-]+/g,""))
 
+    //  console.log(priceNumber )
+    //sif(priceNumber < givenPrice){
+        //  console.log("it's cheap" )
+      //} 
+      console.log(priceString)    
+
+     
+   }
+   if(checkPrice()){
+       req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
+       res.redirect(urll)
+     }
  
 })
 

@@ -60,6 +60,11 @@
                                 <% } %>
                                 <span id="sub-section"><%= phone.brand %><i class="fas fa-chevron-right"></i></span><span id="main-section"><%= phone.name %></span></p>
                     </div>   
+                    <% success.forEach(function(msg) { %>
+                        <div class="alert alert-info" role="alert">
+                            <%= msg %>
+                        </div>
+                    <% }) %>
                     <div class="detail-box">
                         <div class="detail-img">
                             <img src="<%= phone.img %>" id="detail-jpg">
@@ -136,7 +141,7 @@
                                         <p id="popup-heading">Create Price Alert</p>
                                         <div id="popup-details">
                                             <img src="<%= phone.img %>" alt="photo" id="pd-img">
-                                            <p id='pd-txt'><%= phone.name.substring(0,18) %></p>
+                                            <p id='pd-txt'><%= phone.name.substring(0,25) %></p>
                                             <p id="ps-txt"><%= phone.price %></p>
                                         </div>
 
@@ -148,10 +153,10 @@
                                                     <label for="male"  id="fr-radio-label">The price drops</label><br>
                                                     <input type="radio" id="fr-radio" name="pricedrop" value="">
                                                     <label for="female" id="fr-radio-label">The price drops below</label><br>
-                                                    <input type="text" id="email-space" name="email" value="" placeholder="Pls Enter Your Email">
+                                                    <input type="email" id="email-space" name="email" placeholder="Pls Enter Your Email" required>
                                                 </div>
                                                 <div id="form-number">
-                                                    <input type="number" id="fn-input" name="price">
+                                                    <input type="number" id="fn-input" name="price" required>
                                                     <label for="price" id="naira">NGN</label><br>
 
                                                 </div>
@@ -174,6 +179,7 @@
 
                         </div>
                     </div>
+                   
 
                     <div class="other-store-box">
                         <div class="osb-box">

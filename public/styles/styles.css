@@ -204,11 +204,11 @@ ul{
     left: 61px;
     top: 49px;
     display: none;
-
     flex-direction: column;
     border-radius: 9px;
     background-color: white;
 }
+
 .dropsheet-1{
     margin-top:2%;
     height: 85%;
@@ -224,8 +224,10 @@ ul{
 }
 
 #mini-box{
+    margin-left: 10px;
     height: 100%;
     width: 40%;
+    
 }
 .fa-chevron-right{
     font-size: 16px;

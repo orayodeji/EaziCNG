@@ -16,6 +16,7 @@ body{
 
 }
 
+
 .header{
     height: 3.5%;
     align-items: center;
@@ -46,6 +47,7 @@ body{
 
     
 #search-form{
+    color: white;
     height: 52px;
     width: 773px;
     margin-top: 2.38%;
@@ -80,6 +82,7 @@ body{
     font-size: 24px;  
     border: 0;
     padding-left: 3%; 
+    color: white;
 }
 
 #search-btn{
@@ -580,8 +583,22 @@ ul{
 }
 
 #form-radio{
-    margin-left: 7%;
-   
+    margin-left: 7%; 
+    color: black;
+}
+#email-space{
+    font-size: 19px;
+    font-family: Encode Sans;
+    font-weight: 500;
+    color: black;
+    border-radius: 6px;
+    width: 300px;
+    height: 50px;
+    padding-left: 20px;
+}
+#email-space::placeholder{
+    color: black;
+    padding-left: 10px;
 }
 
 #fn-input{
@@ -657,7 +674,7 @@ ul{
 }
 
 #stock-option{
-    margin-top: 8%;
+    margin-top: 4%;
     margin-left: 7%;
     font-family: Encode Sans;
     font-size: 20px;
@@ -682,7 +699,7 @@ ul{
     letter-spacing: 0em;
     text-align: center;
     border-radius: 7px;
-    margin: 3% 4%;
+    margin: 2% 4% 0% 4%;
     border: 0;
 }
 
@@ -710,6 +727,21 @@ ul{
 
 .fa-chart-bar{
     margin-right:23px ;
+}
+
+.alert{
+    align-items: center;
+    text-align: center;
+    border: 0px;
+    padding-top: 15px;
+    border-radius: 20px;
+    width: 50%;
+    background: #66dbae;
+    font-size: 19px;
+    font-family: Encode Sans;
+    color: green;
+    height: 55px;
+
 }
 
 .other-store-box{

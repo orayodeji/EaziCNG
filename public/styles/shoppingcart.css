@@ -7,6 +7,7 @@
 
 
 body{
+    height: 100%;
     width: 1440px;
   /*  height: 2150px; */ 
     align-items: center;
@@ -22,7 +23,6 @@ body{
     height: 96px;
     align-items: center;
     background: #FF8200;
-    /* border: solid 2px red; */
 }
 
 .head1{
@@ -173,8 +173,7 @@ ul{
     line-height: 28px;
     letter-spacing: 0em;
     text-align: left;    
-    color:black;
-    
+    color:black;  
 }
 
 
@@ -460,16 +459,20 @@ ul{
     letter-spacing: 0em;
     text-align: center;
     width: 1009px;
+    color: black;
 }
 
 /* footer */
 
 .footer{
   /*  height: 10%; */
-    display: flex;
-    flex-direction: column;
-    background: #153B50;
-    
+  width: 100%;
+
+   display: flex;
+  flex-direction: column; 
+  height: 300px ;
+  background: #153B50;   
+  
 }
 
 button:focus {
@@ -482,21 +485,29 @@ input:focus {
     outline: none;
 }
 
-.list-footer{
-    height: 100%;
-    width: 100%;
-    color: #FFFFFF;
-}
 
 .fab{
     color: #ffffff;
 }
 
 .footera{
+    margin-top: 20px;
     height: 80%;    
     display: flex;
-    justify-content: space-between;
-    margin: 15px;
+    flex-direction: row;
+    /*justify-content: space-between; */
+    width: 100%;
+}
+.flex{
+    width: 900px;
+    height: 100%;
+    display: flex;
+}
+.a, .b, .c{
+    width: 33.3%;
+}
+.d{
+    width: 26%;
 }
 
 li{
@@ -504,19 +515,19 @@ li{
     margin-left: 0;
 }
 
-.b{
-    width: 9%;
-}
+
 
 ul{
     margin-right: 2%; 
 }
 
 .footerb{
+    margin-top: 30px;
     height: 20%;
 }
 
 .copyright-text{
+    color: white;
     text-align: center;
     font-family: Encode Sans;
     font-size: 18px;
@@ -536,26 +547,28 @@ ul{
 }
 
 .a, .b, .c, .d{
-    width: 25%;
-    font-family: Futura PT;
-    font-size: 16px;
+    height: 100%;
+    font-family: Encode Sans;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: 21px;
     letter-spacing: 0em;
     text-align: left;
+    color: white;
 
 }
 
 #footer-head{
     margin-bottom: 3%;
-    font-family: Mulish;
+    font-family: Encode Sans;
     font-size: 18px;
     font-style: normal;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 23px;
     letter-spacing: 0em;
     text-align: left;
+    color: white;
 }
 
 a{
