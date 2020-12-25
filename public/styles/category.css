@@ -70,6 +70,7 @@ body{
     border: 1px solid white;
     align-items: center;
     padding: 1% 0 0 2% ;
+    color: white;
 }
 
 #count-txt{
@@ -94,6 +95,8 @@ body{
     font-size: 24px;  
     border: 0;
     color: white;
+    padding-top: 1%;
+   
     padding-left: 3%; 
 }
 

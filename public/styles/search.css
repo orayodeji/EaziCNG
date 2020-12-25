@@ -19,7 +19,6 @@ body{
     height: 3%;
     align-items: center;
     background: #FF8200;
-    border: 2px solid red;
 }
 
 .head1{
@@ -96,6 +95,8 @@ body{
     font-size: 24px;  
     border: 0;
     padding-left: 3%; 
+    padding-top: 1%;
+    color: white;
 }
 
 #search-btn{
@@ -172,19 +173,16 @@ ul{
 
 .main-container{
     height: 87%;   
-    border: 2px solid green;
     background-color: white;
 }
 
 .first-part{
     height: 5%;
     width: 100%;
-    border: 2px solid blue;
 }
 
 #background{
     height: 100%;
-    border: 2px solid red;
     background-image: url(../img/best.jpeg);
     background-size: cover;
     background: rgba(0, 0, 0, 0.5),
@@ -613,6 +611,7 @@ h3{
 .withrow{
     width: 21%;
     height: 19%;
+    position: relative;
 }
 
 
@@ -772,6 +771,9 @@ h3{
 }
 
 .details-btn-with-row{
+    position: absolute;
+    right: 17px;
+    top: 425px;
     width: 088%;
     height: 07%;
     margin: 4% 0% 0 6%;
