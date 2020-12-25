@@ -610,6 +610,7 @@ h3{
 }
 .withrow{
     width: 21%;
+    position: relative;
     height: 17%;
 }
 
@@ -772,6 +773,9 @@ h3{
 .details-btn-with-row{
     width: 088%;
     height: 07%;
+    position: absolute;
+    top: 473px;
+    right: 18px;
     margin: 4% 0% 0 6%;
     font-size: 12px;
     cursor: pointer;
