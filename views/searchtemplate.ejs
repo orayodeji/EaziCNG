@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="	https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/search.css">
+    <title>EaziCart | <%= title %></title>
+</head>
+<body>
+    <div class="header">
+
+        <div class="head1">
+            <div class="sub-header1">
+                <a href="/"><img src="./img/EaziCart logo-White.svg" alt="logo" class="logo"></a> 
+                <form id="search-form" action="/search" method="GET">
+                    <div id="font-input-box">
+                        <i class="fas fa-search"></i><input name="dsearch" type="text" id="search-input" placeholder="Search For Items, Brands And Juicy Items">
+                    </div>
+                    <button type="submit" id="search-btn">Search</button>
+                </form>
+
+              </div>
+            <div class="sub-header2">
+                 <ul id="top">
+                     <li id="li"><i class="fas fa-user"></i></li>
+                     <a href="/carts"><li id="li"><i class="fas fa-heart"></i></li></a>                  
+                     <li id="li"><i class="fas fa-bell"></i></li>
+                     <a href="/about-us"><li id="li"><i class="far fa-question-circle"></i></li>
+                     </a>
+                 </ul>
+            </div>
+        </div>
+        
+            
+    </div>
+
+    <div class="main-container">
+
+        <div class="first-part">
+            <div id="background">
+                <div class="head2">
+                    <ul id="below">
+                        <li><a href="/products"> All Categories<i class="fas fa-bars"></i></a></li>
+                        <li><a href="/category-phones"><i class="fas fa-mobile"></i>Phones</a></li>
+                        <li><a href="/category-laptops"><i class="fas fa-laptop"></i>Computer & Accessories</a></li>
+                        <li> <a href="/category-electronics"><i class="fas fa-tv"></i>Eletronics</a></li>
+                        <li id="cross"><i class="fas fa-tshirt"></i>Fashion</li>
+                        <li id="cross"><i class="fas fa-home"></i>Home & Kitchen</li>
+                        <li id="cross"><i class="far fa-building"></i>Office</li>
+                    </ul>
+                 </div>
+                 <div class="head3">
+                    <div class="cat-section-text">
+                        <p><span id="home">Home<i class="fas fa-chevron-right"></i></span><span id="category"><%= category %></span></p>
+                    </div>
+                 </div>
+                 
+             </div>
+        </div>
+
+        <div class="second-part">
+            
+            <div class="products-section">
+                <div class="products-details">
+                    <div class="products-count"> 
+                        <p id="count-txt">
+                            <span id="numbers-results"><%= counts%></span> Products Found
+                        </p>
+                    </div>
+                    <div class="display-icon">
+                        <i class="fas fa-th" id="row-icon"></i>
+                        <i class="fas fa-list-ul" id="column-icon"></i>
+                    </div>
+                </div>
+                <hr>
+
+                <div id="loader"></div>
+
+                <div class="products-gallery hidden flex">
+                    
+                    <% if(phones.length > 0) { %>
+                        <% phones.forEach(phone => { %>
+                            <div class="product-pack withrow">
+                                
+                                
+                                    <img src="<%= phone.img %>" alt="top-product" class="product-img product-img-with-row">
+                                    
+                                    <p class="product-name product-name-with-row"><%= phone.name %></p>
+                                    <p class="product-price product-price-with-row"><%= phone.price %></p>
+                                    <div id="old-price-discount" class="opd opd-with-row">
+                                        <p class="product-old-price product-old-price-with-row"><%= phone.old_price %></p>
+                                        <p class="product-discount"><%= phone.discount %></p>
+                                    </div>
+
+                                    <% if(phone.vendor) { %>
+                                            
+                                        <img src="<%= phone.vendor %>" alt="vendor-logo" class="product-logo product-logo-with-row">
+                                        <% } else { %>
+                                            <img aria-describedby="caption-attachment-27644" class="product-logo product-logo-with-row" src="https://cdn.freelogovectors.net/wp-content/uploads/2019/02/jumia-logo.png" alt="Jumia Logo png" width="380" height="84" title="Jumia Logo png image">
+
+
+                                            <% } %>
+                            
+                                        <a href="/phones/<%= phone._id %>"><button class="details-btn details-btn-with-row">Details</button></a>
+                                
+                            </div>
+
+                        <% }) %>
+                   <% } %>
+                    
+                    
+                    
+                   
+
+                </div>
+
+                <div class="page-number">
+                    <div id="new-block">
+                        <button class="prev"> Prev</button>
+                    
+                    <div class="page">Page <span class="page-numbers"></span></div>
+                    <button class="next">Next</button>
+
+                    </div>
+                    
+
+                </div>
+                
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        
+        <div class="list-footer">
+            <div class="footera">
+                <div class="a">
+                    <p id="footer-head">About EaziCart</p>
+                    <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Our Blog</li>
+                    <li>Contact Us</li>
+                    <li>Privacy</li>
+                    <li>User Agreement</li>
+                    </ul>
+                </div>
+                <div class="b">
+                    <p id="footer-head">Helpful stuff</p>
+                    <ul>
+                    <li>Site Index</li>
+                    <li>FAQ</li>
+                    <li>Blah</li>
+                    </ul>
+                </div>
+                <div class="c">
+                    <p id="footer-head">Follow</p>
+                    <ul>
+                    <li>Instagram</li>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    </ul>
+                </div>
+                <div class="d">
+                    <p id="footer-head">Download & Connect with us</p>
+                    <div class="store-img">
+                       <a href=""><i class="fab fa-google-play play-img"></i></a> 
+                       <a href=""><i class="fab fa-apple play-img"></i></a> 
+                    </div>
+                    <div class="f-contact">
+                        <div class="f-font-mail">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="f-text-mail">
+                            <p id="f-support">E-Mail Support</p>
+                            <p id="f-mail">help@eazicart.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footerb">
+                <p class="copyright-text">Copyrigth &copy; 2020 EaziCart.com All rights Reserved</p>
+            </div>
+
+        </div>
+    </div>
+ <script src="./script/phone.js"></script>
+</body>
+</html>
+

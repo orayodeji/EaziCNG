@@ -90,67 +90,36 @@ router.get('/', (req, res, next)=>{
         });
 });
 
-router.get('/search', (req, res)=>{
-    let filter = req.query.dsearch
-
-    if(!req.session.recent){
-
-        Phone.find()
-        .then((result)=>{
-            shuffle(result)
-            let newArray = result.slice(0,5)
-            Phone.find({$text: {$search:filter}})
-            .then((filterResult)=>{
-                res.render('productstemplate',{phones: filterResult, counts: filterResult.length, topPicks:newArray, recentViews: null, category: "All Products", title: "All Products"})
-
-            })
-            .catch((err)=>{
-                console.log(err)
-            })
-         
-            
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-
-    } else{
-
-        Phone.find()
-        .then((result)=>{
-            let recent = new Recent(req.session.recent)
-            let fiveArray = recent.generateArray()
-            let recentArray = fiveArray.slice(0,5)
-            shuffle(recentArray)
-            
-            shuffle(result)
-            let newArray = result.slice(0,5)
-            Phone.find({$text:{$search:filter}})
-            .then((filterResult)=>{
-                res.render('productstemplate',{phones: filterResult, counts: filterResult.length, topPicks:newArray, recentViews: recentArray, category: "All Products", title: "All Products"})
-
-            })
-            .catch((err)=>{
-                console.log(err)
-            })
-    
-            res.render('productstemplate',{phones: result, counts: result.length, topPicks:newArray, recentViews: recentArray, category: "All Products", title: "All Products"})
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-
-    }
+router.get('/search', function (req, res) {
+    let filter = req.query.dsearch;
+    //    Phone.find({$text : {$search: filter}})
 
 
-})
+   // Phone.find({ name: {'$regex': filter, '$options': 'i'}})
+    Phone.find({$text : {$search: filter}})
+    .then((filterResult)=>{
+        console.log(filterResult.length)
+      //  console.log(filterResult)
+        let newArray = filterResult.slice(0,5)
+
+       res.render('searchtemplate',{phones: filterResult, counts: filterResult.length, topPicks: newArray, recentViews: newArray, category: "Search Result(s)", title: "Search Results"})
+
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+
+    console.log(filter)
+});
+
+
 
 
 
 
 router.get('/signup', function (req, res) {
     res.render('registeruser');
-})
+});
 
 router.post('/signup', function (req, res, next) {
     let username = req.body.user;
