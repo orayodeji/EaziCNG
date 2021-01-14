@@ -240,9 +240,6 @@ router.get('/products', (req, res)=>{
 //to details
 router.get('/phones/:id',(req,res)=>{
     const id = req.params.id;
-    //console.log(req.params)
-    //console.log(id)
-   //const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
    
     Phone.findOne({name: id})
     .then((result)=>{
@@ -705,8 +702,8 @@ router.post('/phones/:id',(req,res)=>{
     const email = req.body.email
     const givenPrice = req.body.price
     const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
-    console.log(urll)
-    checkPrice()
+   // console.log(urll)
+   checkPrice()
 
    async function checkPrice(){
         const priceString = await nightmare
@@ -717,13 +714,20 @@ router.post('/phones/:id',(req,res)=>{
         const priceNumber = Number(priceString.replace(/[^0-9.-]+/g,""))
     
         console.log(priceNumber,priceString)
+        console.log('email sent!')
      
      if(priceNumber < givenPrice){    
           console.log("it's cheap")}
-
-      req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
-      res.redirect(urll)
     }
+
+
+    
+        req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
+        res.redirect(urll)
+    
+
+    
+
 })
 
 router.get("/users/:username", function (req, res, next) {
