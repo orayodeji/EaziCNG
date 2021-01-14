@@ -207,7 +207,7 @@
 
 
 
-                                                <a href="/phones/<%= deal._id%>">      <img src="<%= deal.img %>" alt="demo" class="fir-img">  </a>
+                                                <a href="/phones/<%= deal.name%>">      <img src="<%= deal.img %>" alt="demo" class="fir-img">  </a>
 
                                             <% if(deal.vendor) { %>
                                             
@@ -219,7 +219,7 @@
                                                     <% } %>
 
 
-                                                    <a href="/phones/<%= deal._id%>"> <p id="price-box"><%= deal.name.substring(0,50) %></p>
+                                                    <a href="/phones/<%= deal.name%>"> <p id="price-box"><%= deal.name.substring(0,50) %></p>
                                                     </a>
 
                                             
@@ -253,7 +253,7 @@
                                     </div>
                                     <div class="firbox-gallery">
                                 <% recents.forEach(recent => { %>
-                                    <a href="/phones/<%= recent.item._id%>">
+                                    <a href="/phones/<%= recent.item.name%>">
         
                                         <div class="firbox-box">
 
@@ -261,7 +261,7 @@
                                                 <div id="rectangle"><%= recent.item.discount %></div>
                                                 <% } %>
 
-                                            <a href="/phones/<%= recent.item._id%>"><img src="<%= recent.item.img %>" alt="demo" class="fir-img"></a>
+                                            <a href="/phones/<%= recent.item.name%>"><img src="<%= recent.item.img %>" alt="demo" class="fir-img"></a>
 
                                             <% if(recent.item.vendor) { %>
                                     
@@ -296,7 +296,7 @@
                                             <div class="firbox-gallery">
 
                                         <% goldrush.forEach(recent => { %>
-                                   <a href="/phones/<%= recent._id%>">         
+                                   <a href="/phones/<%= recent.name%>">         
         
                                                 <div class="firbox-box">
 
@@ -304,7 +304,7 @@
                                                         <div id="rectangle"><%= recent.discount %></div>
                                                         <% } %>
 
-                                                    <a href="/phones/<%= recent.id%>"><img src="<%= recent.img %>" alt="demo" class="fir-img"></a>
+                                                    <a href="/phones/<%= recent.name%>"><img src="<%= recent.img %>" alt="demo" class="fir-img"></a>
 
                                                     <% if(recent.vendor) { %>
                                             

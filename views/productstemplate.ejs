@@ -60,9 +60,6 @@
                     <div class="carousel">
                         <img src="https://image.shutterstock.com/image-photo/hong-kong-circa-january-2016-260nw-692166772.jpg" alt="hdhdh" class="img-carousel">
 
-
-                       
-
                     </div>
 
                     
@@ -87,7 +84,7 @@
                                 <div id="rectangle"><%= recent.discount %></div>
                                 <% } %>
                             <div class="top-box">
-                                <a href="/phones/<%= recent._id%>"><img src="<%= recent.img %>" alt="demo" class="top-img"></a>
+                                <a href="/phones/<%= recent.name%>"><img src="<%= recent.img %>" alt="demo" class="top-img"></a>
                                 
                                 <% if(recent.vendor) { %>
                                             
@@ -163,7 +160,7 @@
 
                                             <% } %>
                             
-                                        <a href="/phones/<%= phone._id %>"><button class="details-btn details-btn-with-row">Details</button></a>
+                                        <a href="/phones/<%= phone.name %>"><button class="details-btn details-btn-with-row">Details</button></a>
                                 
                             </div>
 
@@ -210,7 +207,7 @@
 
 
                                 <div class="recent-box">
-                                    <a href="/phones/<%= recent.item._id%>"><img src="<%= recent.item.img %>" alt="demo" class="recent-img"></a>
+                                    <a href="/phones/<%= recent.item.name%>"><img src="<%= recent.item.img %>" alt="demo" class="recent-img"></a>
 
                                     <% if(recent.item.vendor) { %>
                                     
@@ -248,7 +245,7 @@
                 
                 
                                                 <div class="recent-box">
-                                                    <a href="/phones/<%= recent._id%>"><img src="<%= recent.img %>" alt="demo" class="recent-img"></a>
+                                                    <a href="/phones/<%= recent.name%>"><img src="<%= recent.img %>" alt="demo" class="recent-img"></a>
                 
                                                     <% if(recent.vendor) { %>
                                                     

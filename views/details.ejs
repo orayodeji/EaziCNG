@@ -110,7 +110,7 @@
                             <div id="price-history">
                                 <p id="history-heading"><i class="fas fa-chart-line"></i>Price History</p>
                                 <p id='price-label'>Now:</p>
-                                <p id="main-price"><%= phone.price %></p>
+                                <p id="main-price" class="price-alert"><%= phone.price %></p>
                                 
                                     <p id="price-history-heading">Price History</p>
 
@@ -122,7 +122,6 @@
                                  <li id="price-history-list"><i class="fas fa-chart-line multi"></i> <span id="cash-text">&#8358;</span><%= Math.round(Number(phone.price.replace(/[^0-9.-]+/g,"")) - Math.floor(Math.random() * 18)/ 0.001)*  1 %></li>
                                  <li id="price-history-list"><i class="fas fa-chart-line multi"></i> <span id="cash-text">&#8358;</span><%= Math.round(Number(phone.price.replace(/[^0-9.-]+/g,"")) + Math.floor(Math.random() * 20)/ 0.001)*  1 %></li>
 
-                                   
 
                                 </ul>
 
@@ -134,7 +133,7 @@
                             </div>
 
                             <div class="hover_bkgr_fricc">
-                                <span class="helper"></span>
+                                <span class="helper">hey</span>
                                 <div id="helpers">
                                     <div class="popupCloseButton">&times;</div>
                                     <div id="popup-form-container">
@@ -193,7 +192,7 @@
                                         <div id="rectangle"><%= other.discount %></div>
                                         <% } %>
 
-                                    <a href="/phones/<%= other._id %>">
+                                    <a href="/phones/<%= other.name %>">
                                         <img src="<%= other.img %>" id="osp-img-jpg"></a>
     
                                     
@@ -288,7 +287,7 @@
 
 
                                 <div class="recent-box">
-                                    <a href="/phones/<%= recent.item._id%>"><img src="<%= recent.item.img %>" alt="demo" class="recent-img"></a>
+                                    <a href="/phones/<%= recent.item.name%>"><img src="<%= recent.item.img %>" alt="demo" class="recent-img"></a>
 
                                     <% if(recent.item.vendor) { %>
                                     

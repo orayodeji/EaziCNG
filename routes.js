@@ -5,7 +5,8 @@ const router = express.Router();
 //const connectFlash = require('connect-flash')
 const Cart = require('./models/carts');
 const Recent = require('./models/recent');
-
+const nodemailer = require('nodemailer');
+require('dotenv').config()
 
 //models for products
 const Phone = require("./models/phones");
@@ -13,7 +14,34 @@ const Compare = require("./models/compare");
 const User = require('./models/user');
 const Order = require('./models/order');
 
+/*
+//step 1
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD
+    }
+})
 
+//step2
+let mailOptions = {
+    from: 'eazicart22@gmail.com',
+    to: 'orayodeji@gmail.com',
+    subject: 'Testing and testing',
+    text: 'It works'
+}
+
+//step 3 
+transporter.sendMail(mailOptions, (err,data)=>{
+    if(err){
+        console.log('error occurs', err)
+    } else {
+        console.log('mail sent')
+    }
+})
+
+*/
 
 // to display the products randomly
 function shuffle(array) {
@@ -208,6 +236,42 @@ router.get('/products', (req, res)=>{
 
 
 })
+
+//to details
+router.get('/phones/:id',(req,res)=>{
+    const id = req.params.id;
+    //console.log(req.params)
+    //console.log(id)
+   //const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
+   
+    Phone.findOne({name: id})
+    .then((result)=>{
+
+        let recent = new Recent(req.session.recent ? req.session.recent : {})
+        recent.add(result, result.id)
+        req.session.recent  = recent;
+
+      //  console.log(result.id)
+        let filter = result.name.substring(0,10)
+        Phone.find({$text : {$search: filter}})
+        .then((filterResult)=>{
+            let recent = new Recent(req.session.recent)
+            let fiveArray = recent.generateArray()
+            let recentArray = fiveArray.slice(0,5)
+        shuffle(recentArray)
+
+            shuffle(filterResult)
+            res.render("details", {phone: result, other: filterResult[0],recentViews:recentArray})
+        })
+        
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+    
+    
+})
+
 
 router.get('/category-phones',(req,res)=>{ 
 
@@ -458,37 +522,7 @@ router.get('/iOS-apple',(req,res)=>{
 
 
 
-//to details
 
-router.get('/phones/:id',(req,res)=>{
-    const id = req.params.id;
-   const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
-    Phone.findById(id)
-    .then((result)=>{
-
-        let recent = new Recent(req.session.recent ? req.session.recent : {})
-        recent.add(result, result.id)
-        req.session.recent  = recent;
-
-      //  console.log(result.id)
-        let filter = result.name.substring(0,10)
-        Phone.find({$text : {$search: filter}})
-        .then((filterResult)=>{
-            let recent = new Recent(req.session.recent)
-            let fiveArray = recent.generateArray()
-            let recentArray = fiveArray.slice(0,5)
-        shuffle(recentArray)
-
-            shuffle(filterResult)
-            res.render("details", {phone: result, other: filterResult[0],recentViews:recentArray})
-        })
-        
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-    
-})
 
 
 //saving products to cart  and removing products from cart 
@@ -665,38 +699,31 @@ function ensureAuthenticated(req, res, next) {
 }
 
 
+
 router.post('/phones/:id',(req,res)=>{
     const id = req.params.id;
-    let emails = req.body.email
-    let givenPrice = req.body.price
+    const email = req.body.email
+    const givenPrice = req.body.price
     const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
-   // console.log(urll)
+    console.log(urll)
     checkPrice()
 
    async function checkPrice(){
-      const priceString = await nightmare.goto(urll)
-                                    .wait("#main-price")
-                                    .evaluate(()=> 
-                                    document.getElementById('main-price')
-                                    .innerText)
-                                    .end()
-                           
-   // const priceNumber = parseFloat(priceString.replace(/[^0-9.-]+/g,""))
-      //  const priceNumber = Number(priceString.replace(/[^0-9.-]+/g,""))
-
-    //  console.log(priceNumber )
-    //sif(priceNumber < givenPrice){
-        //  console.log("it's cheap" )
-      //} 
-     // console.log(priceString)    
-
+        const priceString = await nightmare
+                                             .goto(urll)
+                                             .wait(".price-alert")
+                                             .evaluate(()=>{ return document.querySelector('.price-alert').innerText})
+                                             .end()
+        const priceNumber = Number(priceString.replace(/[^0-9.-]+/g,""))
+    
+        console.log(priceNumber,priceString)
      
-   }
-   if(checkPrice()){
-       req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
-       res.redirect(urll)
-     }
- 
+     if(priceNumber < givenPrice){    
+          console.log("it's cheap")}
+
+      req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
+      res.redirect(urll)
+    }
 })
 
 router.get("/users/:username", function (req, res, next) {

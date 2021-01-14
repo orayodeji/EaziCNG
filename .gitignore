@@ -4,3 +4,4 @@ node_modules
 .D*
 trash
 trashh
+.env
