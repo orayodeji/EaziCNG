@@ -60,12 +60,16 @@
                                 <% } %>
                                 <span id="sub-section"><%= phone.brand %><i class="fas fa-chevron-right"></i></span><span id="main-section"><%= phone.name %></span></p>
                     </div>   
+
                     <% success.forEach(function(msg) { %>
                         <div class="alert alert-info" role="alert">
                             <%= msg %>
                         </div>
                     <% }) %>
+                    
                     <div class="detail-box">
+                        
+
                         <div class="detail-img">
                             <img src="<%= phone.img %>" id="detail-jpg">
 

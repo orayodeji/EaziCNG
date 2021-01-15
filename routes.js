@@ -717,17 +717,19 @@ router.post('/phones/:id',(req,res)=>{
         console.log('email sent!')
      
      if(priceNumber < givenPrice){    
-          console.log("it's cheap")}
+          console.log("it's cheap")
+     } else {
+         console.log(" it is an expensive goood")
+     }
+     
+     req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
+     res.redirect(urll)
+        
     }
-
-
-    
-        req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
-        res.redirect(urll)
-    
-
-    
-
+       // console.log('hey')
+        //req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
+        //res.redirect(urll)
+        
 })
 
 router.get("/users/:username", function (req, res, next) {
