@@ -14,7 +14,7 @@ const Compare = require("./models/compare");
 const User = require('./models/user');
 const Order = require('./models/order');
 
-/*
+
 //step 1
 let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -23,7 +23,7 @@ let transporter = nodemailer.createTransport({
         pass: process.env.PASSWORD
     }
 })
-
+/*
 //step2
 let mailOptions = {
     from: 'eazicart22@gmail.com',
@@ -59,7 +59,6 @@ function shuffle(array) {
     return array;
 }
  
-
 router.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated()
     res.locals.session = req.session;
@@ -69,7 +68,6 @@ router.use(function (req, res, next) {
     res.locals.info = req.flash('info');
     next();
 });
-
 
 router.get('/', (req, res, next)=>{
     User.find()
@@ -131,11 +129,6 @@ router.get('/search', function (req, res) {
     console.log(filter)
 });
 
-
-
-
-
-
 router.get('/signup', function (req, res) {
     res.render('registeruser');
 });
@@ -162,6 +155,20 @@ router.post('/signup', function (req, res, next) {
             email :email
         });
         newUser.save((err, result)=>{
+            let mailOptions= {
+                from: 'eazicart22@gmail.com',
+                to: email,
+                subject: `Welcome To EaziCart`,
+                text: `Hello, Welcome To EaziCart`
+            }
+     
+            transporter.sendMail(mailOptions, (err, data)=>{
+                if(err){
+                    console.log('error occurs', err)
+                } else {
+                    console.log('mail sent on the other hand')
+                }
+            })
            res.redirect('/login')
         });
 
@@ -172,11 +179,9 @@ router.post('/signup', function (req, res, next) {
     failureFlash: true
 }));
 
-
 router.get('/login', function (req, res) {
     res.render('loginuser')
 });
-
 
 router.post('/login', passport.authenticate('login', {
     successRedirect: "/",
@@ -192,8 +197,6 @@ router.get("/logout", function (req, res) {
     req.logout();
     res.redirect("/");
 });
-
-
 
 //Routes to create all products available from the database
 router.get('/products', (req, res)=>{
@@ -268,7 +271,6 @@ router.get('/phones/:id',(req,res)=>{
     
     
 })
-
 
 router.get('/category-phones',(req,res)=>{ 
 
@@ -517,11 +519,6 @@ router.get('/iOS-apple',(req,res)=>{
     }
 })
 
-
-
-
-
-
 //saving products to cart  and removing products from cart 
 router.get('/add-to-cart/:id',ensureAuthenticated, (req, res, next)=>{
     Order.findOneAndDelete({user:req.user})
@@ -657,19 +654,10 @@ router.get('/compare', (req, res, next)=>{
 
 })
 
-
-
-
 //it ends here for now
-
-
-
-
-
 router.get("/edit", ensureAuthenticated, function (req, res) {
     res.render("edit");
 });
-
 
 router.post("/edit", ensureAuthenticated, function (req, res, next) {
     req.user.displayName = req.body.displayname;
@@ -684,8 +672,6 @@ router.post("/edit", ensureAuthenticated, function (req, res, next) {
     });
 });
 
-
-
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         next();
@@ -695,11 +681,9 @@ function ensureAuthenticated(req, res, next) {
     }
 }
 
-
-
 router.post('/phones/:id',(req,res)=>{
     const id = req.params.id;
-    const email = req.body.email
+    let email = req.body.email
     const givenPrice = req.body.price
     const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
    // console.log(urll)
@@ -716,20 +700,43 @@ router.post('/phones/:id',(req,res)=>{
         console.log(priceNumber,priceString)
         console.log('email sent!')
      
-     if(priceNumber < givenPrice){    
-          console.log("it's cheap")
-     } else {
-         console.log(" it is an expensive goood")
-     }
-     
-     req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
-     res.redirect(urll)
+     if(priceNumber < givenPrice){
+        let mailOptions= {
+            from: 'eazicart22@gmail.com',
+            to: email,
+            subject: `Price Drop on ${id}`,
+            text: `EaziCart Price Drop, ${id}'s price has dropped!!!. You can check it out by clicking ${urll} `
+        }
+        
+        transporter.sendMail(mailOptions, (err, data)=>{
+            if(err){
+                console.log('error occurs', err)
+            } else {
+                console.log('mail sent on the other hand')
+            }
+        })
+        
+     } 
         
     }
-       // console.log('hey')
-        //req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
-        //res.redirect(urll)
-        
+
+       let mailOptions= {
+           from: 'eazicart22@gmail.com',
+           to: email,
+           subject: `Price Alert Active on ${id}`,
+           text: `Hello, You've just registered ${id} for a price of ${givenPrice} and below`
+       }
+
+       transporter.sendMail(mailOptions, (err, data)=>{
+           if(err){
+               console.log('error occurs', err)
+           } else {
+               console.log('mail sent on the other hand')
+           }
+       })
+        req.flash('success', "Price alert active. You will be notified by the email you provided in the form")
+        res.redirect(urll)
+    
 })
 
 router.get("/users/:username", function (req, res, next) {

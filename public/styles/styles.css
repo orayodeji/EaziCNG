@@ -93,11 +93,12 @@ ul{
         position: relative;
     }
 
+   
 
     .dropdown{
         position: absolute;
         top: 35px;
-        left: -110px;
+        left: -10px;
         background: white;
         padding: 19px 0 0 0;
         border-radius: 5px;
