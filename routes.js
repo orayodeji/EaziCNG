@@ -266,6 +266,7 @@ router.get('/phones/:id',(req,res)=>{
         
     })
     .catch((err)=>{
+        res.redirect('/products')
         console.log(err)
     })
     
