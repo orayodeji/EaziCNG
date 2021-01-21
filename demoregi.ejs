@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EaziCart | Sign Up</title>
-    <!--<link rel="stylesheet" href="styles/sign.css">-->  
-    <link rel="stylesheet" href="styles/demo.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans&display=swap" rel="stylesheet">
-</head>
 <body>
     <div id="container">
         <div class="header-logo">
@@ -51,6 +40,10 @@
                     <label for="lastname">Last Name:</label><br>
                     <input type="text" name="lastname" id="lastname" required><br>
                     <label for="password">Password:</label><br>
+                    <span class="eye" onclick="myFunction()">
+                        <i id="hide1" class="fa fa-eye"></i>
+                        <i id="hide2" class="fa fa-eye-slash"></i>
+                    </span>
                     <input type="password" id="myInput" name="password" required><br>
                     <label for="" class="email">Must be 10 or more characters</label><br><br><br>
                             <span>
@@ -62,7 +55,22 @@
         </div>
         
     </div>
+    <script>
+        function myFunction (){
+  let a = document.getElementById("myInput");
+  let b = document.getElementById("hide1");
+  let c = document.getElementById("hide2");
+
+  if(a.type === "password"){
+      a.type = "text";
+      b.style.display = "block";
+      c.style.display = "none";
+  }
+  else{
+      a.type = "password";
+      b.style.display = "none";
+      c.style.display = "block";
+  }
+}
+    </script>
 </body>
-
-
-</html>
