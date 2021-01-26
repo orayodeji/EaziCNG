@@ -14,7 +14,6 @@ const Compare = require("./models/compare");
 const User = require('./models/user');
 const Order = require('./models/order');
 
-
 //step 1
 let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -70,6 +69,7 @@ router.use(function (req, res, next) {
 });
 
 router.get('/', (req, res, next)=>{
+    
     User.find()
         .sort({
             createdAt: 'descending'
@@ -266,7 +266,6 @@ router.get('/phones/:id',(req,res)=>{
         
     })
     .catch((err)=>{
-        res.redirect('/products')
         console.log(err)
     })
     
@@ -598,9 +597,7 @@ router.get('/carts', (req, res, next)=>{
     res.render('shoppingcart', {phoneCarts: cart.generateArray(), total: fff.length})
 })
 
-
 //the compare button to show list of a particular product with the same brand 
-
 router.get('/add-to-compare/:id',ensureAuthenticated, (req, res,next)=>{
     let phoneId = req.params.id;
     Phone.findById(phoneId)
@@ -756,8 +753,6 @@ router.get("/users/:username", function (req, res, next) {
     });
 });
 
-
-
 //to access in the profile if possible
 router.get('/shoppings', ensureAuthenticated, (req, res, next)=>{
     Order.find({user: req.user}, (err, orders)=>{
@@ -777,7 +772,6 @@ router.get('/shoppings', ensureAuthenticated, (req, res, next)=>{
     })
 })
 
-
 router.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated()
     res.locals.session = req.session;
@@ -786,6 +780,5 @@ router.use(function (req, res, next) {
     res.locals.infos = req.flash("info");
     next();
 });
-
 
 module.exports = router;

@@ -6,7 +6,8 @@
 
 body{
     color: black;
-    width: 1440px;
+   /* width: 1440px; */
+   width: 100%;
     height: 5852px; 
     align-items: center;
     justify-content: center;
@@ -184,7 +185,7 @@ ul{
 
 #background{
     height: 50%;
-    background-image: url(../img/best.jpeg);
+    background-image: url(../img/best.png);
     background-size: cover;
     background: rgba(0, 0, 0, 0.5),
     url(../img/best.jpg);
@@ -926,8 +927,9 @@ h3{
 
 #recent-rectangle{ height: 30px;
     position: absolute;
+    border-radius: 4px; 
     width: 65px;
-    left: 148px;
+    left: 188px;
     top: 14px; 
     transform:rotate(10deg);  
     transform: skewY(-15deg); /* IE 9 */

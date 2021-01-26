@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const setUpPassport = require('./setuppassport');
 const routes = require('./routes');
-const  express = require('express');
+const express = require('express');
 const MongoStore = require('connect-mongo')(session);
 
 
@@ -16,7 +16,8 @@ const MongoStore = require('connect-mongo')(session);
 const PORT = process.env.PORT || 5050;
 
 //connect to mongodb
-const dbUrl = 'mongodb+srv://tunji:Bolaji93,@nodetuts.2wjqz.mongodb.net/nodetuts?retryWrites=true&w=majority'
+const dbUrl = `mongodb+srv://${process.env.MONGOUSER}:${process.env.PASSWORD}@nodetuts.2wjqz.mongodb.net/nodetuts?retryWrites=true&w=majority`
+
 
 mongoose.connect(dbUrl,{useNewUrlParser:true, useUnifiedTopology:true})
 .then((result)=>{
@@ -53,10 +54,9 @@ app.use(passport.session());
 setUpPassport();
 
 app.use(routes);
+app.use((req, res)=>{
+    res.redirect('/')
+})
 
-
-app.listen(app.get('port'), function() {
-    console.log('Server started on port ' + app.get('port'));
-});
 
 

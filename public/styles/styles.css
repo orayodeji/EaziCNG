@@ -7,7 +7,8 @@
 }
 
 body{
-    width: 1440px;
+    /*width: 1440px; */
+    width:100%;
     height: 2400px;
 
     /*height: 2845px; */
@@ -20,7 +21,7 @@ body{
 
 /* header */
 .header{
-    height: 2.8%;
+    height: 3.3%;
     align-items: center;
     background: #FF8200;
 }
@@ -44,7 +45,7 @@ body{
     width: 130px;
     height: 65px;
    /* height: 70px; */
-    top: -07px;
+    top: 2px;
     left: 0;
 }
 
@@ -173,7 +174,7 @@ ul{
 
 #background{
     height: 86.2%;
-    background-image: url(../img/best.jpeg);
+    background-image: url(../img/best.png);
     background-size: cover;
     background: rgba(0, 0, 0, 0.5),
     url(../img/best.jpg);
@@ -206,7 +207,8 @@ ul{
     display: none;
     flex-direction: column;
     border-radius: 9px;
-    background-color: white;
+    background-color: whitesmoke;
+    opacity: 1;
 }
 
 .dropsheet-1{
@@ -325,7 +327,7 @@ color: #4D4D4D;
 
 
 #sub-part{
-    margin: 5% auto;
+    margin: 2% auto;
     width: 95%;   
     height: 90%;
     padding: 4%;
@@ -507,6 +509,8 @@ input{
 
 
 #sub-inp{
+    border-radius: 8px;
+    border-color: #5E6871;
     height: 62px;
     width: 400px;
     background-color: white;
@@ -536,6 +540,8 @@ input{
     color: #153B50;
     font-family: Encode Sans;
     font-size: 20px;
+    border-radius: 8px;
+    border-color: #5E6871;
     font-style: normal;
     font-weight: 700;
     line-height: 25px;
@@ -571,8 +577,6 @@ input{
     height: 85%;
     background: #F8F8F8;
     position: relative;
-
-
 }
 
 .firbox-heading{
@@ -613,7 +617,7 @@ input{
 
 .firbox-gallery{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 85%;
 }
 
@@ -634,7 +638,7 @@ input{
     border-radius: 5px;
     position: absolute;
     width: 60px;
-    left: 140px;
+    left: 190px;
     top: 18px; 
     transform:rotate(10deg);  
     transform: skewY(-15deg); /* IE 9 */
@@ -651,14 +655,15 @@ input{
 }
 
 .fir-img{
-    width: 95%;
+    width: 70%;
     height: 48%;
     margin: 3% 3% 0 3%;
 }
 
 .product-logo{
-    width: 018%;
-    height: 02.5%;
+    width: 017%;
+    height: 06.5%;
+    
     margin: 2% 40% 8% 40%;  
 }
 
