@@ -891,3 +891,8 @@ color: #FFFFFF;
     text-decoration: underline;
     color: green;
 }
+
+.store-img img{
+    width: 200px;
+    height: 100px;
+}

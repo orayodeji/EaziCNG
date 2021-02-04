@@ -22,25 +22,6 @@ let transporter = nodemailer.createTransport({
         pass: process.env.PASSWORD
     }
 })
-/*
-//step2
-let mailOptions = {
-    from: 'eazicart22@gmail.com',
-    to: 'orayodeji@gmail.com',
-    subject: 'Testing and testing',
-    text: 'It works'
-}
-
-//step 3 
-transporter.sendMail(mailOptions, (err,data)=>{
-    if(err){
-        console.log('error occurs', err)
-    } else {
-        console.log('mail sent')
-    }
-})
-
-*/
 
 // to display the products randomly
 function shuffle(array) {
@@ -652,24 +633,6 @@ router.get('/compare', (req, res, next)=>{
 
 })
 
-//it ends here for now
-router.get("/edit", ensureAuthenticated, function (req, res) {
-    res.render("edit");
-});
-
-router.post("/edit", ensureAuthenticated, function (req, res, next) {
-    req.user.displayName = req.body.displayname;
-    req.user.bio = req.body.bio;
-    req.user.save(function (err) {
-        if (err) {
-            next(err);
-            return;
-        }
-        req.flash("info", "Profile updated!");
-        res.redirect("/edit");
-    });
-});
-
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         next();
@@ -684,7 +647,7 @@ router.post('/phones/:id',(req,res)=>{
     let email = req.body.email
     const givenPrice = req.body.price
     const urll = req.protocol + '://' + req.get('host') + req.originalUrl; 
-   // console.log(urll)
+   
    checkPrice()
 
    async function checkPrice(){
@@ -737,40 +700,8 @@ router.post('/phones/:id',(req,res)=>{
     
 })
 
-router.get("/users/:username", function (req, res, next) {
-    User.findOne({
-        username: req.params.username
-    }, function (err, user) {
-        if (err) {
-            return next(err);
-        }
-        if (!user) {
-            return res.status(404).send('404: File not found!');
-        }
-        res.render("profile", {
-            user: user
-        });
-    });
-});
 
-//to access in the profile if possible
-router.get('/shoppings', ensureAuthenticated, (req, res, next)=>{
-    Order.find({user: req.user}, (err, orders)=>{
-        if(err){
-            return res.write('error')
-        }
-        
-        var cart;
-        orders.forEach(function(order){
-            cart = new Cart(order.order);
-            order.items = cart.generateArray();
-        })
-        let storedDatas =  cart.generateArray()
 
-       res.render('shoppingcart',{phoneCarts: cart.generateArray(), total: storedDatas.length})
-        
-    })
-})
 
 router.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated()

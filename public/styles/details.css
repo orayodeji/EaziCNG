@@ -1330,3 +1330,8 @@ color: #FFFFFF;
 #cash-text{
     margin-right: 1px;
 }
+
+.store-img img{
+    width: 200px;
+    height: 100px;
+}

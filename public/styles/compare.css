@@ -774,3 +774,8 @@ color: #FFFFFF;
     text-align: left;
     color: #FFFFFF;
 }
+
+.store-img img{
+    width: 200px;
+    height: 100px;
+}

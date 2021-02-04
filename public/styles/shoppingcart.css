@@ -626,3 +626,7 @@ color: #FFFFFF;
     color: #FFFFFF;
 }
 
+.store-img img{
+    width: 200px;
+    height: 100px;
+}
