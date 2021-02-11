@@ -48,8 +48,13 @@
 
             <% if(compares.length > 0) { %>
                 <% compares.forEach(compare => { %>
+                    
+                    
                     <div id="saved-contents">
-                        <img id="saved-img" src="<%= compare.img %>">
+                        <a href="/phones/<%= compare.name %>">
+                            <img id="saved-img" src="<%= compare.img %>">
+                        </a>
+                        
                         <div id="saved-content">
                             <p class="apple"><%= compare.name %></p>
                         
