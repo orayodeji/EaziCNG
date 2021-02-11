@@ -702,7 +702,6 @@ router.post('/phones/:id',(req,res)=>{
 
 
 
-
 router.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated()
     res.locals.session = req.session;
